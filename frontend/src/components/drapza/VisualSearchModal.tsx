@@ -1459,12 +1459,12 @@ export function VisualSearchModal({
                 border: '1px solid #d7dbd2',
               }}
             >
-              {[
-                { id: 'text', label: 'TEXT SEARCH', icon: Search },
-                { id: 'upload', label: 'IMAGE LENS', icon: Upload },
-                { id: 'paste', label: 'PASTE IMAGE', icon: ClipboardPaste },
-                { id: 'camera', label: 'CAMERA', icon: Camera },
-              ].map((tab) => {
+              {([
+                { id: 'text' as const, label: 'TEXT SEARCH', icon: Search },
+                { id: 'upload' as const, label: 'IMAGE LENS', icon: Upload },
+                { id: 'paste' as const, label: 'PASTE IMAGE', icon: ClipboardPaste },
+                { id: 'camera' as const, label: 'CAMERA', icon: Camera },
+              ]).map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
                 return (
