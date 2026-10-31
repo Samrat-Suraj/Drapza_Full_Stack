@@ -1,20 +1,25 @@
 import { MetadataRoute } from 'next';
 
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const defaultBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://drapza.com';
-  const backendBase =
-    process.env.INTERNAL_BACKEND_URL ||
-    process.env.BACKEND_URL ||
-    (process.env.NEXT_PUBLIC_API_URL?.startsWith('http')
-      ? process.env.NEXT_PUBLIC_API_URL
-      : null);
+  const backendBase = process.env.INTERNAL_BACKEND_URL || process.env.BACKEND_URL;
 
-  if (backendBase) {
+  // Only attempt live fetch if an absolute, non-localhost remote URL is provided
+  const isRemoteBackend =
+    typeof backendBase === 'string' &&
+    (backendBase.startsWith('https://') || backendBase.startsWith('http://')) &&
+    !backendBase.includes('localhost') &&
+    !backendBase.includes('127.0.0.1');
+
+  if (isRemoteBackend) {
     try {
       const fullUrl = `${backendBase.replace(/\/$/, '')}${backendBase.endsWith('/api') ? '' : '/api'}/seo/settings`;
       const res = await fetch(fullUrl, {
         next: { revalidate: 3600 },
-        signal: AbortSignal.timeout(4000),
+        signal: AbortSignal.timeout(2500),
       });
       if (res.ok) {
         const data = await res.json();
@@ -57,8 +62,8 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
           };
         }
       }
-    } catch (err) {
-      console.warn('[ROBOTS] Failed to fetch live SEO settings, using default policy:', err);
+    } catch {
+      // Fallback to standard robots policy
     }
   }
 
@@ -67,7 +72,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/checkout', '/api/', '/profile'],
+        disallow: ['/admin', '/checkout', '/api/', '/profile', '/order-confirm'],
       },
       {
         userAgent: 'GPTBot',
