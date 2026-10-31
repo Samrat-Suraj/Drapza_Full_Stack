@@ -47,12 +47,12 @@ export function MobileBottomNav() {
       href: "/",
       icon: (isActive: boolean) => (
         <svg
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth={isActive ? "2.2" : "1.8"}
+          strokeWidth={isActive ? "2.3" : "1.85"}
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -71,8 +71,8 @@ export function MobileBottomNav() {
       },
       icon: (isActive: boolean) => (
         <svg
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="currentColor"
           className={isActive ? "text-[#25D366]" : "text-inherit"}
@@ -87,17 +87,17 @@ export function MobileBottomNav() {
       href: "/wardrobe",
       icon: (isActive: boolean) => (
         <svg
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth={isActive ? "2.3" : "1.9"}
+          strokeWidth={isActive ? "2.4" : "1.9"}
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="11" cy="11" r="7" />
-          <line x1="16.5" y1="16.5" x2="21.5" y2="21.5" />
+          <circle cx="11" cy="11" r="7.5" />
+          <line x1="16.5" y1="16.5" x2="22" y2="22" />
         </svg>
       ),
     },
@@ -110,12 +110,12 @@ export function MobileBottomNav() {
       icon: (isActive: boolean) => (
         <div className="relative flex items-center justify-center">
           <svg
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth={isActive ? "2.2" : "1.8"}
+            strokeWidth={isActive ? "2.3" : "1.85"}
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -125,7 +125,7 @@ export function MobileBottomNav() {
           </svg>
           {itemCount > 0 && (
             <span
-              className="absolute -top-1 -right-1 min-w-[14px] h-[14px] px-0.5 rounded-full bg-black text-white text-[8px] font-bold font-mono flex items-center justify-center shadow-xs"
+              className="absolute -top-1.5 -right-2 min-w-[16px] h-[16px] px-1 rounded-full bg-[#111111] text-white text-[9px] font-bold font-sans flex items-center justify-center shadow-xs"
               style={{ lineHeight: 1 }}
             >
               {itemCount}
@@ -140,12 +140,12 @@ export function MobileBottomNav() {
       href: "/profile",
       icon: (isActive: boolean) => (
         <svg
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth={isActive ? "2.2" : "1.8"}
+          strokeWidth={isActive ? "2.3" : "1.85"}
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -193,22 +193,22 @@ export function MobileBottomNav() {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // Geometry parameters: generous height and smooth curves
-  const H = 70; // Height of the navbar for comfortable icon-to-text gap
-  const R = 28; // Corner radius of the navbar
-  const w = 27; // Half-width of the scooped notch
-  const d = 19; // Depth of the scooped notch
-  const c1 = 14;
-  const c2 = 12;
+  // Geometry parameters: clean, balanced pill dimensions with no text
+  const H = 62; // Height of the sleek icon-only navbar
+  const R = 31; // Semi-circular rounded pill caps (H / 2)
+  const w = 28; // Half-width of the scooped notch
+  const d = 18; // Depth of the scooped notch
+  const c1 = 15;
+  const c2 = 13;
 
-  // Calculate tab centers with comfortable padding so notch never collides with corners
+  // Calculate tab centers with comfortable, generous spacing across container width
   const getTabCenter = useCallback(
     (idx: number, totalW: number) => {
-      const firstCenter = R + w - 3; // ~52px
-      const lastCenter = totalW - (R + w - 3);
-      return firstCenter + (idx * (lastCenter - firstCenter)) / 4;
+      const edgeMargin = Math.max(38, Math.min(50, totalW * 0.11));
+      const usableWidth = totalW - edgeMargin * 2;
+      return edgeMargin + (idx * usableWidth) / 4;
     },
-    [R, w]
+    []
   );
 
   // Smooth position animation using GSAP
@@ -238,7 +238,7 @@ export function MobileBottomNav() {
     }
   }, [activeIndex, containerWidth, getTabCenter]);
 
-  // Generate SVG path for the notched background
+  // Generate SVG path for the scooped notched background
   const pathD = React.useMemo(() => {
     const X = animatedX;
     const xLeft = X - w;
@@ -285,40 +285,12 @@ export function MobileBottomNav() {
     <nav
       ref={navContainerRef}
       aria-label="Mobile Bottom Navigation"
-      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-[420px] md:hidden pointer-events-auto select-none"
+      className="fixed bottom-[max(1.15rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-[400px] md:hidden pointer-events-auto select-none"
       style={{
         height: `${H}px`,
-        filter: "drop-shadow(0 14px 34px rgba(0, 0, 0, 0.12))",
-        fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        filter: "drop-shadow(0 12px 30px rgba(0, 0, 0, 0.10))",
       }}
     >
-      <style>{`
-        .drapza-bottom-nav-btn {
-          font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-          text-transform: none !important;
-          letter-spacing: normal !important;
-        }
-        .drapza-bottom-nav-btn span {
-          font-family: inherit !important;
-          text-transform: none !important;
-          letter-spacing: normal !important;
-        }
-        .drapza-nav-icon-wrap {
-          margin-bottom: 8px !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-        }
-        .drapza-nav-label {
-          font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-          font-size: 10px !important;
-          line-height: 1 !important;
-          text-transform: none !important;
-          letter-spacing: 0.01em !important;
-          white-space: nowrap !important;
-        }
-      `}</style>
-
       {/* 1. Curved Scoop SVG Background */}
       <svg
         width={containerWidth}
@@ -331,7 +303,7 @@ export function MobileBottomNav() {
         <path
           d={pathD}
           fill="#ffffff"
-          stroke="#e5e7eb"
+          stroke="#e2e6de"
           strokeWidth="1.5"
           strokeLinejoin="round"
         />
@@ -341,37 +313,22 @@ export function MobileBottomNav() {
       <div
         ref={circleRef}
         aria-hidden="true"
-        className="absolute pointer-events-none z-20 flex items-center justify-center rounded-full bg-white border border-[#e5e7eb] shadow-[0_8px_20px_rgba(0,0,0,0.12),0_2px_6px_rgba(0,0,0,0.06)]"
+        className="absolute pointer-events-none z-20 flex items-center justify-center rounded-full bg-white border border-[#e2e6de] shadow-[0_8px_24px_rgba(0,0,0,0.12),0_2px_6px_rgba(0,0,0,0.05)]"
         style={{
-          width: "50px",
-          height: "50px",
+          width: "52px",
+          height: "52px",
           top: "-18px",
           left: 0,
-          transform: `translateX(${animatedX - 25}px)`,
+          transform: `translateX(${animatedX - 26}px)`,
           willChange: "transform",
         }}
       >
-        <span className="text-[#1a1c18] transition-transform duration-200 flex items-center justify-center">
+        <span className="text-[#111111] transition-transform duration-200 flex items-center justify-center">
           {activeTab.icon(true)}
         </span>
       </div>
 
-      {/* 3. Active Label beneath the scooped cradle (perfectly aligned with inactive labels) */}
-      <div
-        aria-hidden="true"
-        className="drapza-nav-label absolute pointer-events-none z-10 text-center font-medium text-[#1a1c18] leading-none flex items-center justify-center"
-        style={{
-          width: "72px",
-          bottom: "12px",
-          left: 0,
-          transform: `translateX(${animatedX - 36}px)`,
-          willChange: "transform",
-        }}
-      >
-        {activeTab.label}
-      </div>
-
-      {/* 4. Tab Hit Areas & Inactive Visuals with distinct 8px gap */}
+      {/* 3. Spacious Icon Tab Buttons (Clean, Icon-Only, No Text) */}
       <div className="relative w-full h-full flex items-center">
         {tabs.map((tab, idx) => {
           const isActive = idx === activeIndex;
@@ -382,32 +339,26 @@ export function MobileBottomNav() {
               key={tab.id}
               type="button"
               onClick={() => handleTabClick(idx)}
-              className="drapza-bottom-nav-btn absolute top-0 bottom-0 flex flex-col items-center justify-center cursor-pointer transition-opacity active:opacity-60 focus:outline-hidden"
+              className="absolute top-0 bottom-0 flex items-center justify-center cursor-pointer transition-opacity active:opacity-60 focus:outline-hidden"
               style={{
-                width: "64px",
-                left: `${centerX - 32}px`,
+                width: "56px",
+                left: `${centerX - 28}px`,
               }}
               aria-label={tab.label}
               title={tab.label}
               aria-selected={isActive}
               role="tab"
             >
-              {/* Inactive Icon & Label with generous vertical gap */}
+              {/* Inactive Icon with generous sizing and smooth hover/active transition */}
               <div
-                className={`flex flex-col items-center justify-center transition-all duration-200 ${isActive
+                className={`flex items-center justify-center transition-all duration-200 ${
+                  isActive
                     ? "opacity-0 scale-75 pointer-events-none"
-                    : "opacity-100 scale-100 text-[#666666] hover:text-[#111111]"
-                  }`}
-                style={{ paddingTop: "2px" }}
+                    : "opacity-100 scale-100 text-[#71717a] hover:text-[#111111]"
+                }`}
               >
-                {/* Icon Wrapper with 8px margin bottom */}
-                <span className="drapza-nav-icon-wrap text-inherit">
+                <span className="flex items-center justify-center text-inherit">
                   {tab.icon(false)}
-                </span>
-
-                {/* Text Label */}
-                <span className="drapza-nav-label text-inherit font-medium">
-                  {tab.label}
                 </span>
               </div>
             </button>
