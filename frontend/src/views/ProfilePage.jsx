@@ -7,15 +7,14 @@ import { useCart } from '../context/CartContext';
 import {
   useGetProfileQuery,
   useUpdateProfileMutation,
-  useChangePasswordMutation,
-} from '../redux/api/authApi';
+  useChangePasswordMutation} from '../redux/api/authApi';
 import { useGetMyOrdersQuery } from '../redux/api/orderApi';
 import {
   useGetAddressesQuery,
   useAddAddressMutation,
   useDeleteAddressMutation,
-  useSetDefaultAddressMutation,
-} from '../redux/api/addressApi';
+  useSetDefaultAddressMutation} from '../redux/api/addressApi';
+import '../styles/profile.css';
 import { ContactForm } from '../components/ContactForm';
 import { Footer } from '../components/Footer';
 import {
@@ -60,8 +59,7 @@ import {
   changePasswordSchema,
   checkoutShippingDetailsSchema,
   getZodErrorMessage,
-  getZodFieldErrors,
-} from '../lib/validation';
+  getZodFieldErrors} from '../lib/validation';
 
 export const ProfilePage = () => {
   const router = useRouter();
@@ -118,8 +116,7 @@ export const ProfilePage = () => {
             tag: 'Deform',
             sizes: ['S', 'M', 'L', 'XL'],
             image_url: '/products/product_1.png',
-            slug: 'unit-01',
-          },
+            slug: 'unit-01'},
           {
             name: 'Phase Field',
             price: '1440',
@@ -127,8 +124,7 @@ export const ProfilePage = () => {
             tag: 'Sheerform',
             sizes: ['M', 'L', 'XL'],
             image_url: '/products/product_2.png',
-            slug: 'phase-field',
-          },
+            slug: 'phase-field'},
         ];
         setWishlistItems(initialWishlist);
         localStorage.setItem('drapza_wishlist', JSON.stringify(initialWishlist));
@@ -180,8 +176,7 @@ export const ProfilePage = () => {
         ...prod,
         price,
         image_url: imgUrl,
-        slug,
-      },
+        slug},
       prod.sizes?.[0] || 'M'
     );
     removeFromWishlist(prod.name);
@@ -193,8 +188,7 @@ export const ProfilePage = () => {
     cart: 'My Shopping Bag',
     personal: 'Personal Information',
     addresses: 'Saved Addresses',
-    preferences: 'Preference & Security',
-  };
+    preferences: 'Preference & Security'};
 
   const navItems = [
     {
@@ -206,8 +200,7 @@ export const ProfilePage = () => {
           <rect x="2" y="7" width="20" height="5"></rect>
           <line x1="12" y1="22" x2="12" y2="7"></line>
         </svg>
-      ),
-    },
+      )},
     {
       id: 'wishlist',
       label: 'My Wishlist',
@@ -216,8 +209,7 @@ export const ProfilePage = () => {
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '15px', height: '15px', flexShrink: 0 }}>
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
         </svg>
-      ),
-    },
+      )},
     {
       id: 'cart',
       label: 'My Cart',
@@ -228,8 +220,7 @@ export const ProfilePage = () => {
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <path d="M16 10a4 4 0 0 1-8 0"></path>
         </svg>
-      ),
-    },
+      )},
     {
       id: 'personal',
       label: 'Personal Information',
@@ -239,8 +230,7 @@ export const ProfilePage = () => {
           <line x1="12" y1="16" x2="12" y2="12"></line>
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
         </svg>
-      ),
-    },
+      )},
     {
       id: 'addresses',
       label: 'Addresses',
@@ -249,8 +239,7 @@ export const ProfilePage = () => {
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
           <circle cx="12" cy="10" r="3"></circle>
         </svg>
-      ),
-    },
+      )},
     {
       id: 'preferences',
       label: 'Contact Preferences',
@@ -259,8 +248,7 @@ export const ProfilePage = () => {
           <circle cx="12" cy="12" r="3"></circle>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
         </svg>
-      ),
-    },
+      )},
   ];
 
   // RTK Queries
@@ -290,8 +278,7 @@ export const ProfilePage = () => {
     email: 'drapza.cloth@gmail.com',
     phone: '9794603102',
     role: 'admin',
-    memberSince: 2026,
-  };
+    memberSince: 2026};
 
   // Form states matching screenshot
   const nameParts = (currentUser.name || 'DRAPZA ADMIN').trim().split(' ');
@@ -328,8 +315,7 @@ export const ProfilePage = () => {
     city: '',
     state: 'Maharashtra',
     pincode: '',
-    isDefault: false,
-  });
+    isDefault: false});
 
   // Password rotation state
   const [currentPassword, setCurrentPassword] = useState('');
@@ -437,8 +423,7 @@ export const ProfilePage = () => {
       name: fullName,
       phone: phone.trim(),
       gender,
-      dob,
-    });
+      dob});
 
     if (!validation.success) {
       const errors = getZodFieldErrors(validation.error);
@@ -453,8 +438,7 @@ export const ProfilePage = () => {
         name: fullName,
         phone: phone.trim(),
         gender,
-        dob,
-      }).unwrap();
+        dob}).unwrap();
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3500);
     } catch (err) {
@@ -469,8 +453,7 @@ export const ProfilePage = () => {
     const validation = changePasswordSchema.safeParse({
       currentPassword,
       newPassword,
-      confirmNewPassword: confirmPassword,
-    });
+      confirmNewPassword: confirmPassword});
 
     if (!validation.success) {
       const errors = getZodFieldErrors(validation.error);
@@ -503,8 +486,7 @@ export const ProfilePage = () => {
       address: addrForm.address.trim(),
       city: addrForm.city.trim(),
       state: addrForm.state.trim(),
-      pincode: addrForm.pincode.trim(),
-    });
+      pincode: addrForm.pincode.trim()});
 
     if (!validation.success) {
       const errors = getZodFieldErrors(validation.error);
@@ -526,8 +508,7 @@ export const ProfilePage = () => {
         city: '',
         state: 'Maharashtra',
         pincode: '',
-        isDefault: false,
-      });
+        isDefault: false});
     } catch (err) {
       setAddrError(err?.data?.message || 'Failed to add address');
     }
@@ -545,1324 +526,10 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <div className="drapza-profile-page" style={{ minHeight: '100vh', backgroundColor: 'var(--base-100, #edf1e8)', color: 'var(--base-700, #0f0f0f)', padding: '8.5rem 2rem 7rem 2rem', position: 'relative' }} suppressHydrationWarning>
+      <div className="drapza-profile-page" data-profile-root="true" style={{ minHeight: '100vh', backgroundColor: '#edf1e8', color: '#111111', position: 'relative' }} suppressHydrationWarning>
         <div className="profile-ui" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }} suppressHydrationWarning>
 
-          {/* Responsive CSS Styles Scoped to Profile */}
-          <style>{`
-            .drapza-profile-page {
-              box-sizing: border-box;
-              padding-bottom: 7.5rem !important;
-            }
-            @media (max-width: 768px) {
-              .drapza-profile-page {
-                padding: 5.5rem 0.85rem 8.5rem 0.85rem !important;
-              }
-            }
-            @media (max-width: 480px) {
-              .drapza-profile-page {
-                padding: 4.8rem 0.65rem 9rem 0.65rem !important;
-              }
-            }
-
-            /* DRAPZA Luxury Atelier Typography - Matches Membership System */
-            .profile-ui,
-            .profile-ui * {
-              box-sizing: border-box;
-            }
-            .profile-ui {
-              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-              color: #111111;
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-            }
-
-            /* Force standard font and normal casing on all elements by default */
-            .profile-ui :is(p, span, a, div, strong, li, label, input, select, textarea, button, h1, h2, h3, h4, h5) {
-              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-              letter-spacing: normal;
-            }
-
-            /* Headings: Clean, modern, high-contrast luxury styling matching membership */
-            .profile-ui :is(h1, h2, h3, h4, h5) {
-              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-              font-weight: 700 !important;
-              color: #111111 !important;
-              line-height: 1.2 !important;
-              letter-spacing: -0.025em !important;
-              text-transform: none !important;
-            }
-
-            /* Paragraphs, descriptions and body copy: Soft, readable, elegant */
-            .profile-ui p {
-              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-              color: #555852 !important;
-              font-weight: 400 !important;
-              line-height: 1.55 !important;
-            }
-
-            /* Technical labels, inputs, code tags, button text */
-            .profile-ui :is(button, input, select, textarea, .profile-mono) {
-              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-            }
-
-            /* Top Header Area matching /checkout & /payment */
-            .profile-ui .profile-header-section {
-              margin-bottom: 2.25rem !important;
-              border-bottom: 1px dashed var(--base-300, #afb3ab) !important;
-              padding-bottom: 1.5rem !important;
-            }
-
-            /* Main Two-Column Layout Container */
-            .profile-ui .profile-container {
-              display: grid !important;
-              grid-template-columns: 290px 1fr !important;
-              gap: 2.25rem !important;
-              align-items: start !important;
-              width: 100% !important;
-              margin-bottom: 5.5rem !important;
-            }
-
-            @media (max-width: 920px) {
-              .profile-ui .profile-container {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
-                margin-bottom: 4rem !important;
-              }
-            }
-
-          /* Left Sidebar (DRAPZA Card Architecture) */
-          .profile-ui .profile-sidebar {
-            width: 290px !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 1.25rem !important;
-            flex-shrink: 0 !important;
-          }
-
-          .profile-ui .profile-user-card {
-            background-color: #ffffff !important;
-            border: 1px solid var(--base-200, #d7dbd2) !important;
-            border-radius: 12px !important;
-            padding: 1.65rem 1.35rem !important;
-            text-align: center !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
-          }
-
-          .profile-ui .profile-user-avatar {
-            width: 90px !important;
-            height: 90px !important;
-            border-radius: 50% !important;
-            margin: 0 auto 0.85rem auto !important;
-            overflow: hidden !important;
-            box-shadow: 0 6px 18px rgba(15, 15, 15, 0.1) !important;
-            border: 3px solid var(--base-200, #d7dbd2) !important;
-            background-color: var(--base-200, #d7dbd2) !important;
-            transition: transform 0.2s ease;
-          }
-          .profile-ui .profile-user-avatar:hover {
-            transform: scale(1.03);
-          }
-
-          .profile-ui .profile-nav-list {
-            background-color: #ffffff !important;
-            border: 1px solid var(--base-200, #d7dbd2) !important;
-            border-radius: 12px !important;
-            padding: 0.65rem !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 0.3rem !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
-          }
-
-          .profile-ui .profile-nav-btn {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            width: 100% !important;
-            padding: 0.68rem 0.9rem !important;
-            border-radius: 8px !important;
-            font-family: var(--font-dm-mono), monospace !important;
-            font-size: 0.78rem !important;
-            font-weight: 600 !important;
-            letter-spacing: 0.04em !important;
-            text-transform: uppercase !important;
-            cursor: pointer !important;
-            transition: all 0.15s ease !important;
-          }
-
-          .profile-ui .profile-nav-btn:not(.active) {
-            border: 1px solid transparent !important;
-            background-color: transparent !important;
-            color: var(--base-500, #7d807a) !important;
-          }
-
-          .profile-ui .profile-nav-btn:not(.active) span {
-            color: var(--base-500, #7d807a) !important;
-          }
-
-          .profile-ui .profile-nav-btn:not(.active) svg {
-            color: var(--base-500, #7d807a) !important;
-            stroke: var(--base-500, #7d807a) !important;
-          }
-
-          .profile-ui .profile-nav-btn:not(.active):hover {
-            background-color: #dfe4da !important;
-            color: var(--base-700, #0f0f0f) !important;
-          }
-
-          .profile-ui .profile-nav-btn:not(.active):hover span {
-            color: var(--base-700, #0f0f0f) !important;
-          }
-
-          .profile-ui .profile-nav-btn.active {
-            border: 1px solid var(--base-700, #0f0f0f) !important;
-            background-color: var(--base-700, #0f0f0f) !important;
-            color: #ffffff !important;
-            font-weight: 700 !important;
-            box-shadow: 0 4px 14px rgba(15, 15, 15, 0.18) !important;
-          }
-
-          .profile-ui .profile-nav-btn.active span {
-            color: #ffffff !important;
-          }
-
-          .profile-ui .profile-nav-btn.active svg {
-            color: #ffffff !important;
-            stroke: #ffffff !important;
-          }
-
-          .profile-ui .profile-nav-btn svg {
-            width: 16px !important;
-            height: 16px !important;
-            min-width: 16px !important;
-            max-width: 16px !important;
-            flex-shrink: 0 !important;
-          }
-
-          .profile-ui .profile-sidebar-footer {
-            margin-top: 0.45rem;
-            padding-top: 0.45rem;
-            border-top: 1px solid var(--base-200, #d7dbd2);
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-          }
-
-          /* Main Right Profile Card */
-          .profile-ui .profile-main {
-            flex: 1;
-            min-width: 0;
-            width: 100%;
-          }
-          .profile-ui .profile-card {
-            background-color: #ffffff;
-            border-radius: 12px !important;
-            padding: 2.25rem 2.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--base-200, #d7dbd2);
-            min-height: 620px;
-            display: flex;
-            flex-direction: column;
-          }
-          .profile-ui .profile-tab-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1.5rem;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid var(--base-200, #d7dbd2);
-          }
-          .profile-ui .profile-grid-names {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
-          }
-          .profile-ui .profile-grid-contact {
-            display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.4rem;
-          }
-          .profile-ui .profile-gender-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-          }
-          .profile-ui .profile-gender-tile {
-            position: relative;
-            flex: 1;
-            max-width: 120px;
-            height: 82px;
-            border-radius: 8px !important;
-            border: 1px solid var(--base-200, #d7dbd2) !important;
-            background-color: #ffffff !important;
-            color: var(--base-700, #0f0f0f) !important;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            user-select: none;
-            touch-action: manipulation;
-          }
-          .profile-ui .profile-gender-tile:hover:not(.selected) {
-            border-color: var(--base-400, #969992) !important;
-            background-color: #fafbf9 !important;
-            transform: translateY(-1.5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-          }
-          .profile-ui .profile-gender-tile:active {
-            transform: scale(0.985);
-          }
-          .profile-ui .profile-gender-tile:focus-visible,
-          .profile-ui .profile-nav-btn:focus-visible,
-          .profile-ui button:focus-visible,
-          .profile-ui input:focus-visible,
-          .profile-ui select:focus-visible {
-            outline: 2px solid var(--base-700, #0f0f0f) !important;
-            outline-offset: 2px !important;
-          }
-          .profile-ui .profile-gender-tile.selected {
-            background-color: #121316 !important;
-            border-color: #26272e !important;
-            color: #ffffff !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16) !important;
-          }
-          .profile-ui .profile-gender-symbol {
-            font-size: 1.45rem;
-            line-height: 1;
-            margin-bottom: 0.2rem;
-            color: inherit;
-          }
-          .profile-ui .profile-gender-label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            font-family: var(--font-dm-mono), monospace;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: inherit;
-          }
-          .profile-ui .profile-gender-tile.selected .profile-gender-symbol,
-          .profile-ui .profile-gender-tile.selected .profile-gender-label {
-            color: #ffffff !important;
-          }
-          .profile-ui .profile-actions-row {
-            display: flex;
-            gap: 0.85rem;
-            align-items: center;
-          }
-          .profile-ui .profile-wallet-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-          }
-          .profile-ui .profile-order-card {
-            border: 1px solid var(--base-200, #d7dbd2);
-            border-radius: 12px !important;
-            padding: 1.25rem 1.4rem;
-            background-color: #ffffff;
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-          }
-          .profile-ui .profile-order-card:hover {
-            border-color: var(--base-400, #969992);
-            box-shadow: 0 8px 24px -8px rgba(15, 15, 15, 0.08);
-          }
-          .profile-ui .profile-order-card svg {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            flex-shrink: 0;
-            display: inline-block;
-          }
-          .profile-ui .profile-status-pill span {
-            color: inherit !important;
-          }
-
-          /* DRAPZA Design System Component Radiuses */
-          .profile-ui .profile-card,
-          .profile-ui .profile-order-card,
-          .profile-ui .profile-address-modal,
-          .profile-ui .profile-address-card,
-          .profile-ui .profile-wallet-card {
-            border-radius: 12px !important;
-          }
-          .profile-ui button,
-          .profile-ui input,
-          .profile-ui select,
-          .profile-ui textarea,
-          .profile-ui .profile-gender-tile,
-          .profile-ui .profile-nav-btn {
-            border-radius: 8px !important;
-          }
-          .profile-ui .profile-status-pill,
-          .profile-ui .profile-badge {
-            border-radius: 9999px !important;
-          }
-          .profile-ui button span {
-            color: inherit;
-          }
-
-          .profile-ui .profile-user-avatar,
-          .profile-ui .profile-user-avatar img {
-            border-radius: 50% !important;
-          }
-
-          /* Instagram-Style Drawer Item Rules */
-          .profile-ui .profile-insta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            width: 100%;
-            padding: 0.65rem 0.85rem;
-            border: none;
-            border-radius: 8px !important;
-            background-color: transparent;
-            color: #4a4d46 !important;
-            font-size: 0.82rem;
-            font-weight: 500;
-            font-family: var(--font-dm-mono), monospace !important;
-            letter-spacing: 0.03em !important;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-          .profile-ui .profile-insta-item span {
-            color: inherit !important;
-            font-family: var(--font-dm-mono), monospace !important;
-            font-size: 0.82rem !important;
-            font-weight: inherit !important;
-            letter-spacing: 0.03em !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-          }
-          .profile-ui .profile-insta-item svg {
-            width: 18px !important;
-            height: 18px !important;
-            min-width: 18px !important;
-            max-width: 18px !important;
-            min-height: 18px !important;
-            max-height: 18px !important;
-            flex-shrink: 0 !important;
-            display: block !important;
-          }
-          .profile-ui .profile-insta-item:hover:not(.active) {
-            background-color: #edf1e8;
-            color: #0f0f0f !important;
-            transform: translateX(4px);
-          }
-          .profile-ui .profile-insta-item:hover:not(.active) span {
-            color: #0f0f0f !important;
-          }
-          .profile-ui .profile-insta-item.active {
-            background-color: #0f0f0f !important;
-            color: #edf1e8 !important;
-            font-weight: 600;
-            box-shadow: 0 4px 14px -3px rgba(15, 15, 15, 0.25);
-          }
-          .profile-ui .profile-insta-item.active span {
-            color: #edf1e8 !important;
-            font-weight: 600 !important;
-          }
-          .profile-ui .profile-insta-item.active svg {
-            stroke: #edf1e8 !important;
-          }
-          .profile-ui .profile-insta-item:not(.active) svg {
-            stroke: #7d807a !important;
-          }
-
-          @keyframes instaDrawerSlideIn {
-            from {
-              transform: translateX(-100%);
-              opacity: 0.95;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-          @keyframes instaBackdropFadeIn {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
-
-          /* Address Modal System */
-          .profile-ui .profile-address-modal {
-            background-color: #ffffff;
-            border-radius: 12px !important;
-            width: 100%;
-            max-width: 520px;
-            padding: 2rem 2.25rem;
-            border: 1px solid var(--base-200, #d7dbd2);
-            box-shadow: 0 30px 60px -15px rgba(15, 15, 15, 0.25), 0 0 1px 1px rgba(15, 15, 15, 0.05);
-            animation: modalFadeScale 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-          @keyframes modalFadeScale {
-            from {
-              opacity: 0;
-              transform: scale(0.96) translateY(8px);
-            }
-            to {
-              opacity: 1;
-              transform: scale(1) translateY(0);
-            }
-          }
-          .profile-ui .profile-address-grid-2col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.85rem;
-            margin-bottom: 0.95rem;
-          }
-          .profile-ui .profile-address-grid-3col {
-            display: grid;
-            grid-template-columns: 1.15fr 1.25fr 0.95fr;
-            gap: 0.85rem;
-            margin-bottom: 1.15rem;
-          }
-          .profile-ui .profile-form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-            margin-bottom: 0.95rem;
-          }
-          .profile-ui .profile-form-label {
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            color: #4a4d46;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          }
-          .profile-ui .profile-form-input {
-            width: 100%;
-            padding: 0.68rem 0.9rem;
-            border: 1px solid #d7dbd2;
-            border-radius: 8px !important;
-            font-size: 0.85rem;
-            color: #0f0f0f;
-            background-color: #fbfcfa;
-            outline: none;
-            transition: all 0.18s ease;
-            box-sizing: border-box;
-          }
-          .profile-ui .profile-form-input:focus {
-            border-color: #0f0f0f;
-            background-color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(15, 15, 15, 0.08);
-          }
-          .profile-ui .profile-form-input::placeholder {
-            color: #9ca3af;
-            font-size: 0.82rem;
-          }
-          .profile-ui .profile-close-btn {
-            width: 32px !important;
-            height: 32px !important;
-            min-width: 32px !important;
-            max-width: 32px !important;
-            min-height: 32px !important;
-            max-height: 32px !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            line-height: 1 !important;
-            border-radius: 8px !important;
-            border: 1px solid #d7dbd2 !important;
-            background-color: #edf1e8 !important;
-            color: #0f0f0f !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            flex-shrink: 0 !important;
-            cursor: pointer !important;
-            transition: all 0.15s ease;
-          }
-          .profile-ui .profile-close-btn:hover {
-            background-color: #0f0f0f !important;
-            color: #ffffff !important;
-            border-color: #0f0f0f !important;
-            transform: scale(1.05);
-          }
-          .profile-ui .profile-close-btn svg {
-            width: 14px !important;
-            height: 14px !important;
-            min-width: 14px !important;
-            max-width: 14px !important;
-            min-height: 14px !important;
-            max-height: 14px !important;
-            stroke: currentColor !important;
-            display: block !important;
-            margin: auto !important;
-          }
-          .profile-ui .profile-checkbox-row {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            margin-bottom: 1.4rem;
-            cursor: pointer;
-            user-select: none;
-          }
-
-          /* Mobile Horizontal Quick-Scroll Tabs */
-          .profile-ui .profile-mobile-tabs-scroll-wrap {
-            display: none;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding: 0.15rem 0.1rem 0.65rem 0.1rem;
-          }
-          .profile-ui .profile-mobile-tabs-scroll-wrap::-webkit-scrollbar {
-            display: none;
-          }
-          .profile-ui .profile-mobile-tabs-container {
-            display: inline-flex;
-            gap: 0.45rem;
-            align-items: center;
-            white-space: nowrap;
-          }
-          .profile-ui .profile-mobile-tab-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.42rem;
-            padding: 0.52rem 0.95rem;
-            border-radius: 9999px;
-            background-color: #ffffff;
-            border: 1px solid var(--base-200, #d7dbd2);
-            color: var(--base-600, #4a4d46);
-            font-family: var(--font-dm-mono), monospace;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: all 0.18s ease;
-            user-select: none;
-            box-shadow: 0 1px 3px rgba(15, 15, 15, 0.04);
-          }
-          .profile-ui .profile-mobile-tab-btn:active {
-            transform: scale(0.96);
-          }
-          .profile-ui .profile-mobile-tab-btn.active {
-            background-color: #0f0f0f !important;
-            color: #ffffff !important;
-            border-color: #0f0f0f !important;
-            font-weight: 700 !important;
-            box-shadow: 0 4px 14px rgba(15, 15, 15, 0.18) !important;
-          }
-          .profile-ui .profile-mobile-tab-btn.active svg,
-          .profile-ui .profile-mobile-tab-btn.active span {
-            color: #ffffff !important;
-            stroke: #ffffff !important;
-          }
-          .profile-ui .profile-mobile-tab-btn .tab-badge {
-            font-size: 0.6rem;
-            font-weight: 800;
-            padding: 0.08rem 0.42rem;
-            border-radius: 9999px;
-            background-color: #e2e7dc;
-            color: #0f0f0f;
-            line-height: 1.2;
-          }
-          .profile-ui .profile-mobile-tab-btn.active .tab-badge {
-            background-color: #f59e0b !important;
-            color: #000000 !important;
-          }
-
-          /* Responsive Wishlist, Cart & Order grids */
-          .profile-ui .profile-wishlist-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 1.25rem;
-            align-items: stretch;
-          }
-          .profile-ui .profile-cart-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1.1fr);
-            gap: 1.5rem;
-            align-items: start;
-          }
-          .profile-ui .profile-addresses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1rem;
-          }
-          .profile-ui .profile-order-details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-          }
-
-          /* Mobile Sticky Top Header */
-          .profile-ui .profile-mobile-top-header {
-            display: none;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            background-color: rgba(237, 241, 232, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 0.65rem 0.25rem;
-            margin-bottom: 0.85rem;
-            border-bottom: 1px solid rgba(215, 219, 210, 0.8);
-            width: 100%;
-          }
-          .profile-ui .profile-mobile-header-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.45rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #141513;
-            border-radius: 8px;
-            transition: opacity 0.15s ease;
-          }
-          .profile-ui .profile-mobile-header-btn:active {
-            opacity: 0.6;
-          }
-          .profile-ui .profile-mobile-header-title {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 1.15rem !important;
-            font-weight: 700 !important;
-            color: #111111 !important;
-            margin: 0 !important;
-            text-align: center;
-            text-transform: none !important;
-            letter-spacing: -0.025em !important;
-            flex: 1;
-          }
-          .profile-ui .profile-mobile-save-btn {
-            background-color: #111111;
-            color: #ffffff;
-            border: none;
-            border-radius: 9999px;
-            padding: 0.42rem 1.15rem;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: normal;
-            text-transform: none;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
-          }
-          .profile-ui .profile-mobile-save-btn:active {
-            transform: scale(0.96);
-            opacity: 0.85;
-          }
-          .profile-ui .profile-mobile-bag-btn {
-            position: relative;
-          }
-          .profile-ui .profile-mobile-cart-badge {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            min-width: 15px;
-            height: 15px;
-            padding: 0 3px;
-            border-radius: 9999px;
-            background-color: #ef4444;
-            color: #ffffff;
-            font-size: 9px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-          }
-
-          /* Mobile Hub Container */
-          .profile-ui .profile-mobile-wrap {
-            display: none;
-            width: 100%;
-          }
-
-          /* Profile Avatar & Hero Section */
-          .profile-ui .profile-hub-avatar-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0.4rem 0 1.25rem 0;
-          }
-          .profile-ui .profile-hub-avatar-wrap {
-            position: relative;
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            border: 3.5px solid #ffffff;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            background-color: #f2f5ef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-          .profile-ui .profile-hub-avatar-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-          .profile-ui .profile-hub-edit-picture-btn {
-            background: none;
-            border: none;
-            color: #52525b;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: underline;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            padding: 0.2rem 0.5rem;
-            transition: color 0.15s ease;
-          }
-          .profile-ui .profile-hub-edit-picture-btn:hover {
-            color: #111111;
-          }
-          .profile-ui .profile-hub-user-name {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 1.45rem !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.025em !important;
-            color: #111111 !important;
-            line-height: 1.2 !important;
-            margin: 0.75rem 0 0.2rem 0 !important;
-            text-transform: none !important;
-          }
-          .profile-ui .profile-hub-user-subtitle {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 0.82rem !important;
-            font-weight: 400 !important;
-            color: #71717a !important;
-            letter-spacing: normal !important;
-            margin: 0 !important;
-          }
-
-          /* Alert messages */
-          .profile-ui .profile-hub-alert {
-            padding: 0.65rem 0.95rem;
-            border-radius: 12px;
-            font-size: 0.78rem;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-weight: 600;
-            margin-bottom: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-          }
-          .profile-ui .profile-hub-alert.success {
-            background-color: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-          }
-          .profile-ui .profile-hub-alert.error {
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #991b1b;
-          }
-
-          /* Personal Information Accordion Card */
-          .profile-ui .profile-hub-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e6de;
-            border-radius: 20px;
-            padding: 1.25rem 1.25rem;
-            margin-bottom: 0.95rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-          }
-          .profile-ui .profile-hub-accordion-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            user-select: none;
-          }
-          .profile-ui .profile-hub-accordion-title {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 1.05rem !important;
-            font-weight: 700 !important;
-            color: #111111 !important;
-            margin: 0 !important;
-            text-transform: none !important;
-            letter-spacing: -0.02em !important;
-          }
-          .profile-ui .profile-hub-accordion-chevron {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #71717a;
-          }
-          .profile-ui .profile-hub-fields-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #edf1e8;
-          }
-          .profile-ui .profile-hub-field-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            width: 100%;
-          }
-          .profile-ui .profile-hub-field-icon {
-            width: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #71717a;
-            flex-shrink: 0;
-          }
-          .profile-ui .profile-hub-field-label {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 0.84rem !important;
-            color: #71717a !important;
-            font-weight: 500 !important;
-            min-width: 62px;
-            flex-shrink: 0;
-          }
-          .profile-ui .profile-hub-field-pill {
-            flex: 1;
-            background-color: #f8faf6;
-            border: 1px solid #dce0d8;
-            border-radius: 12px;
-            padding: 0.52rem 0.9rem;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 0.85rem !important;
-            font-weight: 600 !important;
-            color: #18181b !important;
-            text-align: right;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            letter-spacing: normal !important;
-          }
-
-          /* Navigation Menu Card */
-          .profile-ui .profile-hub-menu-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e6de;
-            border-radius: 20px;
-            padding: 0.5rem 0.6rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            margin-bottom: 2rem;
-          }
-          .profile-ui .profile-hub-menu-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0.9rem 0.85rem;
-            background: none;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            user-select: none;
-            text-align: left;
-          }
-          .profile-ui .profile-hub-menu-item:hover,
-          .profile-ui .profile-hub-menu-item:active {
-            background-color: #f7f9f5;
-          }
-          .profile-ui .profile-hub-menu-item-left {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-          }
-          .profile-ui .profile-hub-menu-item-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #18181b;
-          }
-          .profile-ui .profile-hub-menu-item-label {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            font-size: 0.94rem !important;
-            font-weight: 600 !important;
-            letter-spacing: -0.015em !important;
-            color: #18181b !important;
-          }
-          .profile-ui .profile-hub-badge {
-            font-size: 0.72rem;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            padding: 2px 8px;
-            border-radius: 9999px;
-            background-color: #18181b;
-            color: #ffffff;
-            font-weight: 700;
-            line-height: 1.2;
-          }
-            background-color: #f59e0b;
-            color: #000000;
-            font-weight: 800;
-            line-height: 1.2;
-          }
-          .profile-ui .profile-hub-menu-divider {
-            height: 1px;
-            background-color: #edf1e8;
-            margin: 0.25rem 0.5rem;
-          }
-          .profile-ui .profile-hub-menu-item.destructive .profile-hub-menu-item-icon,
-          .profile-ui .profile-hub-menu-item.destructive .profile-hub-menu-item-label {
-            color: #ef4444 !important;
-          }
-
-          /* Modern Form Input Fields (Matches screenshot) */
-          .profile-ui .profile-input-field {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.48rem 0.85rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            background-color: #ffffff;
-            transition: all 0.18s ease;
-            width: 100%;
-          }
-          .profile-ui .profile-input-field:focus-within {
-            border-color: #111315;
-            box-shadow: 0 0 0 2px rgba(17, 19, 21, 0.08);
-          }
-          .profile-ui .profile-input-field.error {
-            border-color: #ef4444;
-          }
-          .profile-ui .profile-input-stack {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-width: 0;
-          }
-          .profile-ui .profile-input-label {
-            font-size: 0.65rem;
-            color: #7d807a;
-            font-weight: 500;
-            font-family: var(--font-host-grotesk), sans-serif;
-            line-height: 1.1;
-            margin-bottom: 2px;
-            user-select: none;
-          }
-          .profile-ui .profile-input-val {
-            border: none;
-            outline: none;
-            background: transparent;
-            color: #111315;
-            font-size: 0.88rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            padding: 0;
-            width: 100%;
-          }
-          .profile-ui .profile-phone-row {
-            display: flex;
-            gap: 0.55rem;
-            align-items: center;
-            width: 100%;
-          }
-          .profile-ui .profile-phone-code-pill {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.62rem 0.75rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            background-color: #ffffff;
-            flex-shrink: 0;
-          }
-          .profile-ui .profile-phone-code-select {
-            border: none;
-            outline: none;
-            background: transparent;
-            color: #111315;
-            font-size: 0.85rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            cursor: pointer;
-          }
-          .profile-ui .profile-phone-num-pill {
-            display: flex;
-            align-items: center;
-            padding: 0.62rem 0.85rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            background-color: #ffffff;
-            flex: 1;
-            transition: all 0.18s ease;
-          }
-          .profile-ui .profile-phone-num-pill:focus-within {
-            border-color: #111315;
-            box-shadow: 0 0 0 2px rgba(17, 19, 21, 0.08);
-          }
-          .profile-ui .profile-phone-num-pill.error {
-            border-color: #ef4444;
-          }
-          .profile-ui .profile-phone-input {
-            border: none;
-            outline: none;
-            background: transparent;
-            color: #111315;
-            font-size: 0.88rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            width: 100%;
-            padding: 0;
-          }
-          .profile-ui .profile-dob-pill {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.62rem 0.85rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            background-color: #ffffff;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.18s ease;
-            width: 100%;
-          }
-          .profile-ui .profile-dob-pill:hover {
-            border-color: #111315;
-          }
-          .profile-ui .profile-dob-pill.error {
-            border-color: #ef4444;
-          }
-          .profile-ui .profile-gender-selection-row {
-            display: flex;
-            gap: 0.75rem;
-            width: 100%;
-          }
-          .profile-ui .profile-gender-pill-card {
-            flex: 1;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 0.5rem;
-            border-radius: 14px;
-            cursor: pointer;
-            border: 1px solid #e5e7eb;
-            background-color: #ffffff;
-            color: #111315;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            user-select: none;
-          }
-          .profile-ui .profile-gender-pill-card:hover:not(.selected) {
-            border-color: #111315;
-            background-color: #fafbf9;
-          }
-          .profile-ui .profile-gender-pill-card.selected {
-            background-color: #111315;
-            border-color: #111315;
-            color: #ffffff;
-            box-shadow: 0 4px 16px rgba(17, 19, 21, 0.18);
-          }
-          .profile-ui .profile-gender-check-badge {
-            position: absolute;
-            top: 6px;
-            right: 8px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background-color: #6366f1;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
-          }
-          .profile-ui .profile-info-notice-box {
-            background-color: #f4f0ff;
-            border-radius: 14px;
-            padding: 0.85rem 1rem;
-            display: flex;
-            gap: 0.65rem;
-            align-items: flex-start;
-            margin-top: 0.25rem;
-          }
-          .profile-ui .profile-info-notice-text {
-            font-size: 0.74rem;
-            color: #4338ca;
-            line-height: 1.45;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            margin: 0;
-          }
-          .profile-ui .profile-info-notice-link {
-            font-weight: 600;
-            text-decoration: underline;
-            color: #1e1b4b;
-            cursor: pointer;
-            display: inline-block;
-            margin-top: 0.3rem;
-          }
-          .profile-ui .profile-btn-save {
-            width: 100%;
-            background-color: #111111;
-            color: #ffffff;
-            border: none;
-            border-radius: 14px;
-            padding: 0.8rem 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(17, 19, 21, 0.16);
-            transition: all 0.18s ease;
-            margin-top: 0.45rem;
-          }
-          .profile-ui .profile-btn-save:hover {
-            background-color: #26292e;
-          }
-          .profile-ui .profile-btn-cancel {
-            width: 100%;
-            background-color: #ffffff;
-            color: #111111;
-            border: 1.5px solid #d7dbd2;
-            border-radius: 14px;
-            padding: 0.8rem 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.18s ease;
-            margin-top: 0.15rem;
-          }
-          .profile-ui .profile-btn-cancel:hover {
-            background-color: #f4f6f2;
-          }
-
-          /* Mobile Breakpoint (<= 768px) - Exact Mobile Layout from Screenshot */
-          @media (max-width: 768px) {
-            nav.menu {
-              display: none !important;
-            }
-            .drapza-profile-page {
-              padding: 0.5rem 0.85rem 7.5rem 0.85rem !important;
-            }
-            .profile-ui .profile-header-section {
-              display: none !important;
-            }
-            .profile-ui .profile-sidebar {
-              display: none !important;
-            }
-            .profile-ui .profile-mobile-top-header {
-              display: flex !important;
-            }
-            .profile-ui .profile-mobile-wrap.mobile-visible {
-              display: block !important;
-            }
-            .profile-ui .profile-mobile-wrap.mobile-hidden {
-              display: none !important;
-            }
-            .profile-ui .profile-container.mobile-hidden {
-              display: none !important;
-            }
-            .profile-ui .profile-container.mobile-visible {
-              display: block !important;
-              width: 100% !important;
-              max-width: 100% !important;
-              margin: 0 0 2rem 0 !important;
-              padding: 0 !important;
-            }
-            .profile-ui .profile-main {
-              flex: 1 !important;
-              min-width: 0 !important;
-              width: 100% !important;
-            }
-            .profile-ui .profile-card {
-              background-color: #ffffff !important;
-              border-radius: 16px !important;
-              border: 1px solid #d7dbd2 !important;
-              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
-              padding: 1.15rem 0.95rem !important;
-              min-height: auto !important;
-            }
-            .profile-ui .profile-tab-header-card h2 {
-              font-size: 1.12rem !important;
-            }
-            .profile-ui .profile-tab-header-card p {
-              font-size: 0.7rem !important;
-            }
-            .profile-ui .profile-wishlist-grid {
-              grid-template-columns: repeat(2, 1fr) !important;
-              gap: 0.65rem !important;
-            }
-            .profile-ui .profile-cart-grid {
-              grid-template-columns: 1fr !important;
-              gap: 1rem !important;
-            }
-            .profile-ui .profile-order-details-grid {
-              grid-template-columns: 1fr !important;
-              gap: 0.65rem !important;
-            }
-            .profile-ui .profile-security-card {
-              padding: 1rem 0.75rem !important;
-              max-width: 100% !important;
-            }
-          }
-
-          @media (max-width: 380px) {
-            .profile-ui .profile-wishlist-grid {
-              grid-template-columns: 1fr !important;
-            }
-          }
-
-          /* Desktop (> 768px) - Keeps PC sidebar, hides mobile bars */
-          @media (min-width: 769px) {
-            .profile-ui .profile-mobile-top-header {
-              display: none !important;
-            }
-            .profile-ui .profile-mobile-wrap {
-              display: none !important;
-            }
-            .profile-ui .profile-mobile-dock {
-              display: none !important;
-            }
-            .profile-ui .profile-sidebar {
-              display: flex !important;
-            }
-            .profile-ui .profile-header-section {
-              display: block !important;
-            }
-            .profile-ui .profile-container {
-              display: grid !important;
-              grid-template-columns: 290px 1fr !important;
-            }
-          }
-        `}</style>
+          
 
           {/* DRAPZA Official Page Header */}
           <div className="profile-header-section">
@@ -1876,15 +543,14 @@ export const ProfilePage = () => {
                   cursor: 'pointer',
                   fontSize: '0.78rem',
                   fontWeight: 700,
-                  fontFamily: 'var(--font-dm-mono), monospace',
+                  
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
                   padding: 0,
-                  transition: 'color 0.15s ease',
-                }}
+                  transition: 'color 0.15s ease'}}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#0f0f0f')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = '#7d807a')}
               >
@@ -1905,13 +571,12 @@ export const ProfilePage = () => {
                     cursor: 'pointer',
                     fontSize: '0.75rem',
                     fontWeight: 700,
-                    fontFamily: 'var(--font-dm-mono), monospace',
+                    
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     padding: '0.45rem 1rem',
                     borderRadius: '8px',
-                    transition: 'all 0.15s ease',
-                  }}
+                    transition: 'all 0.15s ease'}}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#0f0f0f';
                     e.currentTarget.style.color = '#ffffff';
@@ -2117,8 +782,7 @@ export const ProfilePage = () => {
                         padding: '0.2rem 0',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.35rem',
-                      }}
+                        gap: '0.35rem'}}
                     >
                       <span>Edit Personal Details</span>
                       <span>→</span>
@@ -2308,8 +972,7 @@ export const ProfilePage = () => {
                         letterSpacing: '-0.01em',
                         textTransform: 'none',
                         cursor: 'pointer',
-                        transition: 'all 0.15s ease',
-                      }}
+                        transition: 'all 0.15s ease'}}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                         <span style={{ color: isActive ? '#ffffff' : 'var(--base-500, #7d807a)', display: 'flex', alignItems: 'center' }}>
@@ -2331,8 +994,7 @@ export const ProfilePage = () => {
                           display: 'inline-flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          whiteSpace: 'nowrap',
-                        }}>
+                          whiteSpace: 'nowrap'}}>
                           {item.badge}
                         </span>
                       )}
@@ -2364,8 +1026,7 @@ export const ProfilePage = () => {
                       letterSpacing: '-0.01em',
                       textTransform: 'none',
                       cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                    }}
+                      transition: 'all 0.15s ease'}}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#dfe4da';
                       e.currentTarget.style.color = '#0f0f0f';
@@ -2416,8 +1077,7 @@ export const ProfilePage = () => {
                           color: '#111111',
                           fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
                           lineHeight: 1.2,
-                          letterSpacing: '-0.02em',
-                        }}>
+                          letterSpacing: '-0.02em'}}>
                           Personal Information
                         </h2>
                         <p style={{
@@ -2425,8 +1085,7 @@ export const ProfilePage = () => {
                           fontSize: '0.78rem',
                           color: '#71717a',
                           fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
-                          lineHeight: 1.4,
-                        }}>
+                          lineHeight: 1.4}}>
                           Update your contact details, billing credentials and profile parameters.
                         </p>
                       </div>
@@ -2442,12 +1101,11 @@ export const ProfilePage = () => {
                         borderRadius: '12px',
                         fontSize: '0.78rem',
                         fontWeight: 600,
-                        fontFamily: 'var(--font-host-grotesk), sans-serif',
+                        
                         marginBottom: '1.15rem',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                      }}>
+                        gap: '0.5rem'}}>
                         <span>✓</span> Personal information updated successfully in database.
                       </div>
                     )}
@@ -2462,9 +1120,8 @@ export const ProfilePage = () => {
                         borderRadius: '12px',
                         fontSize: '0.78rem',
                         fontWeight: 600,
-                        fontFamily: 'var(--font-host-grotesk), sans-serif',
-                        marginBottom: '1.15rem',
-                      }}>
+                        
+                        marginBottom: '1.15rem'}}>
                         {saveError}
                       </div>
                     )}
@@ -2491,7 +1148,7 @@ export const ProfilePage = () => {
                           </div>
                         </div>
                         {(personalFieldErrors.firstName || personalFieldErrors.name) && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
                             {personalFieldErrors.firstName || personalFieldErrors.name}
                           </span>
                         )}
@@ -2518,7 +1175,7 @@ export const ProfilePage = () => {
                           </div>
                         </div>
                         {personalFieldErrors.lastName && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
                             {personalFieldErrors.lastName}
                           </span>
                         )}
@@ -2575,7 +1232,7 @@ export const ProfilePage = () => {
                           </div>
                         </div>
                         {personalFieldErrors.phone && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
                             {personalFieldErrors.phone}
                           </span>
                         )}
@@ -2589,7 +1246,7 @@ export const ProfilePage = () => {
                         >
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                             <Calendar size={18} stroke="#6b7280" />
-                            <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#111315', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                            <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#111315'}}>
                               {dob || '14 / 08 / 1998'}
                             </span>
                             <ChevronDown size={14} stroke="#6b7280" />
@@ -2620,7 +1277,7 @@ export const ProfilePage = () => {
                           />
                         </div>
                         {personalFieldErrors.dob && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
                             {personalFieldErrors.dob}
                           </span>
                         )}
@@ -2670,7 +1327,7 @@ export const ProfilePage = () => {
                           </button>
                         </div>
                         {personalFieldErrors.gender && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
                             {personalFieldErrors.gender}
                           </span>
                         )}
@@ -2748,23 +1405,22 @@ export const ProfilePage = () => {
                       <div className="profile-tab-header">
                         <div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', flexWrap: 'wrap' }}>
-                            <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                            <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513',  textTransform: 'none', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                               MY ORDERS
                             </h1>
                             <span style={{
                               backgroundColor: '#141513',
                               color: '#ffffff',
                               fontSize: '0.68rem',
-                              fontFamily: 'var(--font-dm-mono), monospace',
+                              
                               fontWeight: 500,
                               padding: '0.2rem 0.55rem',
                               letterSpacing: '0.06em',
-                              borderRadius: '4px',
-                            }}>
+                              borderRadius: '4px'}}>
                               {allOrders.length} {allOrders.length === 1 ? 'ORDER' : 'ORDERS'}
                             </span>
                           </div>
-                          <p style={{ margin: 0, color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                          <p style={{ margin: 0, color: '#63675f', fontSize: '0.82rem',  fontWeight: 400 }}>
                             Track real-time shipment dispatches, atelier milestones and order archive.
                           </p>
                         </div>
@@ -2780,7 +1436,7 @@ export const ProfilePage = () => {
                             padding: '0.65rem 1.35rem',
                             fontSize: '0.78rem',
                             fontWeight: 500,
-                            fontFamily: 'var(--font-dm-mono), monospace',
+                            
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
                             cursor: 'pointer',
@@ -2828,7 +1484,7 @@ export const ProfilePage = () => {
                                 borderRadius: '8px',
                                 padding: '0.35rem 0.85rem',
                                 fontSize: '0.72rem',
-                                fontFamily: 'var(--font-dm-mono), monospace',
+                                
                                 letterSpacing: '0.04em',
                                 cursor: 'pointer',
                                 display: 'flex',
@@ -2914,7 +1570,7 @@ export const ProfilePage = () => {
                                         fontWeight: 700,
                                         fontSize: '0.88rem',
                                         color: '#0f0f0f',
-                                        fontFamily: 'var(--font-dm-mono), monospace',
+                                        
                                         cursor: 'pointer',
                                         display: 'inline-flex',
                                         alignItems: 'center',
@@ -2937,7 +1593,7 @@ export const ProfilePage = () => {
                                       </svg>
                                     </span>
                                     {isCopied && (
-                                      <span style={{ fontSize: '0.66rem', color: '#166534', fontWeight: 600, fontFamily: 'var(--font-dm-mono), monospace', whiteSpace: 'nowrap' }}>
+                                      <span style={{ fontSize: '0.66rem', color: '#166534', fontWeight: 600,  whiteSpace: 'nowrap' }}>
                                         COPIED!
                                       </span>
                                     )}
@@ -2959,7 +1615,7 @@ export const ProfilePage = () => {
                                         borderRadius: '8px',
                                         fontSize: '0.68rem',
                                         fontWeight: 700,
-                                        fontFamily: 'var(--font-dm-mono), monospace',
+                                        
                                         letterSpacing: '0.06em',
                                         display: 'inline-flex',
                                         alignItems: 'center',
@@ -2979,7 +1635,7 @@ export const ProfilePage = () => {
                                       }} />
                                       <span style={{
                                         color: st === 'CANCELLED' ? '#b91c1c !important' : st === 'DELIVERED' ? '#166534 !important' : '#ffffff !important',
-                                        fontFamily: 'var(--font-dm-mono), monospace !important',
+                                        
                                         fontSize: '0.68rem !important',
                                         fontWeight: '700 !important',
                                         letterSpacing: '0.06em !important',
@@ -2997,7 +1653,7 @@ export const ProfilePage = () => {
                                       borderRadius: '8px',
                                       fontSize: '0.66rem',
                                       fontWeight: 700,
-                                      fontFamily: 'var(--font-dm-mono), monospace',
+                                      
                                       whiteSpace: 'nowrap',
                                       letterSpacing: '0.04em'
                                     }}>
@@ -3072,10 +1728,10 @@ export const ProfilePage = () => {
                                   </div>
 
                                   <div style={{ textAlign: 'right' }}>
-                                    <div style={{ fontSize: '0.68rem', color: '#73776e', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                    <div style={{ fontSize: '0.68rem', color: '#73776e', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase'}}>
                                       Total Amount
                                     </div>
-                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#141513', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.1rem', letterSpacing: '-0.02em' }}>
+                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#141513',  marginTop: '0.1rem', letterSpacing: '-0.02em' }}>
                                       ₹{getOrderTotal(order)}
                                     </div>
                                   </div>
@@ -3097,10 +1753,10 @@ export const ProfilePage = () => {
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                                       <Ban style={{ width: '16px', height: '16px', color: '#b91c1c', flexShrink: 0 }} />
                                       <div>
-                                        <div style={{ fontSize: '0.74rem', fontWeight: 700, color: '#991b1b', fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                                        <div style={{ fontSize: '0.74rem', fontWeight: 700, color: '#991b1b',  textTransform: 'none', letterSpacing: '-0.02em' }}>
                                           ORDER REVOKED &amp; CANCELLED
                                         </div>
-                                        <div style={{ fontSize: '0.72rem', color: '#b91c1c', marginTop: '0.1rem', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                                        <div style={{ fontSize: '0.72rem', color: '#b91c1c', marginTop: '0.1rem'}}>
                                           {order.cancellationReason || 'Fabric allocation released back into atelier archive.'}
                                         </div>
                                       </div>
@@ -3108,7 +1764,7 @@ export const ProfilePage = () => {
                                     <span style={{
                                       fontSize: '0.68rem',
                                       fontWeight: 700,
-                                      fontFamily: 'var(--font-dm-mono), monospace',
+                                      
                                       color: '#b91c1c',
                                       backgroundColor: '#fee2e2',
                                       padding: '0.2rem 0.6rem',
@@ -3161,7 +1817,7 @@ export const ProfilePage = () => {
                                             color: m.active ? '#0f0f0f !important' : '#9ca3af !important',
                                             fontWeight: m.active ? 700 : 500,
                                             marginTop: '0.35rem',
-                                            fontFamily: 'var(--font-dm-mono), monospace !important',
+                                            
                                             textTransform: 'uppercase',
                                             letterSpacing: '0.04em'
                                           }}>
@@ -3190,14 +1846,14 @@ export const ProfilePage = () => {
                                       <RotateCcw style={{ width: '16px', height: '16px', color: '#7e22ce', flexShrink: 0 }} />
                                       <div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
-                                          <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#6b21a8', fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                                          <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#6b21a8',  textTransform: 'none', letterSpacing: '-0.02em' }}>
                                             {order.returnRequest.requestType === 'exchange' ? 'SIZE EXCHANGE IN PROGRESS' : 'RETURN & REFUND IN PROGRESS'}
                                           </span>
-                                          <span style={{ fontSize: '0.66rem', fontFamily: 'var(--font-dm-mono), monospace', color: '#581c87', fontWeight: 700, backgroundColor: '#f3e8ff', padding: '0.1rem 0.45rem', borderRadius: '4px' }}>
+                                          <span style={{ fontSize: '0.66rem',  color: '#581c87', fontWeight: 700, backgroundColor: '#f3e8ff', padding: '0.1rem 0.45rem', borderRadius: '4px' }}>
                                             TRACKING ID: {orderId}
                                           </span>
                                         </div>
-                                        <div style={{ fontSize: '0.72rem', color: '#7e22ce', marginTop: '0.15rem', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                                        <div style={{ fontSize: '0.72rem', color: '#7e22ce', marginTop: '0.15rem'}}>
                                           {order.returnRequest.status === 'pending_review' && 'Reverse request registered in Vault • Quality curators reviewing.'}
                                           {order.returnRequest.status === 'approved' && 'Reverse request approved • Doorstep courier pickup scheduled.'}
                                           {order.returnRequest.status === 'pickup_scheduled' && `Doorstep pickup active ${order.returnRequest.courierAwb ? `(Reverse AWB: ${order.returnRequest.courierAwb})` : ''}.`}
@@ -3210,7 +1866,7 @@ export const ProfilePage = () => {
                                     <span style={{
                                       fontSize: '0.68rem',
                                       fontWeight: 700,
-                                      fontFamily: 'var(--font-dm-mono), monospace',
+                                      
                                       color: '#6b21a8',
                                       backgroundColor: '#f3e8ff',
                                       padding: '0.2rem 0.6rem',
@@ -3234,7 +1890,7 @@ export const ProfilePage = () => {
                                   {st === 'CANCELLED' ? (
                                     <div style={{ fontSize: '0.74rem', color: '#b91c1c', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                                       <Ban style={{ width: '14px', height: '14px', color: '#b91c1c', flexShrink: 0 }} />
-                                      <span style={{ color: '#b91c1c !important', fontSize: '0.74rem', fontFamily: 'var(--font-dm-mono), monospace', whiteSpace: 'nowrap' }}>
+                                      <span style={{ color: '#b91c1c !important', fontSize: '0.74rem',  whiteSpace: 'nowrap' }}>
                                         Consignment Cancelled &amp; Voided
                                       </span>
                                     </div>
@@ -3244,7 +1900,7 @@ export const ProfilePage = () => {
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <polyline points="12 6 12 12 16 14"></polyline>
                                       </svg>
-                                      <span style={{ color: '#7d807a !important', fontSize: '0.74rem', fontFamily: 'var(--font-dm-mono), monospace', whiteSpace: 'nowrap' }}>
+                                      <span style={{ color: '#7d807a !important', fontSize: '0.74rem',  whiteSpace: 'nowrap' }}>
                                         Estimated Dispatch: 24 - 48 Hours
                                       </span>
                                     </div>
@@ -3296,7 +1952,7 @@ export const ProfilePage = () => {
                                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
                                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
                                     >
-                                      <span style={{ color: '#ffffff', fontWeight: 500, fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Track Shipment</span>
+                                      <span style={{ color: '#ffffff', fontWeight: 500,  textTransform: 'none', letterSpacing: '-0.02em' }}>Track Shipment</span>
                                       <span style={{ color: '#ffffff', fontSize: '0.85rem' }}>→</span>
                                     </button>
 
@@ -3321,7 +1977,7 @@ export const ProfilePage = () => {
                                           display: 'inline-flex',
                                           alignItems: 'center',
                                           gap: '0.4rem',
-                                          fontFamily: 'var(--font-dm-mono), monospace',
+                                          
                                           textTransform: 'uppercase',
                                           letterSpacing: '0.04em',
                                           fontSynthesis: 'none',
@@ -3356,7 +2012,7 @@ export const ProfilePage = () => {
                                           border: '1px solid #e2e7dc',
                                           borderRadius: '6px',
                                           padding: '0.4rem 0.75rem',
-                                          fontFamily: 'var(--font-dm-mono), monospace',
+                                          
                                           textTransform: 'uppercase',
                                           letterSpacing: '0.04em',
                                           display: 'inline-flex',
@@ -3384,7 +2040,7 @@ export const ProfilePage = () => {
                                           padding: '0.42rem 0.95rem',
                                           fontSize: '0.74rem',
                                           fontWeight: 500,
-                                          fontFamily: 'var(--font-dm-mono), monospace',
+                                          
                                           cursor: 'pointer',
                                           display: 'inline-flex',
                                           alignItems: 'center',
@@ -3393,8 +2049,7 @@ export const ProfilePage = () => {
                                           letterSpacing: '0.04em',
                                           fontSynthesis: 'none',
                                           WebkitFontSmoothing: 'antialiased',
-                                          transition: 'all 0.15s ease',
-                                        }}
+                                          transition: 'all 0.15s ease'}}
                                         onMouseEnter={(e) => {
                                           e.currentTarget.style.backgroundColor = '#6b21a8';
                                           e.currentTarget.style.color = '#ffffff';
@@ -3427,7 +2082,7 @@ export const ProfilePage = () => {
                                           display: 'inline-flex',
                                           alignItems: 'center',
                                           gap: '0.45rem',
-                                          fontFamily: 'var(--font-dm-mono), monospace',
+                                          
                                           textTransform: 'uppercase',
                                           letterSpacing: '0.04em',
                                           fontSynthesis: 'none',
@@ -3457,7 +2112,7 @@ export const ProfilePage = () => {
                                           border: '1px solid #e2e7dc',
                                           borderRadius: '6px',
                                           padding: '0.4rem 0.7rem',
-                                          fontFamily: 'var(--font-dm-mono), monospace',
+                                          
                                           textTransform: 'uppercase',
                                           letterSpacing: '0.04em'
                                         }}
@@ -3485,7 +2140,7 @@ export const ProfilePage = () => {
                                     }}
                                   >
                                     <div>
-                                      <div style={{ fontWeight: 700, color: '#0f0f0f', marginBottom: '0.25rem', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                      <div style={{ fontWeight: 700, color: '#0f0f0f', marginBottom: '0.25rem'}}>
                                         DELIVERY DESTINATION
                                       </div>
                                       <div style={{ color: '#555852', lineHeight: '1.45' }}>
@@ -3497,10 +2152,10 @@ export const ProfilePage = () => {
                                     </div>
 
                                     <div>
-                                      <div style={{ fontWeight: 700, color: '#0f0f0f', marginBottom: '0.25rem', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                      <div style={{ fontWeight: 700, color: '#0f0f0f', marginBottom: '0.25rem'}}>
                                         TRACKING IDENTIFIER
                                       </div>
-                                      <div style={{ color: '#555852', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                      <div style={{ color: '#555852'}}>
                                         {trackingRef}
                                       </div>
                                       <div style={{ marginTop: '0.35rem', color: '#7d807a', fontSize: '0.72rem' }}>
@@ -3556,7 +2211,7 @@ export const ProfilePage = () => {
                                 padding: '0.62rem 1.4rem',
                                 fontSize: '0.78rem',
                                 fontWeight: 700,
-                                fontFamily: 'var(--font-dm-mono), monospace',
+                                
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.04em',
                                 cursor: 'pointer'
@@ -3576,12 +2231,11 @@ export const ProfilePage = () => {
                                 padding: '0.65rem 1.5rem',
                                 fontSize: '0.8rem',
                                 fontWeight: 700,
-                                fontFamily: 'var(--font-dm-mono), monospace',
+                                
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.05em',
                                 cursor: 'pointer',
-                                transition: 'background-color 0.15s ease',
-                              }}
+                                transition: 'background-color 0.15s ease'}}
                               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
                               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
                             >
@@ -3599,10 +2253,10 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513',  textTransform: 'none', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                           DELIVERY ADDRESSES
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem',  fontWeight: 400 }}>
                           Manage addresses for expedited checkout and shipment dispatch.
                         </p>
                       </div>
@@ -3616,12 +2270,11 @@ export const ProfilePage = () => {
                           padding: '0.68rem 1.4rem',
                           fontSize: '0.78rem',
                           fontWeight: 500,
-                          fontFamily: 'var(--font-dm-mono), monospace',
+                          
                           textTransform: 'uppercase',
                           letterSpacing: '0.05em',
                           cursor: 'pointer',
-                          transition: 'background-color 0.15s ease',
-                        }}
+                          transition: 'background-color 0.15s ease'}}
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
                         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
                       >
@@ -3640,20 +2293,19 @@ export const ProfilePage = () => {
                               border: addr.isDefault ? '2px solid #0f0f0f' : '1px solid #d7dbd2',
                               borderRadius: '8px',
                               padding: '1.25rem',
-                              backgroundColor: '#ffffff',
-                            }}
+                              backgroundColor: '#ffffff'}}
                           >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                              <span style={{ fontWeight: 700, fontSize: '0.88rem', color: '#0f0f0f', fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
+                              <span style={{ fontWeight: 700, fontSize: '0.88rem', color: '#0f0f0f',  textTransform: 'uppercase', letterSpacing: '0.02em' }}>
                                 {addr.firstName} {addr.lastName}
                               </span>
                               {addr.isDefault && (
-                                <span style={{ backgroundColor: '#0f0f0f', color: '#edf1e8', fontSize: '0.62rem', fontWeight: 700, padding: '0.15rem 0.5rem', borderRadius: '8px', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.06em' }}>
+                                <span style={{ backgroundColor: '#0f0f0f', color: '#edf1e8', fontSize: '0.62rem', fontWeight: 700, padding: '0.15rem 0.5rem', borderRadius: '8px',  letterSpacing: '0.06em' }}>
                                   DEFAULT
                                 </span>
                               )}
                             </div>
-                            <p style={{ color: '#7d807a', fontSize: '0.78rem', lineHeight: '1.45', margin: '0 0 0.4rem 0', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                            <p style={{ color: '#7d807a', fontSize: '0.78rem', lineHeight: '1.45', margin: '0 0 0.4rem 0'}}>
                               {addr.address}<br />
                               {addr.city}, {addr.state} - {addr.pincode}
                             </p>
@@ -3661,14 +2313,14 @@ export const ProfilePage = () => {
                               {!addr.isDefault && (
                                 <button
                                   onClick={() => setDefaultAddress(addr._id)}
-                                  style={{ border: 'none', background: 'transparent', color: '#0f0f0f', fontSize: '0.74rem', fontWeight: 700, fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.04em', cursor: 'pointer', textDecoration: 'underline' }}
+                                  style={{ border: 'none', background: 'transparent', color: '#0f0f0f', fontSize: '0.74rem', fontWeight: 700,  textTransform: 'none', letterSpacing: '-0.02em', cursor: 'pointer', textDecoration: 'underline' }}
                                 >
                                   Set Default
                                 </button>
                               )}
                               <button
                                 onClick={() => deleteAddress(addr._id)}
-                                style={{ border: 'none', background: 'transparent', color: '#ef4444', fontSize: '0.74rem', fontWeight: 700, fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.04em', cursor: 'pointer' }}
+                                style={{ border: 'none', background: 'transparent', color: '#ef4444', fontSize: '0.74rem', fontWeight: 700,  textTransform: 'none', letterSpacing: '-0.02em', cursor: 'pointer' }}
                               >
                                 Delete
                               </button>
@@ -3678,7 +2330,7 @@ export const ProfilePage = () => {
                       </div>
                     ) : (
                       <div style={{ textAlign: 'center', padding: '2.5rem 1.5rem', border: '1.5px dashed #d7dbd2', borderRadius: '12px', backgroundColor: '#f7f9f5' }}>
-                        <p style={{ color: '#7d807a', fontSize: '0.82rem', marginBottom: '1rem', fontFamily: 'var(--font-dm-mono), monospace' }}>NO SAVED ADDRESSES YET.</p>
+                        <p style={{ color: '#7d807a', fontSize: '0.82rem', marginBottom: '1rem'}}>NO SAVED ADDRESSES YET.</p>
                         <button
                           onClick={() => setShowAddressModal(true)}
                           style={{
@@ -3689,12 +2341,11 @@ export const ProfilePage = () => {
                             padding: '0.65rem 1.4rem',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            fontFamily: 'var(--font-dm-mono), monospace',
+                            
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
                             cursor: 'pointer',
-                            transition: 'background-color 0.15s ease',
-                          }}
+                            transition: 'background-color 0.15s ease'}}
                           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
                           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
                         >
@@ -3710,10 +2361,10 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513',  textTransform: 'none', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                           SAVED GARMENTS ({wishlistItems.length})
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem',  fontWeight: 400 }}>
                           Curated archive of pieces marked for acquisition.
                         </p>
                       </div>
@@ -3726,8 +2377,7 @@ export const ProfilePage = () => {
                           display: 'grid',
                           gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
                           gap: '1.25rem',
-                          alignItems: 'stretch',
-                        }}
+                          alignItems: 'stretch'}}
                       >
                         {wishlistItems.map((prod, idx) => {
                           const slug =
@@ -3774,10 +2424,10 @@ export const ProfilePage = () => {
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                           </svg>
                         </div>
-                        <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.25rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                        <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.25rem', color: '#0f0f0f',  letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                           YOUR WISHLIST IS EMPTY
                         </h3>
-                        <p style={{ color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', margin: '0 0 1.25rem 0', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                        <p style={{ color: '#7d807a', fontSize: '0.78rem', textTransform: 'none', letterSpacing: '-0.02em', margin: '0 0 1.25rem 0'}}>
                           Discover atelier silhouettes and mark your favorite pieces.
                         </p>
                         <button
@@ -3791,11 +2441,10 @@ export const ProfilePage = () => {
                             padding: '0.65rem 1.4rem',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            fontFamily: 'var(--font-dm-mono), monospace',
+                            
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
-                            cursor: 'pointer',
-                          }}
+                            cursor: 'pointer'}}
                         >
                           Explore Catalogue
                         </button>
@@ -3809,10 +2458,10 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513',  textTransform: 'none', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                           SHOPPING BAG ({totalCount} {totalCount === 1 ? 'ITEM' : 'ITEMS'})
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem',  fontWeight: 400 }}>
                           Items currently reserved in your session checkout.
                         </p>
                       </div>
@@ -3828,11 +2477,10 @@ export const ProfilePage = () => {
                             padding: '0.68rem 1.4rem',
                             fontSize: '0.78rem',
                             fontWeight: 500,
-                            fontFamily: 'var(--font-dm-mono), monospace',
+                            
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
-                            cursor: 'pointer',
-                          }}
+                            cursor: 'pointer'}}
                         >
                           PROCEED TO CHECKOUT →
                         </button>
@@ -3854,8 +2502,7 @@ export const ProfilePage = () => {
                                 border: '1px solid #d7dbd2',
                                 borderRadius: '8px',
                                 backgroundColor: '#ffffff',
-                                alignItems: 'center',
-                              }}
+                                alignItems: 'center'}}
                             >
                               <div
                                 style={{
@@ -3869,8 +2516,7 @@ export const ProfilePage = () => {
                                   justifyContent: 'center',
                                   padding: '0.45rem',
                                   flexShrink: 0,
-                                  overflow: 'hidden',
-                                }}
+                                  overflow: 'hidden'}}
                               >
                                 <img
                                   src={item.image_url || item.image || (item.name?.toLowerCase().includes('phase') ? '/products/product_2.png' : '/products/product_1.png')}
@@ -3879,19 +2525,18 @@ export const ProfilePage = () => {
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'contain',
-                                    display: 'block',
-                                  }}
+                                    display: 'block'}}
                                 />
                               </div>
                               <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.3rem' }}>
-                                <h3 style={{ margin: 0, fontSize: '1.08rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', letterSpacing: '0.03em', textTransform: 'uppercase', lineHeight: 1.15 }}>
+                                <h3 style={{ margin: 0, fontSize: '1.08rem', color: '#0f0f0f',  letterSpacing: '0.03em', textTransform: 'uppercase', lineHeight: 1.15 }}>
                                   {item.name}
                                 </h3>
-                                <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.74rem', color: '#7d807a', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.74rem', color: '#7d807a'}}>
                                   <span>SIZE: <strong style={{ color: '#0f0f0f' }}>{item.selectedSize || item.size || 'M'}</strong></span>
                                   {item.color && <span>COLOR: <strong style={{ color: '#0f0f0f' }}>{item.color}</strong></span>}
                                 </div>
-                                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f0f0f', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.15rem' }}>
+                                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f0f0f',  marginTop: '0.15rem' }}>
                                   ₹{item.price}
                                 </div>
                               </div>
@@ -3913,12 +2558,11 @@ export const ProfilePage = () => {
                                       justifyContent: 'center',
                                       fontSize: '0.9rem',
                                       fontWeight: 700,
-                                      color: '#0f0f0f',
-                                    }}
+                                      color: '#0f0f0f'}}
                                   >
                                     -
                                   </button>
-                                  <span style={{ minWidth: '22px', textAlign: 'center', fontSize: '0.76rem', fontWeight: 700, fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                  <span style={{ minWidth: '22px', textAlign: 'center', fontSize: '0.76rem', fontWeight: 700}}>
                                     {item.quantity || 1}
                                   </span>
                                   <button
@@ -3935,8 +2579,7 @@ export const ProfilePage = () => {
                                       justifyContent: 'center',
                                       fontSize: '0.9rem',
                                       fontWeight: 700,
-                                      color: '#0f0f0f',
-                                    }}
+                                      color: '#0f0f0f'}}
                                   >
                                     +
                                   </button>
@@ -3951,12 +2594,11 @@ export const ProfilePage = () => {
                                     color: '#ef4444',
                                     fontSize: '0.7rem',
                                     fontWeight: 700,
-                                    fontFamily: 'var(--font-dm-mono), monospace',
+                                    
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.04em',
                                     cursor: 'pointer',
-                                    padding: 0,
-                                  }}
+                                    padding: 0}}
                                 >
                                   Remove
                                 </button>
@@ -3974,14 +2616,13 @@ export const ProfilePage = () => {
                             backgroundColor: '#ffffff',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '1rem',
-                          }}
+                            gap: '1rem'}}
                         >
-                          <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                          <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#0f0f0f',  letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                             BAG SUMMARY
                           </h3>
 
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', borderBottom: '1px solid #edf1e8', paddingBottom: '0.85rem', fontSize: '0.78rem', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', borderBottom: '1px solid #edf1e8', paddingBottom: '0.85rem', fontSize: '0.78rem'}}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', color: '#7d807a' }}>
                               <span>Total Items</span>
                               <span style={{ color: '#0f0f0f', fontWeight: 600 }}>{totalCount}</span>
@@ -3996,7 +2637,7 @@ export const ProfilePage = () => {
                             </div>
                           </div>
 
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.95rem', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.95rem'}}>
                             <span style={{ fontWeight: 700, color: '#0f0f0f' }}>ESTIMATED TOTAL</span>
                             <span style={{ fontWeight: 800, fontSize: '1.15rem', color: '#0f0f0f' }}>₹{subtotal}</span>
                           </div>
@@ -4013,12 +2654,11 @@ export const ProfilePage = () => {
                               padding: '0.85rem 1rem',
                               fontSize: '0.8rem',
                               fontWeight: 700,
-                              fontFamily: 'var(--font-dm-mono), monospace',
+                              
                               textTransform: 'uppercase',
                               letterSpacing: '0.05em',
                               cursor: 'pointer',
-                              transition: 'background-color 0.15s ease',
-                            }}
+                              transition: 'background-color 0.15s ease'}}
                             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
                             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
                           >
@@ -4035,10 +2675,10 @@ export const ProfilePage = () => {
                             <path d="M16 10a4 4 0 0 1-8 0"></path>
                           </svg>
                         </div>
-                        <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.25rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                        <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.25rem', color: '#0f0f0f',  letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                           YOUR CART IS CURRENTLY EMPTY
                         </h3>
-                        <p style={{ color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', margin: '0 0 1.25rem 0', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                        <p style={{ color: '#7d807a', fontSize: '0.78rem', textTransform: 'none', letterSpacing: '-0.02em', margin: '0 0 1.25rem 0'}}>
                           Browse our latest collection to add items to your cart.
                         </p>
                         <button
@@ -4052,11 +2692,10 @@ export const ProfilePage = () => {
                             padding: '0.65rem 1.4rem',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            fontFamily: 'var(--font-dm-mono), monospace',
+                            
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
-                            cursor: 'pointer',
-                          }}
+                            cursor: 'pointer'}}
                         >
                           Browse Atelier
                         </button>
@@ -4070,10 +2709,10 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513',  textTransform: 'none', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                           SECURITY & PASSWORD
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem',  fontWeight: 400 }}>
                           Change your password credentials and manage session security.
                         </p>
                       </div>
@@ -4091,9 +2730,7 @@ export const ProfilePage = () => {
                         maxWidth: '520px',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                        fontFamily: 'var(--font-dm-mono), monospace'
-                      }}>
+                        gap: '0.5rem'}}>
                         <span>{pwdMsg.type === 'success' ? '✓' : '⚠'}</span>
                         <span>{pwdMsg.text}</span>
                       </div>
@@ -4113,7 +2750,7 @@ export const ProfilePage = () => {
                       <form onSubmit={handlePasswordSubmit} noValidate>
                         {/* Current Password Field */}
                         <div style={{ marginBottom: '1.25rem' }}>
-                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
+                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem',  letterSpacing: '0.04em' }}>
                             <span>CURRENT PASSWORD</span>
                           </label>
                           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -4134,7 +2771,7 @@ export const ProfilePage = () => {
                                 color: '#1a1c18',
                                 backgroundColor: '#ffffff',
                                 outline: 'none',
-                                fontFamily: 'var(--font-dm-mono), monospace',
+                                
                                 transition: 'border-color 0.15s'
                               }}
                               onFocus={(e) => (e.currentTarget.style.borderColor = passwordFieldErrors.currentPassword ? '#ef4444' : '#0f0f0f')}
@@ -4172,7 +2809,7 @@ export const ProfilePage = () => {
                             </button>
                           </div>
                           {passwordFieldErrors.currentPassword && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                               {passwordFieldErrors.currentPassword}
                             </span>
                           )}
@@ -4180,7 +2817,7 @@ export const ProfilePage = () => {
 
                         {/* New Password Field */}
                         <div style={{ marginBottom: '1.25rem' }}>
-                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
+                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem',  letterSpacing: '0.04em' }}>
                             <span>NEW PASSWORD</span>
                             <span style={{ fontSize: '0.64rem', color: '#7d807a', fontWeight: 400 }}>MIN 6 CHARACTERS</span>
                           </label>
@@ -4202,7 +2839,7 @@ export const ProfilePage = () => {
                                 color: '#1a1c18',
                                 backgroundColor: '#ffffff',
                                 outline: 'none',
-                                fontFamily: 'var(--font-dm-mono), monospace',
+                                
                                 transition: 'border-color 0.15s'
                               }}
                               onFocus={(e) => (e.currentTarget.style.borderColor = passwordFieldErrors.newPassword ? '#ef4444' : '#0f0f0f')}
@@ -4240,7 +2877,7 @@ export const ProfilePage = () => {
                             </button>
                           </div>
                           {passwordFieldErrors.newPassword && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                               {passwordFieldErrors.newPassword}
                             </span>
                           )}
@@ -4248,7 +2885,7 @@ export const ProfilePage = () => {
 
                         {/* Confirm New Password Field */}
                         <div style={{ marginBottom: '1.5rem' }}>
-                          <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
+                          <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem',  letterSpacing: '0.04em' }}>
                             <span>CONFIRM NEW PASSWORD</span>
                           </label>
                           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -4269,7 +2906,7 @@ export const ProfilePage = () => {
                                 color: '#1a1c18',
                                 backgroundColor: '#ffffff',
                                 outline: 'none',
-                                fontFamily: 'var(--font-dm-mono), monospace',
+                                
                                 transition: 'border-color 0.15s'
                               }}
                               onFocus={(e) => (e.currentTarget.style.borderColor = passwordFieldErrors.confirmNewPassword ? '#ef4444' : '#0f0f0f')}
@@ -4307,7 +2944,7 @@ export const ProfilePage = () => {
                             </button>
                           </div>
                           {passwordFieldErrors.confirmNewPassword && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                               {passwordFieldErrors.confirmNewPassword}
                             </span>
                           )}
@@ -4325,7 +2962,7 @@ export const ProfilePage = () => {
                               padding: '0.75rem 1.85rem',
                               fontSize: '0.8rem',
                               fontWeight: 500,
-                              fontFamily: 'var(--font-dm-mono), monospace',
+                              
                               letterSpacing: '0.05em',
                               textTransform: 'uppercase',
                               cursor: isChangingPassword ? 'not-allowed' : 'pointer',
@@ -4333,8 +2970,7 @@ export const ProfilePage = () => {
                               alignItems: 'center',
                               gap: '0.5rem',
                               boxShadow: '0 4px 14px rgba(15, 15, 15, 0.16)',
-                              transition: 'all 0.15s ease',
-                            }}
+                              transition: 'all 0.15s ease'}}
                             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
                             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#141513')}
                           >
@@ -4345,7 +2981,7 @@ export const ProfilePage = () => {
                             <span>{isChangingPassword ? 'Updating...' : 'Update Password'}</span>
                           </button>
 
-                          <span style={{ fontSize: '0.72rem', color: '#7d807a', fontFamily: 'var(--font-dm-mono), monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                          <span style={{ fontSize: '0.72rem', color: '#7d807a',  textTransform: 'none', letterSpacing: '-0.02em' }}>
                             AES-256 Protected
                           </span>
                         </div>
@@ -4365,8 +3001,7 @@ export const ProfilePage = () => {
               position: 'fixed',
               inset: 0,
               zIndex: 999999,
-              display: 'flex',
-            }}>
+              display: 'flex'}}>
               {/* Dark Backdrop Blur Overlay with Smooth Fade */}
               <div
                 onClick={() => setMobileDrawerOpen(false)}
@@ -4376,8 +3011,7 @@ export const ProfilePage = () => {
                   backgroundColor: 'rgba(15, 15, 15, 0.65)',
                   backdropFilter: 'blur(6px)',
                   WebkitBackdropFilter: 'blur(6px)',
-                  animation: 'instaBackdropFadeIn 0.25s ease forwards',
-                }}
+                  animation: 'instaBackdropFadeIn 0.25s ease forwards'}}
               />
 
               {/* Instagram Sidebar Drawer Sliding from Left */}
@@ -4397,11 +3031,10 @@ export const ProfilePage = () => {
                 willChange: 'transform',
                 borderTopRightRadius: '16px',
                 borderBottomRightRadius: '16px',
-                borderRight: '1px solid var(--base-200, #d7dbd2)',
-              }}>
+                borderRight: '1px solid var(--base-200, #d7dbd2)'}}>
                 {/* Drawer Header with Close Button */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.15rem', paddingBottom: '0.85rem', borderBottom: '1px solid #edf1e8' }}>
-                  <div style={{ fontFamily: 'var(--font-dm-mono), monospace', fontSize: '1.05rem', fontWeight: 500, letterSpacing: '0.12em', color: '#0f0f0f', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <div style={{  fontSize: '1.05rem', fontWeight: 500, letterSpacing: '0.12em', color: '#0f0f0f', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                     <span>DRAPZA ATELIER</span>
                   </div>
                   <button
@@ -4420,8 +3053,7 @@ export const ProfilePage = () => {
                       cursor: 'pointer',
                       color: '#0f0f0f',
                       transition: 'background-color 0.15s ease',
-                      lineHeight: 1,
-                    }}
+                      lineHeight: 1}}
                   >
                     ✕
                   </button>
@@ -4436,7 +3068,7 @@ export const ProfilePage = () => {
                     <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#0f0f0f', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                       {currentUser.name || 'Denis Holland'}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#7d807a', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.15rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#7d807a',  marginTop: '0.15rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                       {currentUser.email || 'client@drapza.com'}
                     </div>
                   </div>
@@ -4464,7 +3096,7 @@ export const ProfilePage = () => {
                         {item.badge != null && (
                           <span style={{
                             fontSize: '10px',
-                            fontFamily: 'var(--font-dm-mono), monospace',
+                            
                             padding: '1px 6px',
                             borderRadius: '9999px',
                             background: isActive ? '#0f0f0f' : '#e6e4dc',
@@ -4518,8 +3150,7 @@ export const ProfilePage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 zIndex: 9999,
-                padding: '1.25rem',
-              }}
+                padding: '1.25rem'}}
               onClick={(e) => {
                 if (e.target === e.currentTarget) setShowAddressModal(false);
               }}
@@ -4528,10 +3159,10 @@ export const ProfilePage = () => {
                 {/* Modal Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.35rem' }}>
                   <div>
-                    <div style={{ fontSize: '0.66rem', color: '#7d807a', fontWeight: 700, letterSpacing: '0.08em', fontFamily: 'var(--font-dm-mono), monospace', marginBottom: '0.2rem', textTransform: 'uppercase' }}>
+                    <div style={{ fontSize: '0.66rem', color: '#7d807a', fontWeight: 700, letterSpacing: '0.08em',  marginBottom: '0.2rem', textTransform: 'uppercase' }}>
                       [DISPATCH DESTINATION]
                     </div>
-                    <h2 style={{ margin: 0, fontSize: '1.8rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                    <h2 style={{ margin: 0, fontSize: '1.8rem', color: '#0f0f0f',  textTransform: 'none', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                       Add Delivery Address
                     </h2>
                   </div>
@@ -4556,8 +3187,7 @@ export const ProfilePage = () => {
                       justifyContent: 'center',
                       cursor: 'pointer',
                       flexShrink: 0,
-                      color: '#0f0f0f',
-                    }}
+                      color: '#0f0f0f'}}
                   >
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ width: '13px', height: '13px', display: 'block', pointerEvents: 'none' }}>
                       <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -4575,9 +3205,8 @@ export const ProfilePage = () => {
                     borderRadius: '6px',
                     fontSize: '0.74rem',
                     fontWeight: 700,
-                    fontFamily: 'var(--font-dm-mono), monospace',
-                    marginBottom: '1rem',
-                  }}>
+                    
+                    marginBottom: '1rem'}}>
                     {addrError}
                   </div>
                 )}
@@ -4602,7 +3231,7 @@ export const ProfilePage = () => {
                         style={addrFieldErrors.firstName ? { borderColor: '#ef4444' } : undefined}
                       />
                       {addrFieldErrors.firstName && (
-                        <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                        <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                           {addrFieldErrors.firstName}
                         </span>
                       )}
@@ -4623,7 +3252,7 @@ export const ProfilePage = () => {
                         style={addrFieldErrors.lastName ? { borderColor: '#ef4444' } : undefined}
                       />
                       {addrFieldErrors.lastName && (
-                        <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                        <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                           {addrFieldErrors.lastName}
                         </span>
                       )}
@@ -4643,9 +3272,7 @@ export const ProfilePage = () => {
                         fontSize: '0.82rem',
                         fontWeight: 600,
                         color: '#555852',
-                        pointerEvents: 'none',
-                        fontFamily: 'var(--font-dm-mono), monospace'
-                      }}>
+                        pointerEvents: 'none'}}>
                         +91
                       </span>
                       <input
@@ -4661,7 +3288,7 @@ export const ProfilePage = () => {
                       />
                     </div>
                     {addrFieldErrors.phone && (
-                      <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                      <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                         {addrFieldErrors.phone}
                       </span>
                     )}
@@ -4685,7 +3312,7 @@ export const ProfilePage = () => {
                       style={addrFieldErrors.address ? { borderColor: '#ef4444' } : undefined}
                     />
                     {addrFieldErrors.address && (
-                      <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                      <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                         {addrFieldErrors.address}
                       </span>
                     )}
@@ -4710,7 +3337,7 @@ export const ProfilePage = () => {
                         style={addrFieldErrors.city ? { borderColor: '#ef4444' } : undefined}
                       />
                       {addrFieldErrors.city && (
-                        <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                        <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                           {addrFieldErrors.city}
                         </span>
                       )}
@@ -4732,7 +3359,7 @@ export const ProfilePage = () => {
                         style={addrFieldErrors.state ? { borderColor: '#ef4444' } : undefined}
                       />
                       {addrFieldErrors.state && (
-                        <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                        <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                           {addrFieldErrors.state}
                         </span>
                       )}
@@ -4755,7 +3382,7 @@ export const ProfilePage = () => {
                         style={addrFieldErrors.pincode ? { borderColor: '#ef4444' } : undefined}
                       />
                       {addrFieldErrors.pincode && (
-                        <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
+                        <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
                           {addrFieldErrors.pincode}
                         </span>
                       )}
@@ -4787,13 +3414,12 @@ export const ProfilePage = () => {
                         borderRadius: '8px',
                         cursor: 'pointer',
                         fontWeight: 700,
-                        fontFamily: 'var(--font-dm-mono), monospace',
+                        
                         textTransform: 'uppercase',
                         letterSpacing: '0.04em',
                         fontSize: '0.78rem',
                         color: '#555852',
-                        transition: 'all 0.15s ease',
-                      }}
+                        transition: 'all 0.15s ease'}}
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#d7dbd2')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#edf1e8')}
                     >
@@ -4810,7 +3436,7 @@ export const ProfilePage = () => {
                         borderRadius: '8px',
                         cursor: isAddingAddress ? 'not-allowed' : 'pointer',
                         fontWeight: 700,
-                        fontFamily: 'var(--font-dm-mono), monospace',
+                        
                         textTransform: 'uppercase',
                         letterSpacing: '0.05em',
                         fontSize: '0.8rem',
@@ -4818,8 +3444,7 @@ export const ProfilePage = () => {
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        transition: 'all 0.15s ease',
-                      }}
+                        transition: 'all 0.15s ease'}}
                       onMouseEnter={(e) => !isAddingAddress && (e.currentTarget.style.backgroundColor = '#262626')}
                       onMouseLeave={(e) => !isAddingAddress && (e.currentTarget.style.backgroundColor = '#0f0f0f')}
                     >

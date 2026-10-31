@@ -8164,77 +8164,8 @@ footer .footer-row:nth-child(2) .footer-copyright p:nth-child(2) {
 }
 
 /* ==========================================================================
-   Profile UI Specific Styles (Sharp Zero-Radius Atelier Brutalist Aesthetic)
+   Profile UI Specific Styles (Isolated via styles/profile.css)
    ========================================================================== */
-.profile-ui {
-  font-family: var(--font-dm-mono), monospace !important;
-  color: var(--base-700, #0f0f0f);
-  background-color: var(--base-100, #edf1e8);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* DRAPZA Design System Architecture across Profile Elements */
-.profile-ui .profile-card,
-.profile-ui .profile-order-card,
-.profile-ui .profile-address-card,
-.profile-ui .profile-address-modal {
-  border-radius: 12px !important;
-  border: 1px solid var(--base-200, #d7dbd2) !important;
-}
-
-.profile-ui .profile-user-avatar,
-.profile-ui .profile-user-avatar img {
-  border-radius: 50% !important;
-}
-
-.profile-ui h1,
-.profile-ui h2,
-.profile-ui h3,
-.profile-ui h4,
-.profile-ui h5 {
-  font-family: var(--font-koulen), sans-serif !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.03em !important;
-  line-height: 1.15 !important;
-  color: var(--base-700, #0f0f0f) !important;
-}
-
-.profile-ui button,
-.profile-ui .profile-nav-btn {
-  font-family: var(--font-dm-mono), monospace !important;
-  letter-spacing: 0.05em !important;
-  border-radius: 8px !important;
-}
-
-.profile-ui svg {
-  object-fit: contain;
-  max-width: 100%;
-}
-
-.profile-ui .profile-order-card svg {
-  width: auto;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.profile-ui .profile-nav-icon svg {
-  width: 17px !important;
-  height: 17px !important;
-  flex-shrink: 0 !important;
-}
-
-.profile-ui input,
-.profile-ui select,
-.profile-ui textarea {
-  border-radius: 8px !important;
-  font-family: var(--font-dm-mono), monospace !important;
-  border: 1px solid var(--base-200, #d7dbd2) !important;
-}
-
-.profile-ui input::placeholder {
-  color: var(--base-400, #969992);
-  font-size: 0.82rem;
-}
 
 /* DRAPZA Scroll reveal system */
 @keyframes accordionReveal {

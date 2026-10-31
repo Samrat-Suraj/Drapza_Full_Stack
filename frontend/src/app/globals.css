@@ -5,6 +5,7 @@
 @import "../styles/payment.css";
 @import "../styles/order-confirmation.css";
 @import "../styles/membership.css";
+@import "../styles/profile.css";
 
 /* DRAPZA Design System Tokens */
 @theme {
