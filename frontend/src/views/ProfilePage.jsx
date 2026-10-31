@@ -533,9 +533,10 @@ export const ProfilePage = () => {
               box-sizing: border-box;
             }
             .profile-ui {
-              font-family: var(--font-dm-mono), monospace !important;
-              color: var(--base-700, #0f0f0f);
+              font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+              color: #1a1c18;
               -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
             }
             
             /* Headings: Strictly Koulen Bold Display */
@@ -543,14 +544,22 @@ export const ProfilePage = () => {
               font-family: var(--font-koulen), sans-serif !important;
               text-transform: uppercase !important;
               font-weight: 400 !important;
-              line-height: 0.95 !important;
+              line-height: 1 !important;
               letter-spacing: clamp(0rem, -0.25vw, -0.05rem) !important;
-              color: var(--base-700, #0f0f0f) !important;
+              color: #141513 !important;
             }
 
-            /* Text, Data, Labels, Inputs, Buttons: Strictly DM Mono */
-            .profile-ui :is(p, span, a, label, button, input, select, textarea, small, strong) {
-              font-family: var(--font-dm-mono), monospace !important;
+            /* Paragraphs, descriptions and body copy: Soft, readable Host Grotesk */
+            .profile-ui p {
+              font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+              color: #63675f;
+              font-weight: 400;
+              line-height: 1.55;
+            }
+
+            /* Technical labels, inputs, code tags, button text: Clean DM Mono */
+            .profile-ui :is(button, input, select, textarea, .profile-mono) {
+              font-family: var(--font-dm-mono), monospace;
             }
 
             /* Top Header Area matching /checkout & /payment */
@@ -1386,11 +1395,11 @@ export const ProfilePage = () => {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-              <h1 style={{ fontFamily: 'var(--font-koulen), sans-serif', fontSize: '2.4rem', textTransform: 'uppercase', letterSpacing: '0.03em', lineHeight: 0.95, margin: 0, color: 'var(--base-700, #0f0f0f)' }}>
+              <h1 style={{ fontFamily: 'var(--font-koulen), sans-serif', fontSize: '2.4rem', textTransform: 'uppercase', letterSpacing: '0.03em', lineHeight: 0.95, margin: 0, color: '#141513' }}>
                 MEMBER CLIENT TERMINAL
               </h1>
-              <p style={{ fontFamily: 'var(--font-dm-mono), monospace', fontSize: '0.78rem', color: 'var(--base-500, #7d807a)', textTransform: 'uppercase', letterSpacing: '0.04em', margin: 0 }}>
-                PERSONAL IDENTITY, ORDER ARCHIVE & ATELIER ACCOUNT
+              <p style={{ fontFamily: 'var(--font-host-grotesk), sans-serif', fontSize: '0.82rem', color: '#63675f', margin: 0, fontWeight: 400, letterSpacing: '0.01em' }}>
+                Personal identity, order archive & atelier account
               </p>
             </div>
           </div>
@@ -1628,11 +1637,11 @@ export const ProfilePage = () => {
                           </svg>
                         </div>
                         <div>
-                          <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                          <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                             PERSONAL INFORMATION
                           </h1>
-                          <p style={{ margin: '0.2rem 0 0 0', color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', fontFamily: 'var(--font-dm-mono), monospace' }}>
-                            UPDATE YOUR CONTACT DETAILS, BILLING CREDENTIALS AND PROFILE PARAMETERS.
+                          <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                            Update your contact details, billing credentials and profile parameters.
                           </p>
                         </div>
                       </div>
@@ -1647,8 +1656,8 @@ export const ProfilePage = () => {
                         padding: '0.75rem 1.15rem',
                         borderRadius: '8px',
                         fontSize: '0.78rem',
-                        fontWeight: 700,
-                        fontFamily: 'var(--font-dm-mono), monospace',
+                        fontWeight: 600,
+                        fontFamily: 'var(--font-host-grotesk), sans-serif',
                         marginBottom: '1.25rem',
                         display: 'flex',
                         alignItems: 'center',
@@ -1667,8 +1676,8 @@ export const ProfilePage = () => {
                         padding: '0.75rem 1.15rem',
                         borderRadius: '8px',
                         fontSize: '0.78rem',
-                        fontWeight: 700,
-                        fontFamily: 'var(--font-dm-mono), monospace',
+                        fontWeight: 600,
+                        fontFamily: 'var(--font-host-grotesk), sans-serif',
                         marginBottom: '1.25rem',
                       }}>
                         {saveError}
@@ -1687,8 +1696,8 @@ export const ProfilePage = () => {
                             backgroundColor: '#ffffff',
                             padding: '0 5px',
                             fontSize: '0.68rem',
-                            fontWeight: 700,
-                            color: '#0f0f0f',
+                            fontWeight: 500,
+                            color: '#555850',
                             zIndex: 2,
                             fontFamily: 'var(--font-dm-mono), monospace',
                             textTransform: 'uppercase',
@@ -1711,7 +1720,7 @@ export const ProfilePage = () => {
                               border: (personalFieldErrors.firstName || personalFieldErrors.name) ? '1px solid #ef4444' : '1px solid #d7dbd2',
                               borderRadius: '8px',
                               fontSize: '0.85rem',
-                              color: '#0f0f0f',
+                              color: '#1a1c18',
                               outline: 'none',
                               backgroundColor: '#ffffff',
                               fontFamily: 'var(--font-dm-mono), monospace',
@@ -1733,8 +1742,8 @@ export const ProfilePage = () => {
                             backgroundColor: '#ffffff',
                             padding: '0 5px',
                             fontSize: '0.68rem',
-                            fontWeight: 700,
-                            color: '#0f0f0f',
+                            fontWeight: 500,
+                            color: '#555850',
                             zIndex: 2,
                             fontFamily: 'var(--font-dm-mono), monospace',
                             textTransform: 'uppercase',
@@ -1758,7 +1767,7 @@ export const ProfilePage = () => {
                               border: personalFieldErrors.lastName ? '1px solid #ef4444' : '1px solid #d7dbd2',
                               borderRadius: '8px',
                               fontSize: '0.85rem',
-                              color: '#0f0f0f',
+                              color: '#1a1c18',
                               outline: 'none',
                               backgroundColor: '#ffffff',
                               fontFamily: 'var(--font-dm-mono), monospace',
@@ -1781,8 +1790,8 @@ export const ProfilePage = () => {
                           backgroundColor: '#ffffff',
                           padding: '0 5px',
                           fontSize: '0.68rem',
-                          fontWeight: 700,
-                          color: '#7d807a',
+                          fontWeight: 500,
+                          color: '#63675f',
                           zIndex: 2,
                           fontFamily: 'var(--font-dm-mono), monospace',
                           textTransform: 'uppercase',
@@ -1829,18 +1838,18 @@ export const ProfilePage = () => {
                                   border: 'none',
                                   outline: 'none',
                                   fontSize: '0.78rem',
-                                  fontWeight: 700,
-                                  color: '#0f0f0f',
+                                  fontWeight: 500,
+                                  color: '#1a1c18',
                                   backgroundColor: 'transparent',
                                   cursor: 'pointer',
                                   fontFamily: 'var(--font-dm-mono), monospace',
                                 }}
                               >
-                                <option value="+33" style={{ backgroundColor: '#ffffff', color: '#0f0f0f' }}>(+33)</option>
-                                <option value="+31" style={{ backgroundColor: '#ffffff', color: '#0f0f0f' }}>(+31)</option>
-                                <option value="+91" style={{ backgroundColor: '#ffffff', color: '#0f0f0f' }}>(+91)</option>
-                                <option value="+1" style={{ backgroundColor: '#ffffff', color: '#0f0f0f' }}>(+1)</option>
-                                <option value="+44" style={{ backgroundColor: '#ffffff', color: '#0f0f0f' }}>(+44)</option>
+                                <option value="+33" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+33)</option>
+                                <option value="+31" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+31)</option>
+                                <option value="+91" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+91)</option>
+                                <option value="+1" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+1)</option>
+                                <option value="+44" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+44)</option>
                               </select>
                             </div>
 
@@ -1859,7 +1868,7 @@ export const ProfilePage = () => {
                                 outline: 'none',
                                 padding: '0.68rem 0.85rem',
                                 fontSize: '0.85rem',
-                                color: '#0f0f0f',
+                                color: '#1a1c18',
                                 fontFamily: 'var(--font-dm-mono), monospace',
                               }}
                             />
@@ -1883,7 +1892,7 @@ export const ProfilePage = () => {
                               borderRadius: '8px',
                               padding: '0.68rem 0.95rem',
                               backgroundColor: '#ffffff',
-                              color: '#0f0f0f',
+                              color: '#1a1c18',
                               cursor: 'pointer',
                               position: 'relative',
                             }}
@@ -1903,7 +1912,7 @@ export const ProfilePage = () => {
                                   cursor: 'pointer',
                                   display: 'flex',
                                   alignItems: 'center',
-                                  color: '#0f0f0f',
+                                  color: '#555850',
                                 }}
                               >
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '15px', height: '15px', flexShrink: 0 }}>
@@ -1925,9 +1934,9 @@ export const ProfilePage = () => {
                                 style={{
                                   border: 'none',
                                   outline: 'none',
-                                  color: '#0f0f0f',
+                                  color: '#1a1c18',
                                   fontSize: '0.82rem',
-                                  fontWeight: 700,
+                                  fontWeight: 500,
                                   backgroundColor: 'transparent',
                                   width: '130px',
                                   fontFamily: 'var(--font-dm-mono), monospace',
@@ -2084,20 +2093,19 @@ export const ProfilePage = () => {
 
                       {/* Policy and Informational Text */}
                       <p style={{
-                        color: '#7d807a',
-                        fontSize: '0.78rem',
-                        lineHeight: '1.7',
-                        margin: '0 0 1.6rem 0',
-                        fontFamily: 'var(--font-dm-mono), monospace',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em'
+                        color: '#63675f',
+                        fontSize: '0.82rem',
+                        lineHeight: '1.6',
+                        margin: '0 0 1.5rem 0',
+                        fontFamily: 'var(--font-host-grotesk), sans-serif',
+                        letterSpacing: '0.01em',
                       }}>
-                        YOUR ACCOUNT PROFILE SECURELY STORES YOUR PERSONAL IDENTIFICATION, ORDER ARCHIVE, AND DELIVERY PREFERENCES FOR SWIFT ATELIER CHECKOUT AND BESPOKE TRACKING.{' '}
+                        Your account profile securely stores your personal identification, order archive, and delivery preferences for swift atelier checkout and bespoke tracking.{' '}
                         <span
-                          style={{ color: '#0f0f0f', textDecoration: 'underline', cursor: 'pointer', fontWeight: 700 }}
+                          style={{ color: '#1a1c18', textDecoration: 'underline', cursor: 'pointer', fontWeight: 600 }}
                           onClick={() => router.push('/terms')}
                         >
-                          TERMS & CONDITIONS
+                          Terms &amp; Conditions
                         </span>
                       </p>
 
@@ -2107,22 +2115,22 @@ export const ProfilePage = () => {
                           type="submit"
                           disabled={isUpdatingProfile}
                           style={{
-                            backgroundColor: '#0f0f0f',
+                            backgroundColor: '#141513',
                             color: '#ffffff',
                             border: 'none',
                             borderRadius: '8px',
                             padding: '0.72rem 2.25rem',
                             fontSize: '0.84rem',
-                            fontWeight: 700,
+                            fontWeight: 500,
                             fontFamily: 'var(--font-dm-mono), monospace',
                             letterSpacing: '0.05em',
                             textTransform: 'uppercase',
                             cursor: isUpdatingProfile ? 'not-allowed' : 'pointer',
-                            boxShadow: '0 4px 14px rgba(15, 15, 15, 0.2)',
+                            boxShadow: '0 4px 14px rgba(15, 15, 15, 0.16)',
                             transition: 'background-color 0.15s ease',
                           }}
                           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#141513')}
                         >
                           {isUpdatingProfile ? 'SAVING...' : 'SAVE'}
                         </button>
@@ -2141,12 +2149,12 @@ export const ProfilePage = () => {
                           }}
                           style={{
                             backgroundColor: '#ffffff',
-                            color: '#0f0f0f',
+                            color: '#1a1c18',
                             border: '1px solid #d7dbd2',
                             borderRadius: '8px',
                             padding: '0.72rem 1.85rem',
                             fontSize: '0.84rem',
-                            fontWeight: 700,
+                            fontWeight: 500,
                             fontFamily: 'var(--font-dm-mono), monospace',
                             letterSpacing: '0.05em',
                             textTransform: 'uppercase',
@@ -2187,23 +2195,24 @@ export const ProfilePage = () => {
                       <div className="profile-tab-header">
                         <div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem', flexWrap: 'wrap' }}>
-                            <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                            <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                               MY ORDERS
                             </h1>
                             <span style={{
-                              backgroundColor: '#0f0f0f',
+                              backgroundColor: '#141513',
                               color: '#ffffff',
                               fontSize: '0.68rem',
                               fontFamily: 'var(--font-dm-mono), monospace',
-                              fontWeight: 700,
+                              fontWeight: 500,
                               padding: '0.2rem 0.55rem',
-                              letterSpacing: '0.06em'
+                              letterSpacing: '0.06em',
+                              borderRadius: '4px',
                             }}>
                               {allOrders.length} {allOrders.length === 1 ? 'ORDER' : 'ORDERS'}
                             </span>
                           </div>
-                          <p style={{ margin: 0, color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', fontFamily: 'var(--font-dm-mono), monospace' }}>
-                            TRACK REAL-TIME SHIPMENT DISPATCHES, ATELIER MILESTONES AND ORDER ARCHIVE.
+                          <p style={{ margin: 0, color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                            Track real-time shipment dispatches, atelier milestones and order archive.
                           </p>
                         </div>
 
@@ -2211,13 +2220,13 @@ export const ProfilePage = () => {
                           type="button"
                           onClick={() => router.push('/track')}
                           style={{
-                            backgroundColor: '#0f0f0f',
+                            backgroundColor: '#141513',
                             color: '#ffffff',
                             border: 'none',
                             borderRadius: '8px',
                             padding: '0.65rem 1.35rem',
                             fontSize: '0.78rem',
-                            fontWeight: 700,
+                            fontWeight: 500,
                             fontFamily: 'var(--font-dm-mono), monospace',
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
@@ -2510,10 +2519,10 @@ export const ProfilePage = () => {
                                   </div>
 
                                   <div style={{ textAlign: 'right' }}>
-                                    <div style={{ fontSize: '0.68rem', color: '#7d807a', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'var(--font-dm-mono), monospace' }}>
+                                    <div style={{ fontSize: '0.68rem', color: '#73776e', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', fontFamily: 'var(--font-dm-mono), monospace' }}>
                                       Total Amount
                                     </div>
-                                    <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f0f0f', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.1rem', letterSpacing: '-0.02em' }}>
+                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#141513', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.1rem', letterSpacing: '-0.02em' }}>
                                       ₹{getOrderTotal(order)}
                                     </div>
                                   </div>
@@ -3037,23 +3046,23 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                           DELIVERY ADDRESSES
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', fontFamily: 'var(--font-dm-mono), monospace' }}>
-                          MANAGE ADDRESSES FOR EXPEDITED CHECKOUT AND SHIPMENT DISPATCH.
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                          Manage addresses for expedited checkout and shipment dispatch.
                         </p>
                       </div>
                       <button
                         onClick={() => setShowAddressModal(true)}
                         style={{
-                          backgroundColor: '#0f0f0f',
+                          backgroundColor: '#141513',
                           color: '#ffffff',
                           border: 'none',
                           borderRadius: '8px',
                           padding: '0.68rem 1.4rem',
                           fontSize: '0.78rem',
-                          fontWeight: 700,
+                          fontWeight: 500,
                           fontFamily: 'var(--font-dm-mono), monospace',
                           textTransform: 'uppercase',
                           letterSpacing: '0.05em',
@@ -3148,11 +3157,11 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                           SAVED GARMENTS ({wishlistItems.length})
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', fontFamily: 'var(--font-dm-mono), monospace' }}>
-                          CURATED ARCHIVE OF PIECES MARKED FOR ACQUISITION.
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                          Curated archive of pieces marked for acquisition.
                         </p>
                       </div>
                     </div>
@@ -3247,11 +3256,11 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                           SHOPPING BAG ({totalCount} {totalCount === 1 ? 'ITEM' : 'ITEMS'})
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', fontFamily: 'var(--font-dm-mono), monospace' }}>
-                          ITEMS CURRENTLY RESERVED IN YOUR SESSION CHECKOUT.
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                          Items currently reserved in your session checkout.
                         </p>
                       </div>
                       {cartItems.length > 0 && (
@@ -3259,13 +3268,13 @@ export const ProfilePage = () => {
                           type="button"
                           onClick={() => router.push('/checkout')}
                           style={{
-                            backgroundColor: '#0f0f0f',
+                            backgroundColor: '#141513',
                             color: '#ffffff',
                             border: 'none',
                             borderRadius: '8px',
                             padding: '0.68rem 1.4rem',
                             fontSize: '0.78rem',
-                            fontWeight: 700,
+                            fontWeight: 500,
                             fontFamily: 'var(--font-dm-mono), monospace',
                             textTransform: 'uppercase',
                             letterSpacing: '0.05em',
@@ -3508,11 +3517,11 @@ export const ProfilePage = () => {
                   <div>
                     <div className="profile-tab-header">
                       <div>
-                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#0f0f0f', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
+                        <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                           SECURITY & PASSWORD
                         </h1>
-                        <p style={{ margin: '0.25rem 0 0 0', color: '#7d807a', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.04em', fontFamily: 'var(--font-dm-mono), monospace' }}>
-                          CHANGE YOUR PASSWORD CREDENTIALS AND MANAGE SESSION SECURITY.
+                        <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
+                          Change your password credentials and manage session security.
                         </p>
                       </div>
                     </div>
@@ -3551,7 +3560,7 @@ export const ProfilePage = () => {
                       <form onSubmit={handlePasswordSubmit} noValidate>
                         {/* Current Password Field */}
                         <div style={{ marginBottom: '1.25rem' }}>
-                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.74rem', fontWeight: 700, color: '#0f0f0f', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
+                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
                             <span>CURRENT PASSWORD</span>
                           </label>
                           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -3569,7 +3578,7 @@ export const ProfilePage = () => {
                                 border: passwordFieldErrors.currentPassword ? '1.5px solid #ef4444' : '1.5px solid #d7dbd2',
                                 borderRadius: '8px',
                                 fontSize: '0.86rem',
-                                color: '#0f0f0f',
+                                color: '#1a1c18',
                                 backgroundColor: '#ffffff',
                                 outline: 'none',
                                 fontFamily: 'var(--font-dm-mono), monospace',
@@ -3618,9 +3627,9 @@ export const ProfilePage = () => {
 
                         {/* New Password Field */}
                         <div style={{ marginBottom: '1.25rem' }}>
-                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.74rem', fontWeight: 700, color: '#0f0f0f', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
+                          <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
                             <span>NEW PASSWORD</span>
-                            <span style={{ fontSize: '0.64rem', color: '#7d807a', fontWeight: 500 }}>MIN 6 CHARACTERS</span>
+                            <span style={{ fontSize: '0.64rem', color: '#7d807a', fontWeight: 400 }}>MIN 6 CHARACTERS</span>
                           </label>
                           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                             <input
@@ -3637,7 +3646,7 @@ export const ProfilePage = () => {
                                 border: passwordFieldErrors.newPassword ? '1.5px solid #ef4444' : '1.5px solid #d7dbd2',
                                 borderRadius: '8px',
                                 fontSize: '0.86rem',
-                                color: '#0f0f0f',
+                                color: '#1a1c18',
                                 backgroundColor: '#ffffff',
                                 outline: 'none',
                                 fontFamily: 'var(--font-dm-mono), monospace',
@@ -3686,7 +3695,7 @@ export const ProfilePage = () => {
 
                         {/* Confirm New Password Field */}
                         <div style={{ marginBottom: '1.5rem' }}>
-                          <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: 700, color: '#0f0f0f', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
+                          <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 500, color: '#555850', marginBottom: '0.45rem', fontFamily: 'var(--font-dm-mono), monospace', letterSpacing: '0.04em' }}>
                             <span>CONFIRM NEW PASSWORD</span>
                           </label>
                           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -3704,7 +3713,7 @@ export const ProfilePage = () => {
                                 border: passwordFieldErrors.confirmNewPassword ? '1.5px solid #ef4444' : '1.5px solid #d7dbd2',
                                 borderRadius: '8px',
                                 fontSize: '0.86rem',
-                                color: '#0f0f0f',
+                                color: '#1a1c18',
                                 backgroundColor: '#ffffff',
                                 outline: 'none',
                                 fontFamily: 'var(--font-dm-mono), monospace',
@@ -3756,13 +3765,13 @@ export const ProfilePage = () => {
                             type="submit"
                             disabled={isChangingPassword}
                             style={{
-                              backgroundColor: '#0f0f0f',
+                              backgroundColor: '#141513',
                               color: '#ffffff',
                               border: 'none',
                               borderRadius: '8px',
                               padding: '0.75rem 1.85rem',
                               fontSize: '0.8rem',
-                              fontWeight: 700,
+                              fontWeight: 500,
                               fontFamily: 'var(--font-dm-mono), monospace',
                               letterSpacing: '0.05em',
                               textTransform: 'uppercase',
@@ -3770,11 +3779,11 @@ export const ProfilePage = () => {
                               display: 'inline-flex',
                               alignItems: 'center',
                               gap: '0.5rem',
-                              boxShadow: '0 4px 14px rgba(15, 15, 15, 0.2)',
+                              boxShadow: '0 4px 14px rgba(15, 15, 15, 0.16)',
                               transition: 'all 0.15s ease',
                             }}
                             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
-                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0f0f0f')}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#141513')}
                           >
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px', flexShrink: 0, display: 'block' }}>
                               <rect x="3" y="11" width="18" height="11" rx="0" ry="0"></rect>

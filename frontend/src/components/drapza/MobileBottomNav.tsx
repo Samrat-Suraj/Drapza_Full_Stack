@@ -346,7 +346,7 @@ export function MobileBottomNav() {
           willChange: "transform",
         }}
       >
-        <span className="text-[#111111] transition-transform duration-200 flex items-center justify-center">
+        <span className="text-[#1a1c18] transition-transform duration-200 flex items-center justify-center">
           {activeTab.icon(true)}
         </span>
       </div>
@@ -354,7 +354,7 @@ export function MobileBottomNav() {
       {/* 3. Active Label beneath the scooped cradle (perfectly aligned with inactive labels) */}
       <div
         aria-hidden="true"
-        className="drapza-nav-label absolute pointer-events-none z-10 text-center font-semibold text-[#0f0f0f] leading-none flex items-center justify-center"
+        className="drapza-nav-label absolute pointer-events-none z-10 text-center font-medium text-[#1a1c18] leading-none flex items-center justify-center"
         style={{
           width: "72px",
           bottom: "12px",
