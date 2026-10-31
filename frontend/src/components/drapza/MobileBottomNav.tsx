@@ -276,6 +276,11 @@ export function MobileBottomNav() {
 
   const activeTab = tabs[activeIndex] || tabs[0];
 
+  // Do not render bottom nav on profile page (mobile profile page has its own dedicated vertical dock)
+  if (pathname?.startsWith("/profile")) {
+    return null;
+  }
+
   return (
     <nav
       ref={navContainerRef}

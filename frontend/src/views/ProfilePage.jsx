@@ -30,7 +30,23 @@ import {
   Headphones,
   Tag,
   Gift,
-  Star
+  Star,
+  Menu,
+  ShoppingBag,
+  ShoppingCart,
+  Heart,
+  User,
+  MapPin,
+  Settings,
+  LogOut,
+  ShieldCheck,
+  Mail,
+  Phone,
+  Save,
+  X,
+  Pencil,
+  Info,
+  ChevronDown
 } from 'lucide-react';
 import { CustomerReturnModal } from '../components/drapza/CustomerReturnModal';
 import { CancelOrderModal } from '../components/drapza/CancelOrderModal';
@@ -47,7 +63,7 @@ import {
 export const ProfilePage = () => {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
-  const { cartItems, totalCount, subtotal, removeFromCart, updateQuantity, addToCart } = useCart();
+  const { cartItems, totalCount, subtotal, removeFromCart, updateQuantity, addToCart, toggleCart } = useCart();
 
   // Search Params Support
   const searchParams = useSearchParams();
@@ -262,24 +278,79 @@ export const ProfilePage = () => {
 
   // Resolved user
   const currentUser = profileData?.user || user || {
-    name: 'Denis Holland',
-    email: 'denis.holland@company.com',
+    name: 'DRAPZA ADMIN',
+    email: 'drapza.cloth@gmail.com',
     phone: '9794603102',
     role: 'admin',
     memberSince: 2026,
   };
 
   // Form states matching screenshot
-  const nameParts = (currentUser.name || 'Denis Holland').trim().split(' ');
-  const [firstName, setFirstName] = useState(nameParts[0] || 'Denis');
-  const [lastName, setLastName] = useState(nameParts.slice(1).join(' ') || 'Holland');
-  const [email, setEmail] = useState(currentUser.email || 'denis.holland@company.com');
+  const nameParts = (currentUser.name || 'DRAPZA ADMIN').trim().split(' ');
+  const [firstName, setFirstName] = useState(nameParts[0] || 'DRAPZA');
+  const [lastName, setLastName] = useState(nameParts.slice(1).join(' ') || 'ADMIN');
+  const [email, setEmail] = useState(currentUser.email || 'drapza.cloth@gmail.com');
   const [phone, setPhone] = useState(currentUser.phone || '9794603102');
   const [countryCode, setCountryCode] = useState('+91');
   const [dob, setDob] = useState('14 / 08 / 1998');
   const [gender, setGender] = useState('male'); // 'male' | 'female'
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saveError, setSaveError] = useState('');
+
+  // Avatar upload
+  const avatarUploadRef = useRef(null);
+  const [avatarPreview, setAvatarPreview] = useState('/avatar-sculpture.jpg');
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setAvatarPreview(url);
+    }
+  };
+
+  // Mobile Dock Navigation Items (Matching Left Floating Capsule Dock in Screenshot)
+  const mobileDockItems = [
+    {
+      id: 'cart',
+      label: 'My Cart',
+      icon: (isActive) => <ShoppingCart size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+    {
+      id: 'wishlist',
+      label: 'My Wishlist',
+      icon: (isActive) => <Heart size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+    {
+      id: 'orders',
+      label: 'My Orders',
+      icon: (isActive) => <ShoppingBag size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+    {
+      id: 'personal',
+      label: 'Personal Information',
+      icon: (isActive) => <User size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+    {
+      id: 'addresses',
+      label: 'Addresses',
+      icon: (isActive) => <MapPin size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+    {
+      id: 'preferences',
+      label: 'Settings',
+      icon: (isActive) => <Settings size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+    {
+      id: 'logout',
+      label: 'Sign Out',
+      action: () => {
+        logout();
+        router.push('/');
+      },
+      icon: (isActive) => <LogOut size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
+    },
+  ];
 
   // Address Modal State
   const [showAddressModal, setShowAddressModal] = useState(false);
@@ -377,10 +448,10 @@ export const ProfilePage = () => {
 
   useEffect(() => {
     if (currentUser) {
-      const parts = (currentUser.name || 'Denis Holland').trim().split(' ');
-      setFirstName(parts[0] || 'Denis');
-      setLastName(parts.slice(1).join(' ') || 'Holland');
-      setEmail(currentUser.email || 'denis.holland@company.com');
+      const parts = (currentUser.name || 'DRAPZA ADMIN').trim().split(' ');
+      setFirstName(parts[0] || 'DRAPZA');
+      setLastName(parts.slice(1).join(' ') || 'ADMIN');
+      setEmail(currentUser.email || 'drapza.cloth@gmail.com');
       setPhone(currentUser.phone || '9794603102');
       if (currentUser.gender) setGender(currentUser.gender);
       if (currentUser.dob) setDob(currentUser.dob);
@@ -1163,150 +1234,483 @@ export const ProfilePage = () => {
             gap: 1rem;
           }
 
-          /* Mobile Breakpoint (<= 768px) - Hides PC Sidebar, Activates Mobile Bar & Drawer */
+          /* Mobile Top Bar Header */
+          .profile-ui .profile-mobile-top-header {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 0.25rem 0.85rem 0.25rem;
+            width: 100%;
+          }
+          .profile-ui .profile-mobile-title {
+            font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 1.18rem !important;
+            font-weight: 700 !important;
+            color: #111315 !important;
+            margin: 0 !important;
+            text-align: center;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            flex: 1;
+          }
+          .profile-ui .profile-mobile-icon-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.45rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111315;
+            position: relative;
+            border-radius: 8px;
+            transition: opacity 0.15s ease;
+          }
+          .profile-ui .profile-mobile-icon-btn:active {
+            opacity: 0.7;
+          }
+          .profile-ui .profile-mobile-cart-badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            min-width: 15px;
+            height: 15px;
+            padding: 0 3px;
+            border-radius: 9999px;
+            background-color: #ef4444;
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+          }
+
+          /* Mobile Gradient User Profile Card */
+          .profile-ui .profile-mobile-user-card {
+            display: none;
+            background: linear-gradient(135deg, #f5f0ff 0%, #ffffff 50%, #ede6ff 100%);
+            border: 1px solid #ebdfff;
+            border-radius: 20px;
+            padding: 1.1rem 1.25rem;
+            align-items: center;
+            gap: 1.1rem;
+            box-shadow: 0 4px 20px rgba(130, 90, 230, 0.06);
+            margin-bottom: 0.85rem;
+            width: 100%;
+          }
+          .profile-ui .profile-mobile-avatar-wrap {
+            position: relative;
+            width: 66px;
+            height: 66px;
+            flex-shrink: 0;
+          }
+          .profile-ui .profile-mobile-avatar-ring {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background-color: #f1f2f6;
+          }
+          .profile-ui .profile-mobile-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .profile-ui .profile-mobile-avatar-edit-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #111315;
+            border: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          }
+          .profile-ui .profile-mobile-user-meta {
+            overflow: hidden;
+          }
+          .profile-ui .profile-mobile-user-name {
+            font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            color: #111315 !important;
+            margin: 0 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.02em !important;
+            line-height: 1.2 !important;
+          }
+          .profile-ui .profile-mobile-user-email {
+            font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 0.78rem !important;
+            color: #7d807a !important;
+            margin: 3px 0 0 0 !important;
+            word-break: break-all;
+          }
+
+          /* Left Vertical Floating Dock Pill */
+          .profile-ui .profile-mobile-dock {
+            display: none;
+            width: 48px;
+            min-width: 48px;
+            max-width: 48px;
+            background-color: #ffffff;
+            border-radius: 9999px;
+            border: 1px solid #ebece8;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+            padding: 0.65rem 0.25rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: sticky;
+            top: 72px;
+            z-index: 25;
+            flex-shrink: 0;
+          }
+          .profile-ui .profile-dock-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #2c2e33;
+            transition: all 0.18s ease;
+            padding: 0;
+          }
+          .profile-ui .profile-dock-btn:hover:not(.active) {
+            background-color: #f4f6f2;
+          }
+          .profile-ui .profile-dock-btn.active {
+            background-color: #111315;
+            color: #ffffff;
+            box-shadow: 0 3px 12px rgba(17, 19, 21, 0.2);
+          }
+          .profile-ui .profile-dock-active-pill {
+            position: absolute;
+            left: -3px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 18px;
+            border-radius: 4px;
+            background: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.7);
+          }
+
+          /* Modern Form Input Fields (Matches screenshot) */
+          .profile-ui .profile-input-field {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.48rem 0.85rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background-color: #ffffff;
+            transition: all 0.18s ease;
+            width: 100%;
+          }
+          .profile-ui .profile-input-field:focus-within {
+            border-color: #111315;
+            box-shadow: 0 0 0 2px rgba(17, 19, 21, 0.08);
+          }
+          .profile-ui .profile-input-field.error {
+            border-color: #ef4444;
+          }
+          .profile-ui .profile-input-stack {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+          }
+          .profile-ui .profile-input-label {
+            font-size: 0.65rem;
+            color: #7d807a;
+            font-weight: 500;
+            font-family: var(--font-host-grotesk), sans-serif;
+            line-height: 1.1;
+            margin-bottom: 2px;
+            user-select: none;
+          }
+          .profile-ui .profile-input-val {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #111315;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: var(--font-host-grotesk), sans-serif;
+            padding: 0;
+            width: 100%;
+          }
+          .profile-ui .profile-phone-row {
+            display: flex;
+            gap: 0.55rem;
+            align-items: center;
+            width: 100%;
+          }
+          .profile-ui .profile-phone-code-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.62rem 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background-color: #ffffff;
+            flex-shrink: 0;
+          }
+          .profile-ui .profile-phone-code-select {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #111315;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: var(--font-host-grotesk), sans-serif;
+            cursor: pointer;
+          }
+          .profile-ui .profile-phone-num-pill {
+            display: flex;
+            align-items: center;
+            padding: 0.62rem 0.85rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background-color: #ffffff;
+            flex: 1;
+            transition: all 0.18s ease;
+          }
+          .profile-ui .profile-phone-num-pill:focus-within {
+            border-color: #111315;
+            box-shadow: 0 0 0 2px rgba(17, 19, 21, 0.08);
+          }
+          .profile-ui .profile-phone-num-pill.error {
+            border-color: #ef4444;
+          }
+          .profile-ui .profile-phone-input {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #111315;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: var(--font-host-grotesk), sans-serif;
+            width: 100%;
+            padding: 0;
+          }
+          .profile-ui .profile-dob-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.62rem 0.85rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background-color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.18s ease;
+            width: 100%;
+          }
+          .profile-ui .profile-dob-pill:hover {
+            border-color: #111315;
+          }
+          .profile-ui .profile-dob-pill.error {
+            border-color: #ef4444;
+          }
+          .profile-ui .profile-gender-selection-row {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+          }
+          .profile-ui .profile-gender-pill-card {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0.5rem;
+            border-radius: 14px;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            background-color: #ffffff;
+            color: #111315;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+          }
+          .profile-ui .profile-gender-pill-card:hover:not(.selected) {
+            border-color: #111315;
+            background-color: #fafbf9;
+          }
+          .profile-ui .profile-gender-pill-card.selected {
+            background-color: #111315;
+            border-color: #111315;
+            color: #ffffff;
+            box-shadow: 0 4px 16px rgba(17, 19, 21, 0.18);
+          }
+          .profile-ui .profile-gender-check-badge {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #6366f1;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+          }
+          .profile-ui .profile-info-notice-box {
+            background-color: #f4f0ff;
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            gap: 0.65rem;
+            align-items: flex-start;
+            margin-top: 0.25rem;
+          }
+          .profile-ui .profile-info-notice-text {
+            font-size: 0.72rem;
+            color: #4338ca;
+            line-height: 1.45;
+            font-family: var(--font-host-grotesk), sans-serif;
+            margin: 0;
+          }
+          .profile-ui .profile-info-notice-link {
+            font-weight: 600;
+            text-decoration: underline;
+            color: #1e1b4b;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 0.3rem;
+          }
+          .profile-ui .profile-btn-save {
+            width: 100%;
+            background-color: #111315;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: var(--font-host-grotesk), sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(17, 19, 21, 0.16);
+            transition: all 0.18s ease;
+            margin-top: 0.45rem;
+          }
+          .profile-ui .profile-btn-save:hover {
+            background-color: #26292e;
+          }
+          .profile-ui .profile-btn-cancel {
+            width: 100%;
+            background-color: #ffffff;
+            color: #111315;
+            border: 1.5px solid #111315;
+            border-radius: 14px;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: var(--font-host-grotesk), sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            margin-top: 0.15rem;
+          }
+          .profile-ui .profile-btn-cancel:hover {
+            background-color: #f4f6f2;
+          }
+
+          /* Mobile Breakpoint (<= 768px) - Exact Mobile Layout from Screenshot */
           @media (max-width: 768px) {
-            .profile-ui .profile-container {
-              display: flex !important;
-              flex-direction: column !important;
-              width: 100% !important;
-              max-width: 100% !important;
-              padding: 0 !important;
-              gap: 0.85rem !important;
-              margin-bottom: 2rem !important;
+            nav.menu {
+              display: none !important;
+            }
+            .drapza-profile-page {
+              padding: 0.65rem 0.65rem 3.5rem 0.65rem !important;
+            }
+            .profile-ui .profile-header-section {
+              display: none !important;
             }
             .profile-ui .profile-sidebar {
               display: none !important;
             }
-            .profile-ui .profile-mobile-nav-bar {
+            .profile-ui .profile-mobile-top-header {
               display: flex !important;
-              padding: 0.75rem 1rem !important;
             }
-            .profile-ui .profile-mobile-tabs-scroll-wrap {
-              display: block !important;
+            .profile-ui .profile-mobile-user-card {
+              display: flex !important;
             }
-            .profile-ui .profile-header-section {
-              margin-bottom: 1.25rem !important;
-              padding-bottom: 1rem !important;
+            .profile-ui .profile-mobile-dock {
+              display: flex !important;
             }
-            .profile-ui h1 {
-              font-size: 1.65rem !important;
-              line-height: 1.05 !important;
-              letter-spacing: 0.02em !important;
+            .profile-ui .profile-container {
+              display: flex !important;
+              flex-direction: row !important;
+              align-items: flex-start !important;
+              gap: 0.65rem !important;
+              width: 100% !important;
+              max-width: 100% !important;
+              margin: 0 0 2rem 0 !important;
+              padding: 0 !important;
             }
-            .profile-ui h2 {
-              font-size: 1.35rem !important;
-              line-height: 1.1 !important;
-            }
-            .profile-ui h3 {
-              font-size: 1.12rem !important;
-              line-height: 1.15 !important;
-            }
-            .profile-ui .profile-terminal-title {
-              display: none;
+            .profile-ui .profile-main {
+              flex: 1 !important;
+              min-width: 0 !important;
+              width: calc(100% - 56px) !important;
             }
             .profile-ui .profile-card {
-              padding: 1.15rem 0.85rem !important;
-              border-radius: 12px !important;
+              background-color: #ffffff !important;
+              border-radius: 20px !important;
+              border: 1px solid #ebece8 !important;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+              padding: 1.15rem 0.95rem !important;
               min-height: auto !important;
-              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
             }
-            .profile-ui .profile-grid-names {
-              grid-template-columns: 1fr !important;
-              gap: 1.1rem !important;
+            .profile-ui .profile-tab-header-card h2 {
+              font-size: 1.12rem !important;
             }
-            .profile-ui .profile-grid-contact {
-              grid-template-columns: 1fr !important;
-              gap: 1.1rem !important;
-            }
-            .profile-ui .profile-gender-tile {
-              max-width: none;
-              height: 72px;
-            }
-            .profile-ui .profile-wallet-grid {
-              grid-template-columns: 1fr;
-              gap: 1rem;
-            }
-            .profile-ui .profile-actions-row {
-              flex-direction: column;
-              width: 100%;
-              gap: 0.65rem;
-            }
-            .profile-ui .profile-actions-row button {
-              width: 100%;
-              text-align: center;
-              justify-content: center;
-              padding: 0.75rem 1rem !important;
-            }
-            .profile-ui .profile-order-card {
-              padding: 1rem 0.85rem !important;
-              flex-direction: column;
-              align-items: flex-start !important;
-              gap: 0.85rem !important;
-            }
-            .profile-ui .profile-order-btn-group {
-              width: 100% !important;
-              flex-direction: column !important;
-              gap: 0.45rem !important;
-            }
-            .profile-ui .profile-order-btn-group button {
-              width: 100% !important;
-              justify-content: center !important;
-              text-align: center !important;
-              padding: 0.6rem 1rem !important;
-            }
-            .profile-ui .profile-tab-header {
-              flex-direction: column;
-              align-items: flex-start;
-              gap: 0.85rem;
-              margin-bottom: 1.15rem !important;
-              padding-bottom: 0.95rem !important;
-            }
-            .profile-ui .profile-tab-header button {
-              width: 100%;
-              text-align: center;
-              justify-content: center;
-            }
-            .profile-ui .profile-address-grid-2col {
-              grid-template-columns: 1fr;
-            }
-            .profile-ui .profile-address-grid-3col {
-              grid-template-columns: 1fr;
-            }
-            .profile-ui .profile-address-modal {
-              max-width: 100% !important;
-              max-height: 90vh !important;
-              overflow-y: auto !important;
-              -webkit-overflow-scrolling: touch;
-              padding: 1.35rem 1rem !important;
-              margin: 0.65rem !important;
+            .profile-ui .profile-tab-header-card p {
+              font-size: 0.7rem !important;
             }
             .profile-ui .profile-wishlist-grid {
               grid-template-columns: repeat(2, 1fr) !important;
-              gap: 0.75rem !important;
+              gap: 0.65rem !important;
             }
             .profile-ui .profile-cart-grid {
               grid-template-columns: 1fr !important;
-              gap: 1.25rem !important;
+              gap: 1rem !important;
             }
             .profile-ui .profile-order-details-grid {
               grid-template-columns: 1fr !important;
-              gap: 0.75rem !important;
+              gap: 0.65rem !important;
             }
             .profile-ui .profile-security-card {
-              padding: 1.25rem 1rem !important;
+              padding: 1rem 0.75rem !important;
               max-width: 100% !important;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .profile-ui h1 {
-              font-size: 1.45rem !important;
-            }
-            .profile-ui .profile-order-card {
-              padding: 0.85rem 0.65rem !important;
-            }
-            .profile-ui .profile-card {
-              padding: 1rem 0.65rem !important;
             }
           }
 
@@ -1314,17 +1718,32 @@ export const ProfilePage = () => {
             .profile-ui .profile-wishlist-grid {
               grid-template-columns: 1fr !important;
             }
+            .profile-ui .profile-mobile-dock {
+              width: 44px !important;
+              min-width: 44px !important;
+              max-width: 44px !important;
+            }
+            .profile-ui .profile-dock-btn {
+              width: 34px !important;
+              height: 34px !important;
+            }
           }
 
-          /* Desktop (> 768px) - Hides mobile trigger, keeps pure authentic PC sidebar */
+          /* Desktop (> 768px) - Keeps PC sidebar, hides mobile bars */
           @media (min-width: 769px) {
-            .profile-ui .profile-mobile-nav-bar {
+            .profile-ui .profile-mobile-top-header {
               display: none !important;
             }
-            .profile-ui .profile-mobile-tabs-scroll-wrap {
+            .profile-ui .profile-mobile-user-card {
+              display: none !important;
+            }
+            .profile-ui .profile-mobile-dock {
               display: none !important;
             }
             .profile-ui .profile-sidebar {
+              display: block !important;
+            }
+            .profile-ui .profile-header-section {
               display: block !important;
             }
           }
@@ -1400,6 +1819,72 @@ export const ProfilePage = () => {
               </h1>
               <p style={{ fontFamily: 'var(--font-host-grotesk), sans-serif', fontSize: '0.82rem', color: '#63675f', margin: 0, fontWeight: 400, letterSpacing: '0.01em' }}>
                 Personal identity, order archive & atelier account
+              </p>
+            </div>
+          </div>
+
+          {/* Mobile Top Header (Shown on <= 768px only) */}
+          <div className="profile-mobile-top-header">
+            <button
+              type="button"
+              onClick={() => setMobileDrawerOpen(true)}
+              className="profile-mobile-icon-btn"
+              aria-label="Open navigation menu"
+            >
+              <Menu size={22} stroke="#111315" />
+            </button>
+            <h1 className="profile-mobile-title">
+              My Account
+            </h1>
+            <button
+              type="button"
+              onClick={() => toggleCart?.()}
+              className="profile-mobile-icon-btn profile-mobile-bag-btn"
+              aria-label="Open Shopping Bag"
+            >
+              <ShoppingBag size={21} stroke="#111315" />
+              {(totalCount > 0 || cartItems.length > 0) && (
+                <span className="profile-mobile-cart-badge">
+                  {totalCount || cartItems.length}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* Mobile User Profile Banner Card (Shown on <= 768px only) */}
+          <div className="profile-mobile-user-card">
+            <div className="profile-mobile-avatar-wrap">
+              <div className="profile-mobile-avatar-ring">
+                <img
+                  src={avatarPreview || '/avatar-sculpture.jpg'}
+                  alt="Profile Avatar"
+                  className="profile-mobile-avatar-img"
+                  onError={(e) => { e.currentTarget.src = '/profile-avatar.jpg'; }}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => avatarUploadRef.current?.click()}
+                className="profile-mobile-avatar-edit-btn"
+                title="Change Avatar"
+              >
+                <Pencil size={11} stroke="#ffffff" />
+              </button>
+              <input
+                ref={avatarUploadRef}
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={handleAvatarChange}
+              />
+            </div>
+
+            <div className="profile-mobile-user-meta">
+              <h2 className="profile-mobile-user-name">
+                {currentUser.name || 'DRAPZA ADMIN'}
+              </h2>
+              <p className="profile-mobile-user-email">
+                {currentUser.email || 'drapza.cloth@gmail.com'}
               </p>
             </div>
           </div>
@@ -1540,88 +2025,32 @@ export const ProfilePage = () => {
               </nav>
             </aside>
 
-            {/* Mobile Profile Status Bar (Visible on mobile only) */}
-            <div className="profile-mobile-nav-bar" style={{
-              display: 'none',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              backgroundColor: '#ffffff',
-              borderRadius: '12px',
-              padding: '0.85rem 1.15rem',
-              border: '1px solid #d7dbd2',
-              boxShadow: '0 4px 15px -4px rgba(15,15,15,0.06)',
-              width: '100%',
-            }}>
-              <div
-                style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', flex: 1, minWidth: 0, marginRight: '0.5rem' }}
-                onClick={() => setMobileDrawerOpen(true)}
-              >
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #0f0f0f', flexShrink: 0 }}>
-                  <img src="/avatar-sculpture.jpg" alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.src = '/profile-avatar.jpg'; }} />
-                </div>
-                <div style={{ overflow: 'hidden' }}>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0f0f0f', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{currentUser.name || 'Denis Holland'}</div>
-                  <div style={{ fontSize: '0.72rem', color: '#7d807a', fontWeight: 600 }}>
-                    Active: <span style={{ color: '#0f0f0f', fontWeight: 700 }}>{tabLabels[activeTab]}</span>
-                  </div>
-                </div>
-              </div>
+            {/* Mobile Left Floating Dock (<= 768px, matching left floating capsule dock in screenshot) */}
+            <aside className="profile-mobile-dock" aria-label="Account navigation dock">
+              {mobileDockItems.map((item) => {
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      if (item.action) {
+                        item.action();
+                      } else {
+                        setActiveTab(item.id);
+                      }
+                    }}
+                    className={`profile-dock-btn ${isActive ? 'active' : ''}`}
+                    title={item.label}
+                    aria-label={item.label}
+                  >
+                    {isActive && <span className="profile-dock-active-pill" />}
+                    {item.icon(isActive)}
+                  </button>
+                );
+              })}
+            </aside>
 
-              <button
-                type="button"
-                onClick={() => setMobileDrawerOpen(true)}
-                aria-label="Open navigation menu"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  backgroundColor: '#0f0f0f',
-                  color: '#edf1e8',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '0.55rem 0.95rem',
-                  fontSize: '0.74rem',
-                  fontWeight: 700,
-                  fontFamily: 'var(--font-dm-mono), monospace',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
-                  flexShrink: 0,
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px', flexShrink: 0 }}>
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-                <span>MENU</span>
-              </button>
-            </div>
-
-            {/* Mobile Horizontal Quick-Scroll Tabs */}
-            <div className="profile-mobile-tabs-scroll-wrap">
-              <div className="profile-mobile-tabs-container">
-                {navItems.map((item) => {
-                  const isActive = activeTab === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => setActiveTab(item.id)}
-                      className={`profile-mobile-tab-btn ${isActive ? 'active' : ''}`}
-                    >
-                      <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-                        {item.icon}
-                      </span>
-                      <span>{item.label}</span>
-                      {item.badge != null && (
-                        <span className="tab-badge">{item.badge}</span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
             <main className="profile-main">
               <div className="profile-card">
 
@@ -1629,21 +2058,39 @@ export const ProfilePage = () => {
                 {activeTab === 'personal' && (
                   <div>
                     {/* Modern Header (Matching Reference Image) */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.75rem', paddingBottom: '1.25rem', borderBottom: '1px solid #edf1e8' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                        <div style={{ width: '42px', height: '42px', backgroundColor: '#f0f3eb', border: '1px solid #d7dbd2', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f0f0f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h1 style={{ margin: 0, fontSize: '2.1rem', color: '#141513', fontFamily: 'var(--font-koulen), sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.1 }}>
-                            PERSONAL INFORMATION
-                          </h1>
-                          <p style={{ margin: '0.25rem 0 0 0', color: '#63675f', fontSize: '0.82rem', fontFamily: 'var(--font-host-grotesk), sans-serif', fontWeight: 400 }}>
-                            Update your contact details, billing credentials and profile parameters.
-                          </p>
-                        </div>
+                    <div className="profile-tab-header-card" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem', paddingBottom: '0.85rem', borderBottom: '1px solid #edf1e8' }}>
+                      <div style={{
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '50%',
+                        backgroundColor: '#f1f2f6',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <ShieldCheck size={22} stroke="#111315" />
+                      </div>
+                      <div>
+                        <h2 style={{
+                          margin: 0,
+                          fontSize: '1.22rem',
+                          fontWeight: 700,
+                          color: '#111315',
+                          fontFamily: 'var(--font-host-grotesk), sans-serif',
+                          lineHeight: 1.2
+                        }}>
+                          Personal Information
+                        </h2>
+                        <p style={{
+                          margin: '3px 0 0 0',
+                          fontSize: '0.72rem',
+                          color: '#7d807a',
+                          fontFamily: 'var(--font-host-grotesk), sans-serif',
+                          lineHeight: 1.35
+                        }}>
+                          Update your contact details, billing credentials and profile parameters.
+                        </p>
                       </div>
                     </div>
 
@@ -1654,11 +2101,11 @@ export const ProfilePage = () => {
                         border: '1px solid #bbf7d0',
                         color: '#166534',
                         padding: '0.75rem 1.15rem',
-                        borderRadius: '8px',
+                        borderRadius: '12px',
                         fontSize: '0.78rem',
                         fontWeight: 600,
                         fontFamily: 'var(--font-host-grotesk), sans-serif',
-                        marginBottom: '1.25rem',
+                        marginBottom: '1.15rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.5rem',
@@ -1674,186 +2121,109 @@ export const ProfilePage = () => {
                         border: '1px solid #fecaca',
                         color: '#991b1b',
                         padding: '0.75rem 1.15rem',
-                        borderRadius: '8px',
+                        borderRadius: '12px',
                         fontSize: '0.78rem',
                         fontWeight: 600,
                         fontFamily: 'var(--font-host-grotesk), sans-serif',
-                        marginBottom: '1.25rem',
+                        marginBottom: '1.15rem',
                       }}>
                         {saveError}
                       </div>
                     )}
 
-                    <form onSubmit={handleSaveProfile} noValidate>
-                      {/* Row 1: First name & Last name */}
-                      <div className="profile-grid-names">
-                        {/* First Name */}
-                        <div style={{ position: 'relative' }}>
-                          <label style={{
-                            position: 'absolute',
-                            top: '-8px',
-                            left: '12px',
-                            backgroundColor: '#ffffff',
-                            padding: '0 5px',
-                            fontSize: '0.68rem',
-                            fontWeight: 500,
-                            color: '#555850',
-                            zIndex: 2,
-                            fontFamily: 'var(--font-dm-mono), monospace',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.04em',
-                          }}>
-                            First name
-                          </label>
-                          <input
-                            type="text"
-                            value={firstName}
-                            onChange={(e) => {
-                              setFirstName(e.target.value);
-                              if (personalFieldErrors.firstName || personalFieldErrors.name) {
-                                setPersonalFieldErrors((prev) => ({ ...prev, firstName: '', name: '' }));
-                              }
-                            }}
-                            style={{
-                              width: '100%',
-                              padding: '0.68rem 0.95rem',
-                              border: (personalFieldErrors.firstName || personalFieldErrors.name) ? '1px solid #ef4444' : '1px solid #d7dbd2',
-                              borderRadius: '8px',
-                              fontSize: '0.85rem',
-                              color: '#1a1c18',
-                              outline: 'none',
-                              backgroundColor: '#ffffff',
-                              fontFamily: 'var(--font-dm-mono), monospace',
-                            }}
-                          />
-                          {(personalFieldErrors.firstName || personalFieldErrors.name) && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
-                              {personalFieldErrors.firstName || personalFieldErrors.name}
-                            </span>
-                          )}
+                    <form onSubmit={handleSaveProfile} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                      {/* First Name Field */}
+                      <div>
+                        <div className={`profile-input-field ${personalFieldErrors.firstName || personalFieldErrors.name ? 'error' : ''}`}>
+                          <User size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
+                          <div className="profile-input-stack">
+                            <span className="profile-input-label">First Name</span>
+                            <input
+                              type="text"
+                              value={firstName}
+                              onChange={(e) => {
+                                setFirstName(e.target.value);
+                                if (personalFieldErrors.firstName || personalFieldErrors.name) {
+                                  setPersonalFieldErrors((prev) => ({ ...prev, firstName: '', name: '' }));
+                                }
+                              }}
+                              className="profile-input-val"
+                              placeholder="First Name"
+                            />
+                          </div>
                         </div>
+                        {(personalFieldErrors.firstName || personalFieldErrors.name) && (
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                            {personalFieldErrors.firstName || personalFieldErrors.name}
+                          </span>
+                        )}
+                      </div>
 
-                        {/* Last Name */}
-                        <div style={{ position: 'relative' }}>
-                          <label style={{
-                            position: 'absolute',
-                            top: '-8px',
-                            left: '12px',
-                            backgroundColor: '#ffffff',
-                            padding: '0 5px',
-                            fontSize: '0.68rem',
-                            fontWeight: 500,
-                            color: '#555850',
-                            zIndex: 2,
-                            fontFamily: 'var(--font-dm-mono), monospace',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.04em',
-                          }}>
-                            Last name
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="Last name"
-                            value={lastName}
-                            onChange={(e) => {
-                              setLastName(e.target.value);
-                              if (personalFieldErrors.lastName) {
-                                setPersonalFieldErrors((prev) => ({ ...prev, lastName: '' }));
-                              }
-                            }}
-                            style={{
-                              width: '100%',
-                              padding: '0.68rem 0.95rem',
-                              border: personalFieldErrors.lastName ? '1px solid #ef4444' : '1px solid #d7dbd2',
-                              borderRadius: '8px',
-                              fontSize: '0.85rem',
-                              color: '#1a1c18',
-                              outline: 'none',
-                              backgroundColor: '#ffffff',
-                              fontFamily: 'var(--font-dm-mono), monospace',
-                            }}
-                          />
-                          {personalFieldErrors.lastName && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
-                              {personalFieldErrors.lastName}
-                            </span>
-                          )}
+                      {/* Last Name Field */}
+                      <div>
+                        <div className={`profile-input-field ${personalFieldErrors.lastName ? 'error' : ''}`}>
+                          <User size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
+                          <div className="profile-input-stack">
+                            <span className="profile-input-label">Last Name</span>
+                            <input
+                              type="text"
+                              value={lastName}
+                              onChange={(e) => {
+                                setLastName(e.target.value);
+                                if (personalFieldErrors.lastName) {
+                                  setPersonalFieldErrors((prev) => ({ ...prev, lastName: '' }));
+                                }
+                              }}
+                              className="profile-input-val"
+                              placeholder="Last Name"
+                            />
+                          </div>
+                        </div>
+                        {personalFieldErrors.lastName && (
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                            {personalFieldErrors.lastName}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Email Field */}
+                      <div>
+                        <div className="profile-input-field" style={{ backgroundColor: '#fcfdfb' }}>
+                          <Mail size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
+                          <div className="profile-input-stack">
+                            <span className="profile-input-label">Email</span>
+                            <input
+                              type="email"
+                              value={email}
+                              readOnly
+                              disabled
+                              className="profile-input-val"
+                              style={{ color: '#555850', cursor: 'not-allowed' }}
+                            />
+                          </div>
                         </div>
                       </div>
 
-                      {/* Row 2: Email */}
-                      <div style={{ position: 'relative', marginBottom: '1.25rem' }}>
-                        <label style={{
-                          position: 'absolute',
-                          top: '-8px',
-                          left: '12px',
-                          backgroundColor: '#ffffff',
-                          padding: '0 5px',
-                          fontSize: '0.68rem',
-                          fontWeight: 500,
-                          color: '#63675f',
-                          zIndex: 2,
-                          fontFamily: 'var(--font-dm-mono), monospace',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.04em',
-                        }}>
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          readOnly
-                          disabled
-                          value={email}
-                          style={{
-                            width: '100%',
-                            padding: '0.68rem 0.95rem',
-                            border: '1px solid #d7dbd2',
-                            borderRadius: '8px',
-                            fontSize: '0.85rem',
-                            color: '#7d807a',
-                            backgroundColor: '#f7f9f5',
-                            cursor: 'not-allowed',
-                            fontFamily: 'var(--font-dm-mono), monospace',
-                          }}
-                        />
-                      </div>
+                      {/* Phone Row */}
+                      <div>
+                        <div className="profile-phone-row">
+                          <div className="profile-phone-code-pill">
+                            <Phone size={16} stroke="#6b7280" />
+                            <select
+                              value={countryCode}
+                              onChange={(e) => setCountryCode(e.target.value)}
+                              className="profile-phone-code-select"
+                            >
+                              <option value="+91">(+91)</option>
+                              <option value="+1">(+1)</option>
+                              <option value="+44">(+44)</option>
+                              <option value="+33">(+33)</option>
+                              <option value="+31">(+31)</option>
+                            </select>
+                            <ChevronDown size={13} stroke="#6b7280" />
+                          </div>
 
-                      {/* Row 3: Phone with flag & Date of Birth */}
-                      <div className="profile-grid-contact">
-                        {/* Phone with flag */}
-                        <div>
-                          <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            border: personalFieldErrors.phone ? '1px solid #ef4444' : '1px solid #d7dbd2',
-                            borderRadius: '8px',
-                            backgroundColor: '#ffffff',
-                          }}>
-                            {/* Flag and Code Dropdown */}
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0 0.75rem', borderRight: '1px solid #d7dbd2', backgroundColor: '#f4f6f2', height: '100%' }}>
-                              <select
-                                value={countryCode}
-                                onChange={(e) => setCountryCode(e.target.value)}
-                                style={{
-                                  border: 'none',
-                                  outline: 'none',
-                                  fontSize: '0.78rem',
-                                  fontWeight: 500,
-                                  color: '#1a1c18',
-                                  backgroundColor: 'transparent',
-                                  cursor: 'pointer',
-                                  fontFamily: 'var(--font-dm-mono), monospace',
-                                }}
-                              >
-                                <option value="+33" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+33)</option>
-                                <option value="+31" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+31)</option>
-                                <option value="+91" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+91)</option>
-                                <option value="+1" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+1)</option>
-                                <option value="+44" style={{ backgroundColor: '#ffffff', color: '#1a1c18' }}>(+44)</option>
-                              </select>
-                            </div>
-
-                            {/* Phone Number Input */}
+                          <div className={`profile-phone-num-pill ${personalFieldErrors.phone ? 'error' : ''}`}>
                             <input
                               type="tel"
                               value={phone}
@@ -1862,111 +2232,32 @@ export const ProfilePage = () => {
                                 if (personalFieldErrors.phone) setPersonalFieldErrors((prev) => ({ ...prev, phone: '' }));
                               }}
                               placeholder="9794603102"
-                              style={{
-                                flex: 1,
-                                border: 'none',
-                                outline: 'none',
-                                padding: '0.68rem 0.85rem',
-                                fontSize: '0.85rem',
-                                color: '#1a1c18',
-                                fontFamily: 'var(--font-dm-mono), monospace',
-                              }}
+                              className="profile-phone-input"
                             />
                           </div>
-                          {personalFieldErrors.phone && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
-                              {personalFieldErrors.phone}
-                            </span>
-                          )}
                         </div>
+                        {personalFieldErrors.phone && (
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                            {personalFieldErrors.phone}
+                          </span>
+                        )}
+                      </div>
 
-                        {/* Date of Birth Picker */}
-                        <div style={{ position: 'relative' }}>
-                          <div
-                            onClick={handleOpenDatePicker}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                              border: personalFieldErrors.dob ? '1px solid #ef4444' : '1px solid #d7dbd2',
-                              borderRadius: '8px',
-                              padding: '0.68rem 0.95rem',
-                              backgroundColor: '#ffffff',
-                              color: '#1a1c18',
-                              cursor: 'pointer',
-                              position: 'relative',
-                            }}
-                          >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleOpenDatePicker();
-                                }}
-                                title="Open calendar"
-                                style={{
-                                  background: 'none',
-                                  border: 'none',
-                                  padding: 0,
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  color: '#555850',
-                                }}
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '15px', height: '15px', flexShrink: 0 }}>
-                                  <rect x="3" y="4" width="18" height="18" rx="0" ry="0"></rect>
-                                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                              </button>
-                              <input
-                                type="text"
-                                value={dob}
-                                onClick={(e) => e.stopPropagation()}
-                                onChange={(e) => {
-                                  setDob(e.target.value);
-                                  if (personalFieldErrors.dob) setPersonalFieldErrors((prev) => ({ ...prev, dob: '' }));
-                                }}
-                                placeholder="DD / MM / YYYY"
-                                style={{
-                                  border: 'none',
-                                  outline: 'none',
-                                  color: '#1a1c18',
-                                  fontSize: '0.82rem',
-                                  fontWeight: 500,
-                                  backgroundColor: 'transparent',
-                                  width: '130px',
-                                  fontFamily: 'var(--font-dm-mono), monospace',
-                                }}
-                              />
-                            </div>
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleOpenDatePicker();
-                              }}
-                              title="Open calendar"
-                              style={{
-                                background: 'none',
-                                border: 'none',
-                                padding: 0,
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                color: '#0f0f0f',
-                              }}
-                            >
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ width: '13px', height: '13px', flexShrink: 0 }}>
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                              </svg>
-                            </button>
+                      {/* Date of Birth Picker */}
+                      <div>
+                        <div
+                          className={`profile-dob-pill ${personalFieldErrors.dob ? 'error' : ''}`}
+                          onClick={handleOpenDatePicker}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                            <Calendar size={18} stroke="#6b7280" />
+                            <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#111315', fontFamily: 'var(--font-host-grotesk), sans-serif' }}>
+                              {dob || '14 / 08 / 1998'}
+                            </span>
+                            <ChevronDown size={14} stroke="#6b7280" />
                           </div>
+                          <ChevronDown size={16} stroke="#111315" />
 
-                          {/* Native Date Picker Anchor */}
                           <input
                             ref={dateInputRef}
                             type="date"
@@ -1987,66 +2278,37 @@ export const ProfilePage = () => {
                             }}
                             tabIndex={-1}
                             aria-hidden="true"
-                            style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,
-                              width: '100%',
-                              height: '100%',
-                              opacity: 0,
-                              zIndex: -1,
-                            }}
+                            style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }}
                           />
-
-                          {personalFieldErrors.dob && (
-                            <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.2rem', fontWeight: 500, display: 'block' }}>
-                              {personalFieldErrors.dob}
-                            </span>
-                          )}
                         </div>
+                        {personalFieldErrors.dob && (
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                            {personalFieldErrors.dob}
+                          </span>
+                        )}
                       </div>
 
-                      {/* Row 4: Gender Selector Cards */}
+                      {/* Gender Selector Cards */}
                       <div>
-                        <div
-                          role="radiogroup"
-                          aria-label="Select Gender"
-                          className="profile-gender-row"
-                        >
+                        <div className="profile-gender-selection-row" role="radiogroup" aria-label="Select Gender">
                           {/* Male Card */}
                           <button
                             type="button"
                             role="radio"
                             aria-checked={gender === 'male'}
-                            tabIndex={0}
                             onClick={() => {
                               setGender('male');
                               if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
                             }}
-                            onKeyDown={(e) => {
-                              if (e.key === ' ' || e.key === 'Enter') {
-                                e.preventDefault();
-                                setGender('male');
-                                if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
-                              }
-                            }}
-                            className={`profile-gender-tile ${gender === 'male' ? 'selected' : ''}`}
+                            className={`profile-gender-pill-card ${gender === 'male' ? 'selected' : ''}`}
                           >
-                            {/* Checkmark badge when active */}
                             {gender === 'male' && (
-                              <span style={{
-                                position: 'absolute',
-                                top: '6px',
-                                right: '8px',
-                                fontSize: '0.8rem',
-                                fontWeight: 'bold',
-                                color: '#ffffff',
-                              }}>
-                                ✓
+                              <span className="profile-gender-check-badge">
+                                <Check size={11} stroke="#ffffff" strokeWidth={3} />
                               </span>
                             )}
-                            <span className="profile-gender-symbol">♂</span>
-                            <span className="profile-gender-label">MALE</span>
+                            <span style={{ fontSize: '1.25rem', lineHeight: 1, marginBottom: '2px' }}>♂</span>
+                            <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em' }}>MALE</span>
                           </button>
 
                           {/* Female Card */}
@@ -2054,119 +2316,71 @@ export const ProfilePage = () => {
                             type="button"
                             role="radio"
                             aria-checked={gender === 'female'}
-                            tabIndex={0}
                             onClick={() => {
                               setGender('female');
                               if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
                             }}
-                            onKeyDown={(e) => {
-                              if (e.key === ' ' || e.key === 'Enter') {
-                                e.preventDefault();
-                                setGender('female');
-                                if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
-                              }
-                            }}
-                            className={`profile-gender-tile ${gender === 'female' ? 'selected' : ''}`}
+                            className={`profile-gender-pill-card ${gender === 'female' ? 'selected' : ''}`}
                           >
                             {gender === 'female' && (
-                              <span style={{
-                                position: 'absolute',
-                                top: '6px',
-                                right: '8px',
-                                fontSize: '0.8rem',
-                                fontWeight: 'bold',
-                                color: '#ffffff',
-                              }}>
-                                ✓
+                              <span className="profile-gender-check-badge">
+                                <Check size={11} stroke="#ffffff" strokeWidth={3} />
                               </span>
                             )}
-                            <span className="profile-gender-symbol">♀</span>
-                            <span className="profile-gender-label">FEMALE</span>
+                            <span style={{ fontSize: '1.25rem', lineHeight: 1, marginBottom: '2px' }}>♀</span>
+                            <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em' }}>FEMALE</span>
                           </button>
                         </div>
                         {personalFieldErrors.gender && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono), monospace', marginTop: '0.35rem', fontWeight: 500, display: 'block' }}>
+                          <span style={{ color: '#ef4444', fontSize: '0.68rem', fontFamily: 'var(--font-host-grotesk), sans-serif', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
                             {personalFieldErrors.gender}
                           </span>
                         )}
                       </div>
 
-                      {/* Policy and Informational Text */}
-                      <p style={{
-                        color: '#63675f',
-                        fontSize: '0.82rem',
-                        lineHeight: '1.6',
-                        margin: '0 0 1.5rem 0',
-                        fontFamily: 'var(--font-host-grotesk), sans-serif',
-                        letterSpacing: '0.01em',
-                      }}>
-                        Your account profile securely stores your personal identification, order archive, and delivery preferences for swift atelier checkout and bespoke tracking.{' '}
-                        <span
-                          style={{ color: '#1a1c18', textDecoration: 'underline', cursor: 'pointer', fontWeight: 600 }}
-                          onClick={() => router.push('/terms')}
-                        >
-                          Terms &amp; Conditions
-                        </span>
-                      </p>
-
-                      {/* Action Buttons: Save & Cancel */}
-                      <div className="profile-actions-row" style={{ display: 'flex', gap: '0.85rem', alignItems: 'center' }}>
-                        <button
-                          type="submit"
-                          disabled={isUpdatingProfile}
-                          style={{
-                            backgroundColor: '#141513',
-                            color: '#ffffff',
-                            border: 'none',
-                            borderRadius: '8px',
-                            padding: '0.72rem 2.25rem',
-                            fontSize: '0.84rem',
-                            fontWeight: 500,
-                            fontFamily: 'var(--font-dm-mono), monospace',
-                            letterSpacing: '0.05em',
-                            textTransform: 'uppercase',
-                            cursor: isUpdatingProfile ? 'not-allowed' : 'pointer',
-                            boxShadow: '0 4px 14px rgba(15, 15, 15, 0.16)',
-                            transition: 'background-color 0.15s ease',
-                          }}
-                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#262626')}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#141513')}
-                        >
-                          {isUpdatingProfile ? 'SAVING...' : 'SAVE'}
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const parts = (currentUser.name || 'Denis Holland').trim().split(' ');
-                            setFirstName(parts[0] || 'Denis');
-                            setLastName(parts.slice(1).join(' ') || 'Holland');
-                            setPhone(currentUser.phone || '9794603102');
-                            setGender(currentUser.gender || 'male');
-                            setDob(currentUser.dob || '14 / 08 / 1998');
-                            setPersonalFieldErrors({});
-                            setSaveError('');
-                          }}
-                          style={{
-                            backgroundColor: '#ffffff',
-                            color: '#1a1c18',
-                            border: '1px solid #d7dbd2',
-                            borderRadius: '8px',
-                            padding: '0.72rem 1.85rem',
-                            fontSize: '0.84rem',
-                            fontWeight: 500,
-                            fontFamily: 'var(--font-dm-mono), monospace',
-                            letterSpacing: '0.05em',
-                            textTransform: 'uppercase',
-                            cursor: 'pointer',
-                            transition: 'background-color 0.15s ease',
-                          }}
-                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#edf1e8')}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
-                        >
-                          CANCEL
-                        </button>
+                      {/* Informational Box */}
+                      <div className="profile-info-notice-box">
+                        <Info size={18} stroke="#4f46e5" style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <div>
+                          <p className="profile-info-notice-text">
+                            Your account profile securely stores your personal identification, order archive, and delivery preferences for swift atelier checkout and bespoke tracking.
+                          </p>
+                          <span
+                            className="profile-info-notice-link"
+                            onClick={() => router.push('/terms')}
+                          >
+                            Terms &amp; Conditions
+                          </span>
+                        </div>
                       </div>
+
+                      {/* Action Buttons: Save Changes & Cancel */}
+                      <button
+                        type="submit"
+                        disabled={isUpdatingProfile}
+                        className="profile-btn-save"
+                      >
+                        <Save size={18} stroke="#ffffff" />
+                        <span>{isUpdatingProfile ? 'Saving...' : 'Save Changes'}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const parts = (currentUser.name || 'DRAPZA ADMIN').trim().split(' ');
+                          setFirstName(parts[0] || 'DRAPZA');
+                          setLastName(parts.slice(1).join(' ') || 'ADMIN');
+                          setPhone(currentUser.phone || '9794603102');
+                          setGender(currentUser.gender || 'male');
+                          setDob(currentUser.dob || '14 / 08 / 1998');
+                          setPersonalFieldErrors({});
+                          setSaveError('');
+                        }}
+                        className="profile-btn-cancel"
+                      >
+                        <X size={18} stroke="#111315" />
+                        <span>Cancel</span>
+                      </button>
                     </form>
                   </div>
                 )}
