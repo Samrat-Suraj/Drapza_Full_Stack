@@ -340,7 +340,7 @@ export function MobileBottomNav() {
       {/* 3. Active Label beneath the scooped cradle */}
       <div
         aria-hidden="true"
-        className="absolute pointer-events-none z-10 text-center font-bold text-[10.5px] text-[#0f0f0f] tracking-tight leading-none flex items-center justify-center"
+        className="absolute pointer-events-none z-10 text-center font-semibold text-[9px] text-[#0f0f0f] tracking-tight leading-none flex items-center justify-center"
         style={{
           width: "68px",
           bottom: "10px",
@@ -348,6 +348,8 @@ export function MobileBottomNav() {
           transform: `translateX(${animatedX - 34}px)`,
           willChange: "transform",
           fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          fontSize: "9px",
+          fontWeight: 600,
           textTransform: "none",
           whiteSpace: "nowrap",
         }}
@@ -386,9 +388,10 @@ export function MobileBottomNav() {
               >
                 <span className="mb-1 text-inherit flex items-center justify-center">{tab.icon(false)}</span>
                 <span
-                  className="text-[10px] font-medium leading-none text-inherit tracking-tight"
+                  className="text-[8.5px] font-medium leading-none text-inherit tracking-tight"
                   style={{
                     fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                    fontSize: "8.5px",
                     textTransform: "none",
                     whiteSpace: "nowrap",
                   }}
