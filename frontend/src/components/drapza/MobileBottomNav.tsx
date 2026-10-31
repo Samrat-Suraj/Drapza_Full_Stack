@@ -194,17 +194,17 @@ export function MobileBottomNav() {
   }, []);
 
   // Geometry parameters
-  const H = 64; // Height of the navbar
+  const H = 66; // Height of the navbar
   const R = 26; // Corner radius of the navbar
-  const w = 26; // Half-width of the scooped notch
-  const d = 17; // Depth of the scooped notch
-  const c1 = 13;
-  const c2 = 11;
+  const w = 27; // Half-width of the scooped notch
+  const d = 18; // Depth of the scooped notch
+  const c1 = 14;
+  const c2 = 12;
 
   // Calculate tab centers with comfortable padding so notch never collides with corners
   const getTabCenter = useCallback(
     (idx: number, totalW: number) => {
-      const firstCenter = R + w - 4; // ~48px
+      const firstCenter = R + w - 4; // ~49px
       const lastCenter = totalW - (R + w - 4);
       return firstCenter + (idx * (lastCenter - firstCenter)) / 4;
     },
@@ -324,11 +324,11 @@ export function MobileBottomNav() {
         aria-hidden="true"
         className="absolute pointer-events-none z-20 flex items-center justify-center rounded-full bg-white border border-[#e5e7eb] shadow-[0_8px_20px_rgba(0,0,0,0.12),0_2px_6px_rgba(0,0,0,0.06)]"
         style={{
-          width: "48px",
-          height: "48px",
-          top: "-16px",
+          width: "50px",
+          height: "50px",
+          top: "-18px",
           left: 0,
-          transform: `translateX(${animatedX - 24}px)`,
+          transform: `translateX(${animatedX - 25}px)`,
           willChange: "transform",
         }}
       >
@@ -340,15 +340,15 @@ export function MobileBottomNav() {
       {/* 3. Active Label beneath the scooped cradle */}
       <div
         aria-hidden="true"
-        className="absolute pointer-events-none z-10 text-center font-semibold text-[9px] text-[#0f0f0f] tracking-tight leading-none flex items-center justify-center"
+        className="absolute pointer-events-none z-10 text-center font-semibold text-[11px] text-[#0f0f0f] tracking-tight leading-none flex items-center justify-center"
         style={{
-          width: "68px",
-          bottom: "10px",
+          width: "72px",
+          bottom: "8px",
           left: 0,
-          transform: `translateX(${animatedX - 34}px)`,
+          transform: `translateX(${animatedX - 36}px)`,
           willChange: "transform",
           fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          fontSize: "9px",
+          fontSize: "11px",
           fontWeight: 600,
           textTransform: "none",
           whiteSpace: "nowrap",
@@ -386,12 +386,12 @@ export function MobileBottomNav() {
                 }`}
                 style={{ paddingTop: "2px" }}
               >
-                <span className="mb-1 text-inherit flex items-center justify-center">{tab.icon(false)}</span>
+                <span className="mb-2 text-inherit flex items-center justify-center">{tab.icon(false)}</span>
                 <span
-                  className="text-[8.5px] font-medium leading-none text-inherit tracking-tight"
+                  className="text-[11px] font-medium leading-none text-inherit tracking-tight"
                   style={{
                     fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                    fontSize: "8.5px",
+                    fontSize: "11px",
                     textTransform: "none",
                     whiteSpace: "nowrap",
                   }}
