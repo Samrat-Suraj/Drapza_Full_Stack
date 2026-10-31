@@ -15,6 +15,7 @@ import {
   useDeleteAddressMutation,
   useSetDefaultAddressMutation} from '../redux/api/addressApi';
 import '../styles/profile.css';
+import { useHomePageCms } from '../hooks/useHomePageCms';
 import { ContactForm } from '../components/ContactForm';
 import { Footer } from '../components/Footer';
 import {
@@ -65,6 +66,7 @@ export const ProfilePage = () => {
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
   const { cartItems, totalCount, subtotal, removeFromCart, updateQuantity, addToCart, toggleCart } = useCart();
+  const { contactConfig, footerConfig } = useHomePageCms();
 
   // Search Params Support
   const searchParams = useSearchParams();
@@ -3474,8 +3476,10 @@ export const ProfilePage = () => {
       </div>
 
       {/* Global Drapza Parallax Contact Form & Footer System */}
-      <ContactForm />
-      <Footer navigate={(path) => router.push(path)} />
+      <div className="page">
+        <ContactForm config={contactConfig} />
+        <Footer config={footerConfig} navigate={(path) => router.push(path)} />
+      </div>
 
       {/* Customer Return & Exchange Modal */}
       <CustomerReturnModal
