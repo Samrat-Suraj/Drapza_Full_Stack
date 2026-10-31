@@ -1,0 +1,673 @@
+/* ==============================================================
+   DRAPZA — Dedicated Order Confirmation Screen
+   Strictly aligned to DRAPZA Design System & /checkout Typography:
+   - Headings (h1, h2, h3, h4, h5): Koulen (var(--font-koulen))
+   - All UI Text, Labels, Badges, Values, Buttons: DM Mono (var(--font-dm-mono))
+   - Canvas Background: var(--base-100, #edf1e8)
+   - Deep Tone / Order Summary: var(--base-700, #0f0f0f)
+   ============================================================== */
+
+.drapza-confirmation-root {
+  min-height: calc(100vh - 80px) !important;
+  background-color: var(--base-100, #edf1e8) !important;
+  color: var(--base-700, #0f0f0f) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 12rem 1.5rem 5.5rem 1.5rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  position: relative !important;
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 900px) {
+  .drapza-confirmation-root {
+    padding: 9.5rem 1.25rem 4rem 1.25rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .drapza-confirmation-root {
+    padding: 8.5rem 1rem 3.5rem 1rem !important;
+  }
+}
+
+.drapza-confirmation-container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  display: grid !important;
+  grid-template-columns: 1.25fr 1fr !important;
+  gap: 3.5rem !important;
+  align-items: start !important;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 960px) {
+  .drapza-confirmation-container {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+    max-width: 680px !important;
+  }
+}
+
+/* Typography Hierarchy matching /checkout */
+.drapza-confirmation-container :is(h1, h2, h3, h4, h5) {
+  font-family: var(--font-koulen), sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  line-height: 0.95 !important;
+  letter-spacing: clamp(0rem, -0.25vw, -0.05rem) !important;
+}
+
+.drapza-confirmation-container :is(p, span, a, label, button) {
+  font-family: var(--font-dm-mono), monospace !important;
+}
+
+/* ==============================================================
+   LEFT SECTION — ORDER CONFIRMATION DETAILS
+   ============================================================== */
+.drapza-conf-left {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+/* Centered Header Area */
+.drapza-conf-header-area {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  margin-bottom: 2rem !important;
+}
+
+.drapza-conf-check-circle {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 50% !important;
+  background-color: var(--base-700, #0f0f0f) !important;
+  border: 2px solid var(--base-700, #0f0f0f) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 1.25rem !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.14) !important;
+}
+
+.drapza-conf-check-circle svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.drapza-conf-label {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  color: var(--base-500, #7d807a) !important;
+  text-transform: uppercase !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.drapza-conf-title {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: clamp(2rem, 3.8vw, 2.85rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-700, #0f0f0f) !important;
+  text-transform: uppercase !important;
+  margin: 0 0 0.65rem 0 !important;
+  line-height: 0.95 !important;
+}
+
+.drapza-conf-desc {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.03em !important;
+  color: var(--base-500, #7d807a) !important;
+  text-transform: uppercase !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+  max-width: 520px !important;
+}
+
+/* Order Details Card */
+.drapza-conf-card {
+  background-color: #ffffff !important;
+  border: 1px solid var(--base-200, #d7dbd2) !important;
+  border-radius: 12px !important;
+  padding: 1.15rem 1.45rem !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto 1.35fr auto 0.95fr !important;
+  align-items: center !important;
+  gap: 1.15rem !important;
+  margin-bottom: 1.25rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+@media (max-width: 640px) {
+  .drapza-conf-card {
+    grid-template-columns: 1fr !important;
+    gap: 1.1rem !important;
+    padding: 1.25rem !important;
+  }
+}
+
+.drapza-conf-card-col {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  min-width: 0 !important;
+}
+
+.drapza-conf-col-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 8px !important;
+  background-color: var(--base-100, #edf1e8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-conf-col-icon svg {
+  color: var(--base-700, #0f0f0f) !important;
+  stroke: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-col-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+.drapza-conf-col-label {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.68rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--base-500, #7d807a) !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.drapza-conf-col-value {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.drapza-conf-col-date {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.80rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.drapza-conf-card-divider {
+  width: 1px !important;
+  height: 38px !important;
+  background-color: var(--base-200, #d7dbd2) !important;
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .drapza-conf-card-divider {
+    display: none !important;
+  }
+}
+
+.drapza-conf-status-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 3px 10px !important;
+  border-radius: 9999px !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.66rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--base-700, #0f0f0f) !important;
+  width: fit-content !important;
+}
+
+/* Action Buttons */
+.drapza-conf-btn-row {
+  display: flex !important;
+  gap: 0.85rem !important;
+  margin-bottom: 0.85rem !important;
+  width: 100% !important;
+}
+
+@media (max-width: 640px) {
+  .drapza-conf-btn-row {
+    flex-direction: column !important;
+  }
+}
+
+.drapza-conf-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+  padding: 0.95rem 1.45rem !important;
+  border-radius: 8px !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+}
+
+.drapza-conf-btn:hover {
+  transform: translateY(-1px) !important;
+}
+
+.drapza-conf-btn-row > .drapza-conf-btn {
+  flex: 1 !important;
+}
+
+.drapza-conf-btn-track {
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-btn-track span {
+  color: #ffffff !important;
+}
+
+.drapza-conf-btn-track svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.drapza-conf-btn-track:hover {
+  background-color: #222222 !important;
+}
+
+.drapza-conf-btn-download {
+  background-color: #ffffff !important;
+  color: var(--base-700, #0f0f0f) !important;
+  border: 1px solid var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-btn-download span {
+  color: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-btn-download svg {
+  color: var(--base-700, #0f0f0f) !important;
+  stroke: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-btn-download:hover {
+  background-color: var(--base-100, #edf1e8) !important;
+}
+
+.drapza-conf-btn-continue {
+  background-color: #ffffff !important;
+  color: var(--base-700, #0f0f0f) !important;
+  border: 1px solid var(--base-200, #d7dbd2) !important;
+  width: 100% !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.drapza-conf-btn-continue span {
+  color: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-btn-continue svg {
+  color: var(--base-700, #0f0f0f) !important;
+  stroke: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-btn-continue:hover {
+  border-color: var(--base-400, #969992) !important;
+  background-color: #fafbf9 !important;
+}
+
+/* SMS/Email Notification Card */
+.drapza-conf-notify {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.95rem !important;
+  background-color: #ffffff !important;
+  border: 1px solid var(--base-200, #d7dbd2) !important;
+  border-radius: 12px !important;
+  padding: 1rem 1.35rem !important;
+  margin-bottom: 1.25rem !important;
+  text-align: left !important;
+}
+
+.drapza-conf-notify-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 8px !important;
+  background-color: var(--base-100, #edf1e8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-conf-notify-icon svg {
+  color: var(--base-700, #0f0f0f) !important;
+  stroke: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-conf-notify-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.drapza-conf-notify-title {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  margin: 0 !important;
+}
+
+.drapza-conf-notify-desc {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-500, #7d807a) !important;
+  margin: 0 !important;
+}
+
+/* Back to Home Link */
+.drapza-conf-back-link {
+  margin-top: 1.25rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  color: var(--base-700, #0f0f0f) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: opacity 0.15s ease !important;
+  width: fit-content !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.drapza-conf-back-link:hover {
+  opacity: 0.65 !important;
+}
+
+/* ==============================================================
+   RIGHT SECTION — ORDER SUMMARY CARD (Matching /checkout .checkout-summary)
+   ============================================================== */
+.drapza-conf-summary-card {
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: var(--base-100, #edf1e8) !important;
+  border-radius: 0.75rem !important;
+  padding: 2rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  border: 1px solid #1f1f1f !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+@media (max-width: 640px) {
+  .drapza-conf-summary-card {
+    padding: 1.35rem 1.25rem !important;
+  }
+}
+
+.drapza-conf-summary-title {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-100, #edf1e8) !important;
+  text-transform: uppercase !important;
+  margin: 0 0 1rem 0 !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15) !important;
+  padding-bottom: 1rem !important;
+  line-height: 0.95 !important;
+}
+
+/* Items List */
+.drapza-conf-items-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.1rem !important;
+}
+
+.drapza-conf-item-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.drapza-conf-item-thumb {
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 8px !important;
+  background-color: #1a1a1a !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.drapza-conf-item-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+}
+
+.drapza-conf-item-details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+.drapza-conf-item-name {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  color: var(--base-100, #edf1e8) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.drapza-conf-item-variant {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+  color: var(--base-300, #afb3ab) !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+}
+
+.drapza-conf-item-qty {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+  color: var(--base-300, #afb3ab) !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+}
+
+.drapza-conf-item-price {
+  margin-left: auto !important;
+  font-size: 0.82rem !important;
+  font-weight: 400 !important;
+  color: var(--base-100, #edf1e8) !important;
+  white-space: nowrap !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  padding-left: 0.5rem !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Horizontal Dividers */
+.drapza-conf-divider {
+  border: none !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  height: 1px !important;
+  margin: 1.15rem 0 !important;
+  width: 100% !important;
+  display: block !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+}
+
+/* Price Breakdown */
+.drapza-conf-breakdown {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.65rem !important;
+  font-size: 0.82rem !important;
+}
+
+.drapza-conf-breakdown-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.drapza-conf-breakdown-label {
+  color: var(--base-300, #afb3ab) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.75rem !important;
+  font-weight: 400 !important;
+}
+
+.drapza-conf-breakdown-val {
+  color: var(--base-100, #edf1e8) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Total Paid */
+.drapza-conf-total-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0.35rem 0 !important;
+}
+
+.drapza-conf-total-label {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--base-100, #edf1e8) !important;
+}
+
+.drapza-conf-total-val {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 1.05rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-100, #edf1e8) !important;
+}
+
+/* Payment Method Row */
+.drapza-conf-payment-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  padding-top: 0.25rem !important;
+}
+
+.drapza-conf-payment-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 8px !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-conf-payment-icon svg {
+  color: var(--base-100, #edf1e8) !important;
+  stroke: var(--base-100, #edf1e8) !important;
+}
+
+.drapza-conf-payment-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  text-align: left !important;
+}
+
+.drapza-conf-payment-label {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.68rem !important;
+  font-weight: 400 !important;
+  color: var(--base-300, #afb3ab) !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.drapza-conf-payment-method {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.80rem !important;
+  font-weight: 400 !important;
+  color: var(--base-100, #edf1e8) !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+}

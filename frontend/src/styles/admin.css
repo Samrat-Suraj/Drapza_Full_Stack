@@ -1,0 +1,1735 @@
+/* ========================================================================= */
+/* DRAPZA ATELIER MASTER ADMIN — DRAPZA DESIGN SYSTEM ENFORCEMENT           */
+/* Based strictly on DRAPZA_DESIGN_SYSTEM.md                                 */
+/* ========================================================================= */
+[data-admin-root] {
+  font-family: var(--font-dm-mono), "DM Mono", monospace;
+  color: var(--base-700, #0f0f0f) !important;
+  background-color: var(--base-100, #edf1e8) !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elevate the floating navbar above desktop sticky sidebar (z-20) while remaining below modals (z-50) */
+body:has([data-admin-root]) .menu {
+  z-index: 45;
+}
+
+/* Ensure navigation menu preserves identical brutalist typography on Admin route */
+body:has([data-admin-root]) .menu .menu-main-links {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.15rem, 0.35vw, 0.25rem);
+}
+
+body:has([data-admin-root]) .menu .menu-main-link h4 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  line-height: .83 !important;
+  letter-spacing: clamp(0rem, -.5vw, -.075rem) !important;
+  font-size: clamp(2rem, 4.5vw, 4rem) !important;
+  color: var(--base-100) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body:has([data-admin-root]) .menu .menu-items-header p {
+  font-family: var(--font-dm-mono), 'DM Mono', monospace !important;
+  text-transform: uppercase !important;
+  color: var(--base-500) !important;
+  font-size: clamp(.8rem, .75vw, .85rem) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body:has([data-admin-root]) .menu .menu-sub-links a {
+  font-family: var(--font-dm-mono), 'DM Mono', monospace !important;
+  text-transform: uppercase !important;
+  font-size: clamp(.8rem, .75vw, .85rem) !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+body:has([data-admin-root]) .menu .menu-overlay-footer a,
+body:has([data-admin-root]) .menu .menu-social a {
+  font-family: var(--font-dm-mono), 'DM Mono', monospace !important;
+  text-transform: uppercase !important;
+  font-size: clamp(.8rem, .75vw, .85rem) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ------------------------------------------------------------------------- */
+/* 1. TYPOGRAPHY SYSTEM (DRAPZA DESIGN SYSTEM SECTION 2)                    */
+/* ------------------------------------------------------------------------- */
+[data-admin-root] .font-mono,
+[data-admin-root] [class*="font-mono"],
+[data-admin-root] code,
+[data-admin-root] kbd,
+[data-admin-root] samp {
+  font-family: var(--font-dm-mono), "DM Mono", monospace !important;
+}
+
+[data-admin-root] .font-sans,
+[data-admin-root] [class*="font-sans"] {
+  font-family: var(--font-host-grotesk), "Host Grotesk", system-ui, sans-serif !important;
+}
+
+[data-admin-root] .font-display,
+[data-admin-root] [class*="font-display"] {
+  font-family: var(--font-koulen), "Koulen", sans-serif !important;
+}
+
+/* Headings strictly follow Koulen uppercase brutalist display style */
+[data-admin-root] h1,
+[data-admin-root] h2,
+[data-admin-root] h3,
+[data-admin-root] h4,
+[data-admin-root] h5,
+[data-admin-root] h6,
+[data-admin-root] h1.font-mono,
+[data-admin-root] h2.font-mono,
+[data-admin-root] h3.font-mono,
+[data-admin-root] h4.font-mono,
+[data-admin-root] h5.font-mono {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.025em !important;
+  line-height: 1.1 !important;
+  color: var(--base-700, #0f0f0f);
+}
+
+/* Prevent harsh synthetic faux-bold across all admin elements — clamp to crisp 500 */
+[data-admin-root] .font-bold,
+[data-admin-root] [class*="font-bold"],
+[data-admin-root] .font-extrabold,
+[data-admin-root] [class*="font-extrabold"],
+[data-admin-root] strong,
+[data-admin-root] b {
+  font-weight: 500 !important;
+}
+
+[data-admin-root] .font-semibold,
+[data-admin-root] [class*="font-semibold"] {
+  font-weight: 500 !important;
+}
+
+/* Regular text stays clean at 400 */
+[data-admin-root] p,
+[data-admin-root] span:not(.font-bold):not([class*="font-bold"]):not(.font-semibold) {
+  font-weight: 400;
+}
+
+/* Headings in dark containers or with explicit text-white class must be white */
+[data-admin-root] .text-white,
+[data-admin-root] .bg-black h1,
+[data-admin-root] .bg-black h2,
+[data-admin-root] .bg-black h3,
+[data-admin-root] .bg-black h4,
+[data-admin-root] .bg-black h5,
+[data-admin-root] .bg-neutral-950 h1,
+[data-admin-root] .bg-neutral-950 h2,
+[data-admin-root] .bg-neutral-950 h3,
+[data-admin-root] .bg-neutral-950 h4,
+[data-admin-root] .bg-neutral-950 h5,
+[data-admin-root] .bg-neutral-900 h1,
+[data-admin-root] .bg-neutral-900 h2,
+[data-admin-root] .bg-neutral-900 h3,
+[data-admin-root] .bg-neutral-900 h4,
+[data-admin-root] .bg-neutral-900 h5,
+[data-admin-root] h1.text-white,
+[data-admin-root] h2.text-white,
+[data-admin-root] h3.text-white,
+[data-admin-root] h4.text-white,
+[data-admin-root] h5.text-white {
+  color: #ffffff !important;
+}
+
+/* Explicit dark text elements must always respect contrast */
+[data-admin-root] .text-black {
+  color: #0f0f0f !important;
+}
+
+/* ------------------------------------------------------------------------- */
+/* 2. CARD & SURFACE ARCHITECTURE (DRAPZA DESIGN SYSTEM SECTION 3)           */
+/* ------------------------------------------------------------------------- */
+/* Light card architecture with curated 12px radius and #d7dbd2 borders */
+[data-admin-root] .bg-white.border,
+[data-admin-root] .bg-white.shadow-sm,
+[data-admin-root] .hud-glass-card,
+[data-admin-root] .hud-glass-panel {
+  border-radius: 12px !important;
+  border-color: var(--base-200, #d7dbd2) !important;
+  background-color: #ffffff !important;
+  color: var(--base-700, #0f0f0f) !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-admin-root] .bg-white.border:hover,
+[data-admin-root] .bg-white.shadow-sm:hover,
+[data-admin-root] .hud-glass-card:hover {
+  border-color: var(--base-400, #969992) !important;
+  background-color: #fafbf9 !important;
+}
+
+/* General rounded-none overrides to DRAPZA standard 8px tokens */
+[data-admin-root] .rounded-none {
+  border-radius: 8px !important;
+}
+
+/* Card borders override */
+[data-admin-root] .border-neutral-200,
+[data-admin-root] .border-neutral-300,
+[data-admin-root] .border-gray-200 {
+  border-color: var(--base-200, #d7dbd2) !important;
+}
+
+/* Secondary surface backgrounds */
+[data-admin-root] .bg-neutral-100,
+[data-admin-root] .bg-neutral-50,
+[data-admin-root] .bg-gray-100 {
+  background-color: #f0f3eb !important;
+}
+
+/* Subtitle and secondary description text */
+[data-admin-root] .text-neutral-500,
+[data-admin-root] .text-gray-500 {
+  color: var(--base-500, #7d807a) !important;
+}
+
+/* Active / Selected Dark States (DRAPZA Design System Section 3.B) */
+[data-admin-root] .bg-black,
+[data-admin-root] button.bg-black {
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: #ffffff !important;
+  border-color: var(--base-600, #1f1f1f) !important;
+}
+
+/* Light buttons must have crisp dark text by default */
+[data-admin-root] button.bg-neutral-50,
+[data-admin-root] button.bg-neutral-100,
+[data-admin-root] button.bg-white,
+[data-admin-root] a.bg-neutral-50,
+[data-admin-root] a.bg-neutral-100,
+[data-admin-root] a.bg-white {
+  color: #0f0f0f;
+}
+
+/* Buttons enforce DM Mono, uppercase, and 8px radius with crisp 500 weight (never extra bold) */
+[data-admin-root] button {
+  font-family: var(--font-dm-mono), 'DM Mono', monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+}
+
+/* Badges, chips, small counters */
+[data-admin-root] span[class*="text-[9px]"],
+[data-admin-root] span[class*="text-[10px]"],
+[data-admin-root] span[class*="rounded-none"] {
+  border-radius: 6px !important;
+  font-family: var(--font-dm-mono), 'DM Mono', monospace !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+}
+
+/* ------------------------------------------------------------------------- */
+/* 3. FORM CONTROLS (MATCHING DRAPZA FORM SPEC)                              */
+/* ------------------------------------------------------------------------- */
+[data-admin-root] label {
+  font-family: var(--font-dm-mono), "DM Mono", monospace !important;
+  text-transform: uppercase;
+  color: var(--base-500, #7d807a) !important;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  font-weight: 500 !important;
+}
+
+[data-admin-root] input[type="text"],
+[data-admin-root] input[type="email"],
+[data-admin-root] input[type="password"],
+[data-admin-root] input[type="number"],
+[data-admin-root] input[type="tel"],
+[data-admin-root] input[type="search"],
+[data-admin-root] input[type="url"],
+[data-admin-root] select,
+[data-admin-root] textarea {
+  border: 1px solid var(--base-200, #d7dbd2) !important;
+  font-family: var(--font-dm-mono), "DM Mono", monospace !important;
+  color: var(--base-700, #0f0f0f) !important;
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+[data-admin-root] input:focus,
+[data-admin-root] select:focus,
+[data-admin-root] textarea:focus {
+  border-color: var(--base-700, #0f0f0f) !important;
+  box-shadow: 0 0 0 2px rgba(15, 15, 15, 0.08) !important;
+  outline: none !important;
+}
+
+/* Override for Live Canvas In-Place Typographic Inputs to avoid white form boxes */
+[data-admin-root] input.hero-canvas-input,
+[data-admin-root] .hero-canvas-input {
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: 0.8 !important;
+  letter-spacing: inherit !important;
+  text-transform: inherit !important;
+  color: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 1em !important;
+  display: block !important;
+  transition: opacity 0.2s ease !important;
+}
+
+[data-admin-root] input.hero-canvas-input:hover,
+[data-admin-root] input.hero-canvas-input:focus {
+  border: none !important;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Override for Command Palette input */
+[data-admin-root] input.palette-search-input,
+.palette-search-input {
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #111827 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+}
+
+[data-admin-root] input.palette-search-input:focus,
+.palette-search-input:focus {
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+[data-admin-root] input.palette-search-input::placeholder,
+.palette-search-input::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+/* 1:1 Live Storefront Hero Preview Replica in Admin Canvas */
+[data-admin-root] .hero-admin-preview {
+  position: relative !important;
+  width: 100% !important;
+  height: 82vh !important;
+  min-height: 560px !important;
+  background-color: var(--color-base-100, #edf1e8) !important;
+  overflow: hidden !important;
+}
+
+/* Ensure WebGL Halftone Dot Matrix is explicitly layered above the #edf1e8 background */
+[data-admin-root] .hero-admin-preview .dot-matrix-wrapper {
+  z-index: 2 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+[data-admin-root] .hero-admin-preview .dot-matrix-wrapper canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+[data-admin-root] .hero-admin-preview .hero-header {
+  text-align: center !important;
+  width: 70% !important;
+  position: absolute !important;
+  top: 18% !important;
+  left: 50% !important;
+  transform: translate(-50%) !important;
+  z-index: 10 !important;
+}
+
+[data-admin-root] .hero-admin-preview .hero-header h1 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: clamp(-.15rem, -1vw, -.25rem) !important;
+  font-size: clamp(3.8rem, 9.5vw, 9.8rem) !important;
+  color: var(--color-base-700, #0f0f0f) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+[data-admin-root] .hero-admin-preview .hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 32% !important;
+  left: 0 !important;
+  z-index: 15 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+}
+
+[data-admin-root] .hero-admin-preview .hero-img img {
+  object-fit: contain !important;
+  object-position: center top !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+[data-admin-root] .hero-admin-preview .section-footer {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translate(-50%) !important;
+  width: 100% !important;
+  padding: 1.5rem 2.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  z-index: 25 !important;
+}
+
+[data-admin-root] .hero-admin-preview .section-footer p {
+  color: var(--color-base-700, #0f0f0f) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  margin: 0 !important;
+}
+
+/* 1:1 Exact Live Storefront About / Philosophy Preview Replica in Admin Canvas */
+[data-admin-root] .about.about-admin-preview {
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: var(--base-100, #edf1e8) !important;
+  width: 100% !important;
+  min-height: 700px !important;
+  padding: 8rem 0 !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+[data-admin-root] .about.about-admin-preview .container {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  justify-content: center !important;
+  align-items: center !important;
+  display: flex !important;
+}
+
+[data-admin-root] .about.about-admin-preview .about-copy {
+  text-align: center !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 4rem !important;
+  width: 70% !important;
+  display: flex !important;
+  margin: 0 auto !important;
+}
+
+[data-admin-root] .about.about-admin-preview .about-copy p {
+  color: var(--base-500, #7d807a) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: clamp(.8rem, .75vw, .85rem) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: clamp(-.035rem, -.5vw, -.075rem) !important;
+  margin: 0 !important;
+}
+
+[data-admin-root] .about.about-admin-preview .about-copy h3 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: clamp(-.035rem, -.5vw, -.075rem) !important;
+  font-size: clamp(2.5rem, 6.5vw, 5rem) !important;
+  color: var(--base-100, #edf1e8) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+[data-admin-root] .about.about-admin-preview .about-copy .about-icon {
+  width: 25rem !important;
+  height: 25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.3s ease !important;
+}
+
+[data-admin-root] .about.about-admin-preview .about-copy .about-icon svg {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+[data-admin-root] .about.about-admin-preview .section-footer {
+  justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 2.125rem !important;
+  position: relative !important;
+}
+
+[data-admin-root] .about.about-admin-preview .section-footer.light p,
+[data-admin-root] .about.about-admin-preview .section-footer p {
+  color: var(--base-500, #7d807a) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: clamp(.8rem, .75vw, .85rem) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+}
+
+/* 1:1 Exact Live Storefront Marquee Banner & Hero Card Preview Replica in Admin Canvas */
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview {
+  background-color: var(--base-100, #edf1e8) !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 85vh !important;
+  min-height: 680px !important;
+  padding: 1rem !important;
+  display: flex !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .marquees {
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 2rem 0 !important;
+  display: flex !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  pointer-events: none !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .marquees .marquee-header {
+  width: max-content !important;
+  color: var(--base-300, #c4c8bf) !important;
+  will-change: transform !important;
+  position: relative !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .marquees .marquee-header-1:not(.marquee-kinetic-left):not(.marquee-kinetic-right) {
+  transform: translate3d(0%, 0, 0);
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .marquees .marquee-header-2:not(.marquee-kinetic-left):not(.marquee-kinetic-right) {
+  transform: translate3d(-25%, 0, 0);
+}
+
+/* Kinetic Auto-Flow Animations for Marquee Banner CMS & Storefront */
+@keyframes drapzaMarqueeLeft {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes drapzaMarqueeRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+[data-admin-root] .marquee-kinetic-left,
+.marquee-kinetic-left {
+  display: flex !important;
+  width: max-content !important;
+  animation: drapzaMarqueeLeft var(--marquee-speed, 20s) linear infinite !important;
+  animation-play-state: var(--marquee-play-state, running) !important;
+}
+
+[data-admin-root] .marquee-kinetic-right,
+.marquee-kinetic-right {
+  display: flex !important;
+  width: max-content !important;
+  animation: drapzaMarqueeRight var(--marquee-speed, 20s) linear infinite !important;
+  animation-play-state: var(--marquee-play-state, running) !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .marquees .marquee-header h1 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  font-size: clamp(4rem, 10vw, 10rem) !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: clamp(-.15rem, -1vw, -.25rem) !important;
+  text-transform: uppercase !important;
+  color: var(--base-300, #c4c8bf) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner {
+  background-color: var(--base-700, #0f0f0f) !important;
+  border-radius: 0.75rem !important;
+  width: 35% !important;
+  min-width: 380px !important;
+  max-width: 600px !important;
+  height: 70% !important;
+  min-height: 520px !important;
+  max-height: 40rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  z-index: 10 !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Base layer: Headline & Frame Shift tag positioned behind the model cutout */
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-content {
+  width: 100% !important;
+  color: var(--base-100, #edf1e8) !important;
+  text-align: center !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  padding: 3rem 2rem 2rem !important;
+  display: flex !important;
+  position: relative !important;
+  z-index: 1 !important;
+  box-sizing: border-box !important;
+  pointer-events: auto !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-content p {
+  color: var(--base-400, #969992) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: clamp(.8rem, .75vw, .85rem) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-content h4 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  font-size: clamp(2.2rem, 3.8vw, 3.8rem) !important;
+  font-weight: 400 !important;
+  line-height: 0.82 !important;
+  text-transform: uppercase !important;
+  letter-spacing: clamp(0rem, -.5vw, -.075rem) !important;
+  color: var(--base-100, #edf1e8) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* Middle layer: Model cutout layered strictly IN FRONT of the headline and tag */
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-img {
+  width: 100% !important;
+  position: absolute !important;
+  bottom: var(--model-offset-y, -7.5rem) !important;
+  left: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  transition: bottom 0.2s ease !important;
+}
+
+/* Image maintains natural aspect ratio without vertical stretching or distortion */
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-img img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+  transform: var(--model-scale, none) !important;
+  transition: transform 0.2s ease !important;
+  pointer-events: none !important;
+}
+
+/* Top layer: DRAPZA logo sits in front of the model's jacket */
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-logo {
+  color: var(--base-100, #edf1e8) !important;
+  position: absolute !important;
+  bottom: 3rem !important;
+  left: 50% !important;
+  transform: translate(-50%) !important;
+  z-index: 3 !important;
+  pointer-events: auto !important;
+}
+
+[data-admin-root] .marquee-banner.marquee-banner-admin-preview .banner .banner-logo h5 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  font-size: clamp(1.25rem, 2vw, 3rem) !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: clamp(0rem, -.25vw, -.05rem) !important;
+  text-transform: uppercase !important;
+  color: var(--base-100, #edf1e8) !important;
+  margin: 0 !important;
+}
+
+[data-admin-root] input[type="text"]:focus,
+[data-admin-root] input[type="email"]:focus,
+[data-admin-root] input[type="password"]:focus,
+[data-admin-root] input[type="number"]:focus,
+[data-admin-root] input[type="tel"]:focus,
+[data-admin-root] input[type="search"]:focus,
+[data-admin-root] input[type="url"]:focus,
+[data-admin-root] select:focus,
+[data-admin-root] textarea:focus {
+  border-color: var(--color-base-700, #0f0f0f) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--color-base-700, #0f0f0f) !important;
+}
+
+[data-admin-root] input::placeholder,
+[data-admin-root] textarea::placeholder {
+  color: var(--color-base-400, #969992) !important;
+  font-family: var(--font-dm-mono), "DM Mono", monospace !important;
+  font-weight: 400 !important;
+}
+
+/* ------------------------------------------------------------------------- */
+/* 3. BUTTONS (MATCHING .checkout-submit & .checkout-success-btn)            */
+/* ------------------------------------------------------------------------- */
+[data-admin-root] button {
+  font-family: var(--font-dm-mono), "DM Mono", monospace !important;
+  letter-spacing: 0.04em;
+  font-weight: 500 !important;
+  transition: all 0.2s ease;
+}
+
+/* Primary black buttons */
+[data-admin-root] button.bg-black,
+[data-admin-root] button.bg-neutral-900 {
+  background-color: var(--color-base-700, #0f0f0f) !important;
+  color: var(--color-base-100, #edf1e8) !important;
+  border-radius: 0.5rem !important;
+}
+
+[data-admin-root] button.bg-black:hover,
+[data-admin-root] button.bg-neutral-900:hover {
+  background-color: var(--color-base-600, #1f1f1f) !important;
+}
+
+/* ------------------------------------------------------------------------- */
+/* 4. CARDS & PANELS (MATCHING .checkout-summary & ATELIER CONTAINERS)       */
+/* ------------------------------------------------------------------------- */
+/* Soften harsh rounded-none on main panels to match Checkout rounded-0.75rem */
+[data-admin-root] .bg-white.border {
+  border-color: var(--color-base-200, #d7dbd2) !important;
+  border-radius: 0.75rem !important;
+}
+
+[data-admin-root] aside.bg-white {
+  border-color: var(--color-base-200, #d7dbd2) !important;
+  border-radius: 0.75rem !important;
+}
+
+/* Dashed divider accents like checkout page */
+[data-admin-root] .border-dashed {
+  border-color: var(--color-base-300, #afb3ab) !important;
+}
+
+/* Tables matching checkout list layout */
+[data-admin-root] table th {
+  font-family: var(--font-dm-mono), "DM Mono", monospace !important;
+  text-transform: uppercase !important;
+  color: var(--color-base-500, #7d807a) !important;
+  letter-spacing: 0.04em !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  border-bottom: 1px dashed var(--color-base-300, #afb3ab) !important;
+}
+
+[data-admin-root] table td {
+  font-family: var(--font-dm-mono), "DM Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 400 !important;
+  border-bottom: 1px solid var(--color-base-200, #d7dbd2);
+}
+
+/* Status chips / badges and buttons soften to match checkout aesthetic */
+[data-admin-root] .rounded-none {
+  border-radius: 0.375rem !important;
+}
+
+[data-admin-root] *,
+[data-admin-root] *::before,
+[data-admin-root] *::after {
+  box-sizing: border-box;
+}
+
+/* Lucide and SVG Icon Normalization */
+[data-admin-root] svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Default fallback size for icons */
+[data-admin-root] svg:not([class*="w-"]):not([class*="size-"]):not([width]) {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Explicit width/height overrides for Tailwind icon classes */
+[data-admin-root] svg.w-3,
+[data-admin-root] svg.size-3,
+[data-admin-root] .w-3>svg {
+  width: 0.75rem !important;
+  height: 0.75rem !important;
+}
+
+[data-admin-root] svg.w-3\.5,
+[data-admin-root] svg.size-3\.5,
+[data-admin-root] .w-3\.5>svg {
+  width: 0.875rem !important;
+  height: 0.875rem !important;
+}
+
+[data-admin-root] svg.w-4,
+[data-admin-root] svg.size-4,
+[data-admin-root] .w-4>svg {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+[data-admin-root] svg.w-4\.5,
+[data-admin-root] .w-4\.5>svg {
+  width: 1.125rem !important;
+  height: 1.125rem !important;
+}
+
+[data-admin-root] svg.w-5,
+[data-admin-root] svg.size-5,
+[data-admin-root] .w-5>svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+[data-admin-root] svg.w-6,
+[data-admin-root] svg.size-6,
+[data-admin-root] .w-6>svg {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+[data-admin-root] svg.w-7,
+[data-admin-root] svg.size-7,
+[data-admin-root] .w-7>svg {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+}
+
+[data-admin-root] svg.w-8,
+[data-admin-root] svg.size-8,
+[data-admin-root] .w-8>svg {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+[data-admin-root] svg.w-9,
+[data-admin-root] .w-9>svg {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+}
+
+[data-admin-root] svg.w-10,
+[data-admin-root] .w-10>svg {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+}
+
+[data-admin-root] svg.w-12,
+[data-admin-root] .w-12>svg {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+[data-admin-root] svg.h-3,
+[data-admin-root] .h-3>svg {
+  height: 0.75rem !important;
+}
+
+[data-admin-root] svg.h-3\.5,
+[data-admin-root] .h-3\.5>svg {
+  height: 0.875rem !important;
+}
+
+[data-admin-root] svg.h-4,
+[data-admin-root] .h-4>svg {
+  height: 1rem !important;
+}
+
+[data-admin-root] svg.h-4\.5,
+[data-admin-root] .h-4\.5>svg {
+  height: 1.125rem !important;
+}
+
+[data-admin-root] svg.h-5,
+[data-admin-root] .h-5>svg {
+  height: 1.25rem !important;
+}
+
+[data-admin-root] svg.h-6,
+[data-admin-root] .h-6>svg {
+  height: 1.5rem !important;
+}
+
+[data-admin-root] svg.h-7,
+[data-admin-root] .h-7>svg {
+  height: 1.75rem !important;
+}
+
+[data-admin-root] svg.h-8,
+[data-admin-root] .h-8>svg {
+  height: 2rem !important;
+}
+
+[data-admin-root] svg.h-9,
+[data-admin-root] .h-9>svg {
+  height: 2.25rem !important;
+}
+
+[data-admin-root] svg.h-10,
+[data-admin-root] .h-10>svg {
+  height: 2.5rem !important;
+}
+
+[data-admin-root] svg.h-12,
+[data-admin-root] .h-12>svg {
+  height: 3rem !important;
+}
+
+/* Ensure DRAPZA Koulen Display Hierarchy is strictly preserved */
+[data-admin-root] h1,
+[data-admin-root] h2,
+[data-admin-root] h3,
+[data-admin-root] h4,
+[data-admin-root] h5 {
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  font-weight: 400 !important;
+}
+
+/* Reset p, span, a, div inside admin to inherit typography cleanly */
+[data-admin-root] p,
+[data-admin-root] span,
+[data-admin-root] a,
+[data-admin-root] div {
+  text-transform: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+[data-admin-root] a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+/* Reset button text transforms inside admin */
+[data-admin-root] button {
+  text-transform: inherit;
+}
+
+/* Allow text selection in admin */
+[data-admin-root] * {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+[data-admin-root] button,
+[data-admin-root] a {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+:root {
+  /* Claude Design Agency Obsidian Tokens */
+  --obsidian-950: #05070a;
+  --obsidian-900: #0b0f19;
+  --obsidian-850: #101524;
+  --obsidian-800: #151b2e;
+  --obsidian-surface: #0e1118;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-light: rgba(0, 0, 0, 0.08);
+  --glass-surface-dark: rgba(14, 17, 24, 0.75);
+  --glass-surface-light: rgba(255, 255, 255, 0.82);
+  --electric-indigo: #6366f1;
+  --electric-cyan: #06b6d4;
+
+  /* Fluid Typography Tokens (Claude Design & Agency Spec) */
+  --font-fluid-hero: clamp(2.5rem, 9.5vw, 11rem);
+  --font-fluid-h1: clamp(2rem, 6.5vw, 6.5rem);
+  --font-fluid-h2: clamp(1.75rem, 4.5vw, 4.2rem);
+  --font-fluid-h3: clamp(1.25rem, 2.5vw, 2.2rem);
+  --font-fluid-body: clamp(0.95rem, 1.2vw, 1.15rem);
+  --font-fluid-mono: clamp(0.75rem, 0.9vw, 0.95rem);
+}
+
+html {
+  scroll-padding-top: 80px;
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+html:not(.lenis) {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+/* Guarantee 1:1 smooth Lenis kinetic scroll functionality on Admin matching Home */
+html.lenis,
+html.lenis body {
+  height: auto !important;
+}
+
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+html:not(.lenis):has([data-admin-root]) {
+  scroll-behavior: smooth;
+}
+
+body:has([data-admin-root]) {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  height: auto !important;
+  position: relative !important;
+}
+
+html:has([data-admin-root]) {
+  overflow-x: clip !important;
+  height: auto !important;
+}
+
+body:has([data-admin-root]):has([role="dialog"]) {
+  overflow: hidden !important;
+}
+
+/* Desktop Custom Cursor Optimization - Prevents Double Pointers on general layout */
+html.has-custom-cursor:not(:has([role="dialog"])) body {
+  cursor: none !important;
+}
+
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+
+/* Studio & Modal Cursor Restorations */
+html.has-custom-cursor [role="dialog"],
+html.has-custom-cursor [role="dialog"] * {
+  cursor: default;
+}
+
+html.has-custom-cursor [role="dialog"] button,
+html.has-custom-cursor [role="dialog"] a,
+html.has-custom-cursor [role="dialog"] label,
+html.has-custom-cursor .cursor-pointer {
+  cursor: pointer !important;
+}
+
+html.has-custom-cursor .cursor-move {
+  cursor: move !important;
+}
+
+html.has-custom-cursor .cursor-nwse-resize {
+  cursor: nwse-resize !important;
+}
+
+html.has-custom-cursor .cursor-nesw-resize {
+  cursor: nesw-resize !important;
+}
+
+html.has-custom-cursor .cursor-crosshair {
+  cursor: crosshair !important;
+}
+
+body {
+  background-color: var(--base-100);
+  color: var(--base-700);
+  font-family: "Host Grotesk", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  max-width: 100vw;
+  position: relative;
+}
+
+::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.font-display {
+  font-family: "Koulen", sans-serif;
+}
+
+.font-mono-technical {
+  font-family: "DM Mono", monospace;
+}
+
+.font-body {
+  font-family: "Host Grotesk", system-ui, sans-serif;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Custom Smooth Dark Modal Scrollbar */
+.dark-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent !important;
+  -ms-overflow-style: auto !important;
+  overscroll-behavior: contain;
+}
+
+.dark-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 5px !important;
+  height: 5px !important;
+}
+
+.dark-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 9999px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* Custom Clean Modal Scrollbar (Visible and smooth) */
+.custom-modal-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.05) !important;
+  -ms-overflow-style: auto !important;
+  overscroll-behavior: contain !important;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 9999px !important;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 9999px !important;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Custom Sleek Scrollbar for Sidebars and Containers */
+.custom-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent !important;
+  -ms-overflow-style: auto !important;
+  overscroll-behavior: contain !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 5px !important;
+  height: 5px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 9999px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.45) !important;
+}
+
+
+/* Halftone dot patterns */
+.bg-halftone {
+  background-image: radial-gradient(circle, var(--base-400) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.bg-halftone-lg {
+  background-image: radial-gradient(circle, var(--base-400) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+}
+
+.bg-halftone-xl {
+  background-image: radial-gradient(circle, var(--base-500) 2px, transparent 2px);
+  background-size: 16px 16px;
+}
+
+/* Marquee animations */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left,
+.animate-marquee {
+  animation: marquee-left 25s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 25s linear infinite;
+}
+
+@keyframes glitch-shift {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+
+  20% {
+    transform: translate(-3px, 1.5px);
+    filter: drop-shadow(2px -2px 0 rgba(255, 0, 80, 0.6)) drop-shadow(-2px 2px 0 rgba(0, 240, 255, 0.6));
+  }
+
+  40% {
+    transform: translate(3px, -1.5px);
+    filter: drop-shadow(-2px 2px 0 rgba(255, 0, 80, 0.6)) drop-shadow(2px -2px 0 rgba(0, 240, 255, 0.6));
+  }
+
+  60% {
+    transform: translate(-1.5px, -1px);
+    filter: drop-shadow(1px 1px 0 rgba(255, 0, 80, 0.4));
+  }
+
+  80% {
+    transform: translate(1.5px, 1px);
+    filter: drop-shadow(-1px -1px 0 rgba(0, 240, 255, 0.4));
+  }
+}
+
+.animate-glitch {
+  animation: glitch-shift 2.2s ease-in-out infinite;
+}
+
+@keyframes breathe-float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+.animate-breathe {
+  animation: breathe-float 4.5s ease-in-out infinite;
+}
+
+/* Loading bar */
+@keyframes load-fill {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.animate-load-fill {
+  animation: load-fill 1.4s ease-out forwards;
+}
+
+/* Fade out */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.animate-fade-out {
+  animation: fade-out 0.6s ease-out forwards;
+}
+
+/* Subtle float */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Star twinkle */
+@keyframes star-twinkle {
+
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.35);
+  }
+}
+
+.animate-star-twinkle {
+  animation: star-twinkle 2.8s ease-in-out infinite;
+}
+
+/* Smooth Kinetic Scroll & Fade Animations (1:1 with Storefront Home) */
+@keyframes drapzaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn,
+[data-admin-root] .animate-fadeIn {
+  animation: drapzaFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  will-change: opacity, transform;
+}
+
+/* Scroll reveal system */
+[data-reveal] {
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal="up"][data-inview="false"] {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0);
+}
+
+[data-reveal="fade"][data-inview="false"] {
+  opacity: 0;
+}
+
+[data-reveal="scale"][data-inview="false"] {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+[data-reveal="clip"] {
+  clip-path: inset(0 0 0 0);
+}
+
+[data-reveal="clip"][data-inview="false"] {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+}
+
+[data-reveal][data-inview="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none;
+  }
+}
+
+/* Hide default system scrollbars cleanly while preserving custom smooth scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ========================================================================= */
+/* CLAUDE DESIGN & GSAP 60FPS HARDWARE ACCELERATION UTILITIES                */
+/* ========================================================================= */
+
+.hardware-accel {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+}
+
+/* Glassmorphic HUD Panels & Bento Cards */
+.hud-glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+}
+
+.hud-glass-card {
+  background: rgba(245, 245, 245, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.hud-glass-card:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.12);
+}
+
+.hud-glass-dark {
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================================================= */
+/* ACCESSIBILITY & A11Y ENHANCEMENTS (WCAG 2.1)                              */
+/* ========================================================================= */
+
+/* High Contrast Mode */
+html.a11y-high-contrast {
+  filter: contrast(1.25);
+}
+
+html.a11y-high-contrast button,
+html.a11y-high-contrast a,
+html.a11y-high-contrast input,
+html.a11y-high-contrast select {
+  outline: 2px solid currentColor !important;
+}
+
+/* Text Size Scaling */
+html.a11y-text-large {
+  font-size: 115% !important;
+}
+
+html.a11y-text-larger {
+  font-size: 130% !important;
+}
+
+/* Dyslexic / Enhanced Legibility Spacing */
+html.a11y-dyslexic-spacing * {
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.15em !important;
+  line-height: 1.75 !important;
+}
+
+/* Reduce Motion */
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Focus Highlight Ring */
+html.a11y-focus-highlight *:focus-visible {
+  outline: 3px solid #10b981 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Underline Hyperlinks */
+html.a11y-underline-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+}
+
+/* Modal Scrollbar Helper */
+.custom-modal-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-thumb {
+  background: #737373;
+  border-radius: 0px;
+}
+
+/* Toast Notification Progress Timer */
+@keyframes toast-shrink {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.animate-shrink {
+  animation: toast-shrink linear forwards;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+
+/* ========================================================================= */
+/* ACCESSIBILITY & A11Y ENHANCEMENTS (WCAG 2.1)                              */
+/* ========================================================================= */
+
+/* High Contrast Mode */
+html.a11y-high-contrast {
+  filter: contrast(1.25);
+}
+
+html.a11y-high-contrast button,
+html.a11y-high-contrast a,
+html.a11y-high-contrast input,
+html.a11y-high-contrast select {
+  outline: 2px solid currentColor !important;
+}
+
+/* Text Size Scaling */
+html.a11y-text-large {
+  font-size: 115% !important;
+}
+
+html.a11y-text-larger {
+  font-size: 130% !important;
+}
+
+/* Dyslexic / Enhanced Legibility Spacing */
+html.a11y-dyslexic-spacing * {
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.15em !important;
+  line-height: 1.75 !important;
+}
+
+/* Reduce Motion */
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Focus Highlight Ring */
+html.a11y-focus-highlight *:focus-visible {
+  outline: 3px solid #10b981 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Underline Hyperlinks */
+html.a11y-underline-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+}
+
+/* Modal Scrollbar Helper */
+.custom-modal-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-thumb {
+  background: #737373;
+  border-radius: 0px;
+}
+
+/* Toast Notification Progress Timer */
+@keyframes toast-shrink {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.animate-shrink {
+  animation: toast-shrink linear forwards;
+}
+
+.custom-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}

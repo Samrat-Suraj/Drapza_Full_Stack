@@ -1,0 +1,1337 @@
+/* ==============================================================
+   DRAPZA — Dedicated Payment Checkout Page
+   Strictly matched to /checkout typography & design tokens:
+   - Headings (h1, h2, h3, h4, h5): Koulen (var(--font-koulen))
+   - Text, Labels, Badges, Values, Buttons: DM Mono (var(--font-dm-mono))
+   - Canvas Background: var(--base-100, #edf1e8)
+   - Deep Tone: var(--base-700, #0f0f0f)
+   ============================================================== */
+
+.drapza-payment-page {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  background-color: var(--base-100, #edf1e8) !important;
+  color: var(--base-700, #0f0f0f) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  position: relative !important;
+  overflow-x: hidden !important;
+}
+
+.drapza-payment-main-content {
+  width: 100% !important;
+  flex: 1 0 auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  padding: 8rem 2rem 5rem 2rem !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  .drapza-payment-main-content {
+    padding: 6rem 1rem 3.5rem 1rem !important;
+    padding-top: max(6rem, calc(5.25rem + env(safe-area-inset-top, 0px))) !important;
+  }
+}
+
+/* Central Content Container matching .checkout-inner */
+.drapza-payment-panel {
+  width: 100% !important;
+  max-width: 1200px !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+/* Typography Defaults matching /checkout */
+.drapza-payment-panel :is(h1, h2, h3, h4, h5) {
+  font-family: var(--font-koulen), sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  line-height: 0.9 !important;
+  letter-spacing: clamp(0rem, -0.25vw, -0.05rem) !important;
+}
+
+.drapza-payment-panel :is(p, span, a, label, button, input) {
+  font-family: var(--font-dm-mono), monospace !important;
+}
+
+.drapza-payment-panel svg {
+  object-fit: contain !important;
+  width: auto;
+  height: auto;
+}
+
+/* Panel Header */
+.drapza-payment-header {
+  margin-bottom: 2.5rem !important;
+  border-bottom: 1px dashed var(--base-300, #afb3ab) !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.drapza-payment-logo {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: 2.2rem !important;
+  letter-spacing: 0.1em !important;
+  color: var(--base-700, #0f0f0f) !important;
+  line-height: 1 !important;
+  margin-bottom: 0.65rem !important;
+  text-transform: uppercase !important;
+}
+
+.drapza-payment-title {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: 2rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-700, #0f0f0f) !important;
+  text-transform: uppercase !important;
+  margin: 0 0 0.4rem 0 !important;
+  line-height: 0.95 !important;
+}
+
+.drapza-payment-subtitle {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+/* Two-Column Grid matching .checkout-inner */
+.drapza-payment-grid {
+  display: grid !important;
+  grid-template-columns: 1.25fr 1fr !important;
+  gap: 3.5rem !important;
+  align-items: start !important;
+}
+
+@media (max-width: 950px) {
+  .drapza-payment-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+/* Left Column: Delivery & Payment Methods */
+.drapza-methods-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+}
+
+/* ==============================================================
+   DELIVERY OPTIONS SECTION
+   ============================================================== */
+.drapza-delivery-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.15rem !important;
+  margin-bottom: 1.25rem !important;
+  width: 100% !important;
+}
+
+.drapza-delivery-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  text-align: left !important;
+}
+
+.drapza-delivery-icon-box {
+  width: 42px !important;
+  height: 42px !important;
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-delivery-header-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  text-align: left !important;
+}
+
+.drapza-delivery-title {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: 1.45rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  margin: 0 !important;
+  line-height: 0.95 !important;
+}
+
+.drapza-delivery-subtitle {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+.drapza-delivery-cards-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+}
+
+/* Individual Delivery Option Card (Styled like .drapza-card on /checkout) */
+.drapza-deliv-card {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.75rem !important;
+  padding: 0.85rem 1rem !important;
+  min-height: 52px !important;
+  background-color: #ffffff !important;
+  color: var(--base-700, #0f0f0f) !important;
+  border: 1px solid var(--base-200, #d7dbd2) !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  touch-action: manipulation !important;
+}
+
+.drapza-deliv-card:hover:not(.selected) {
+  border-color: var(--base-400, #969992) !important;
+  background-color: #fafbf9 !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.drapza-deliv-card:active {
+  transform: scale(0.995) !important;
+}
+
+.drapza-deliv-card:focus-visible,
+.drapza-method-card:focus-visible,
+.drapza-pay-btn:focus-visible,
+.drapza-back-checkout-link:focus-visible,
+.drapza-mobile-bar-btn:focus-visible {
+  outline: 2px solid var(--base-700, #0f0f0f) !important;
+  outline-offset: 3px !important;
+}
+
+/* Selected Card (Sleek Black matching /checkout selected address card) */
+.drapza-deliv-card.selected {
+  background-color: #121316 !important;
+  color: #ffffff !important;
+  border-color: #26272e !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+}
+
+.drapza-deliv-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Custom Radio Indicator matching .drapza-radio */
+.drapza-deliv-radio {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--base-300, #afb3ab) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
+  background: transparent !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-radio {
+  border-color: #ffffff !important;
+}
+
+.drapza-deliv-radio-inner {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #ffffff !important;
+  border-radius: 50% !important;
+  animation: drapzaRadioScale 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.drapza-method-radio-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #ffffff !important;
+  border-radius: 50% !important;
+  animation: drapzaRadioScale 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes drapzaRadioScale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Option Primary Icon */
+.drapza-deliv-icon {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--base-700, #0f0f0f) !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-icon,
+.drapza-deliv-card.selected .drapza-deliv-icon svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Option Info */
+.drapza-deliv-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  overflow: hidden !important;
+}
+
+.drapza-deliv-name {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  line-height: 1.2 !important;
+  word-break: break-word !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-name {
+  color: #ffffff !important;
+}
+
+.drapza-deliv-desc {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  margin: 0 !important;
+  line-height: 1.25 !important;
+  word-break: break-word !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-desc {
+  color: #e4e4e7 !important;
+}
+
+/* Right Section Metas (Stacked Price + Time) */
+.drapza-deliv-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+.drapza-deliv-pricing {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  text-align: right !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-deliv-price-val {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-price-val {
+  color: #ffffff !important;
+}
+
+.drapza-deliv-time-val {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 3.5px !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.62rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.drapza-deliv-time-val span {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.62rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.drapza-deliv-time-val svg {
+  color: var(--base-500, #7d807a) !important;
+  stroke: var(--base-500, #7d807a) !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-time-val,
+.drapza-deliv-card.selected .drapza-deliv-time-val span {
+  color: #e4e4e7 !important;
+  font-size: 0.62rem !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-time-val svg {
+  color: #e4e4e7 !important;
+  stroke: #e4e4e7 !important;
+}
+
+/* Fallback for meta blocks if ever used */
+.drapza-deliv-meta-block {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  text-align: right !important;
+  align-items: flex-end !important;
+  min-width: 0 !important;
+}
+
+.drapza-deliv-meta-label,
+.drapza-deliv-meta-label span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 4px !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.60rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.drapza-deliv-meta-val {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-meta-val {
+  color: #ffffff !important;
+}
+
+/* Chevron */
+.drapza-deliv-arrow {
+  color: var(--base-400, #969992) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-deliv-card.selected .drapza-deliv-arrow,
+.drapza-deliv-card.selected .drapza-deliv-arrow svg {
+  color: #d4d4d8 !important;
+  stroke: #d4d4d8 !important;
+}
+
+/* ==============================================================
+   FREE DELIVERY FLASH BANNER (COD to Online Prompt)
+   ============================================================== */
+.drapza-free-delivery-flash {
+  margin-top: 0.85rem !important;
+  padding: 0.95rem 1.15rem !important;
+  border-radius: 10px !important;
+  background-color: #121316 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.drapza-flash-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.drapza-flash-icon-box {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-flash-content {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  text-align: left !important;
+}
+
+.drapza-flash-title-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-wrap: wrap !important;
+}
+
+.drapza-flash-title,
+.drapza-flash-title span {
+  color: #ffffff !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.drapza-flash-badge {
+  font-size: 0.60rem !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  padding: 1.5px 6px !important;
+  border-radius: 3px !important;
+  font-weight: 500 !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  letter-spacing: 0.05em !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.drapza-flash-desc {
+  color: #d4d4d8 !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.70rem !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.01em !important;
+  margin: 0 !important;
+}
+
+.drapza-flash-btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.55rem 0.95rem !important;
+  font-size: 0.70rem !important;
+  font-weight: 500 !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  letter-spacing: 0.05em !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+.drapza-flash-btn:hover {
+  background-color: #e4e4e7 !important;
+  transform: translateY(-1px) !important;
+}
+
+.drapza-flash-btn:active {
+  transform: translateY(0) !important;
+}
+
+@media (max-width: 580px) {
+  .drapza-free-delivery-flash {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+  }
+
+  .drapza-flash-btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* ==============================================================
+   PAYMENT METHODS SECTION
+   ============================================================== */
+.drapza-pm-section-header {
+  margin-top: 1.85rem !important;
+  margin-bottom: 0.75rem !important;
+  text-align: left !important;
+}
+
+.drapza-pm-section-title {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: 1.45rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  margin: 0 0 2px 0 !important;
+  line-height: 0.95 !important;
+}
+
+.drapza-pm-section-sub {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-500, #7d807a) !important;
+  margin: 0 !important;
+}
+
+/* Payment Method Card */
+.drapza-method-card {
+  border-radius: 12px !important;
+  padding: 1.15rem 1.35rem !important;
+  background-color: #ffffff !important;
+  color: var(--base-700, #0f0f0f) !important;
+  border: 1px solid var(--base-200, #d7dbd2) !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  text-align: left !important;
+  user-select: none !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.drapza-method-card:hover {
+  border-color: var(--base-400, #969992) !important;
+  background-color: #fafbf9 !important;
+}
+
+.drapza-pm-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+}
+
+.drapza-method-card.selected {
+  background-color: #121316 !important;
+  color: #ffffff !important;
+  border-color: #26272e !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+}
+
+.drapza-method-top {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: 0.85rem !important;
+  flex-wrap: nowrap !important;
+}
+
+.drapza-method-left {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.85rem !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Radio Selector */
+.drapza-method-radio {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--base-300, #afb3ab) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
+  background: transparent !important;
+  margin-top: 3px !important;
+}
+
+.drapza-method-card.selected .drapza-method-radio {
+  border-color: #ffffff !important;
+}
+
+.drapza-method-radio-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #ffffff !important;
+  border-radius: 50% !important;
+}
+
+.drapza-method-icon {
+  color: var(--base-700, #0f0f0f) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 3px !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-method-card.selected .drapza-method-icon {
+  color: #ffffff !important;
+}
+
+.drapza-method-details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.drapza-method-name {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  line-height: 1.2 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.drapza-method-tag {
+  font-size: 0.60rem !important;
+  font-weight: 500 !important;
+  background: #0f0f0f !important;
+  color: #edf1e8 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  display: inline-block !important;
+}
+
+.drapza-method-card.selected .drapza-method-tag {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.drapza-method-card.selected .drapza-method-name {
+  color: #ffffff !important;
+}
+
+.drapza-method-sub {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-500, #7d807a) !important;
+  line-height: 1.35 !important;
+}
+
+.drapza-method-card.selected .drapza-method-sub {
+  color: #d4d4d8 !important;
+}
+
+.drapza-available-badge {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.65rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.06em !important;
+  padding: 2.5px 8px !important;
+  border-radius: 9999px !important;
+  background-color: var(--base-200, #d7dbd2) !important;
+  color: var(--base-700, #0f0f0f) !important;
+  text-transform: uppercase !important;
+}
+
+.drapza-method-card.selected .drapza-available-badge {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+.drapza-method-notice {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.02em !important;
+  color: var(--base-500, #7d807a) !important;
+  margin-top: 0.75rem !important;
+  padding-top: 0.65rem !important;
+  border-top: 1px dashed var(--base-200, #d7dbd2) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+}
+
+.drapza-method-notice span {
+  color: inherit !important;
+}
+
+.drapza-method-notice svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.drapza-method-card.selected .drapza-method-notice,
+.drapza-method-card.selected .drapza-method-notice span {
+  color: #e4e4e7 !important;
+  border-top-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.drapza-method-card.selected .drapza-method-notice svg {
+  color: #e4e4e7 !important;
+  stroke: #e4e4e7 !important;
+}
+
+.drapza-brand-right {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 0.35rem !important;
+}
+
+.drapza-brand-title {
+  font-family: var(--font-dm-mono), monospace !important;
+  color: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-method-card.selected .drapza-brand-title {
+  color: #ffffff !important;
+}
+
+.drapza-brand-sub {
+  font-family: var(--font-dm-mono), monospace !important;
+  color: var(--base-500, #7d807a) !important;
+}
+
+.drapza-method-card.selected .drapza-brand-sub {
+  color: #afb3ab !important;
+}
+
+.drapza-brand-badges {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+.drapza-badge-text {
+  font-family: var(--font-dm-mono), monospace !important;
+  color: var(--base-700, #0f0f0f) !important;
+}
+
+.drapza-method-card.selected .drapza-badge-text {
+  color: #ffffff !important;
+}
+
+.drapza-badge-more {
+  font-family: var(--font-dm-mono), monospace !important;
+  color: var(--base-500, #7d807a) !important;
+}
+
+.drapza-method-card.selected .drapza-badge-more {
+  color: #afb3ab !important;
+}
+
+.drapza-back-checkout-link {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--base-700, #0f0f0f) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin-top: 1.5rem !important;
+  padding: 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.drapza-back-checkout-link:hover {
+  opacity: 0.65 !important;
+}
+
+/* ==============================================================
+   RIGHT COLUMN: ORDER SUMMARY (Matching /checkout .checkout-summary)
+   ============================================================== */
+.drapza-summary-col {
+  background-color: var(--base-700, #0f0f0f) !important;
+  color: var(--base-100, #edf1e8) !important;
+  border-radius: 0.75rem !important;
+  padding: 2rem !important;
+  position: sticky !important;
+  top: 8rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  text-align: left !important;
+  border: 1px solid #1f1f1f !important;
+}
+
+.drapza-summary-heading {
+  font-family: var(--font-koulen), sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  color: var(--base-100, #edf1e8) !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15) !important;
+  margin: 0 0 0.5rem 0 !important;
+  padding-bottom: 1rem !important;
+  line-height: 0.95 !important;
+}
+
+.drapza-summary-line {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 0.8rem !important;
+}
+
+.drapza-summary-lbl {
+  font-family: var(--font-dm-mono), monospace !important;
+  color: var(--base-300, #afb3ab) !important;
+  letter-spacing: 0.05em !important;
+  font-size: 0.75rem !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+}
+
+.drapza-summary-val {
+  font-family: var(--font-dm-mono), monospace !important;
+  color: var(--base-100, #edf1e8) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+}
+
+.drapza-summary-divider {
+  background: rgba(255, 255, 255, 0.15) !important;
+  height: 1px !important;
+  margin: 0.5rem 0 !important;
+}
+
+.drapza-summary-total-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-top: 0.4rem !important;
+}
+
+.drapza-total-label {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.06em !important;
+  color: var(--base-100, #edf1e8) !important;
+  text-transform: uppercase !important;
+}
+
+.drapza-total-amount {
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  color: var(--base-100, #edf1e8) !important;
+}
+
+.drapza-security-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  color: var(--base-300, #afb3ab) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  margin-top: 0.35rem !important;
+}
+
+.drapza-security-badge svg {
+  color: var(--base-300, #afb3ab) !important;
+  stroke: var(--base-300, #afb3ab) !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-security-text,
+.drapza-security-badge span {
+  color: var(--base-300, #afb3ab) !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  display: inline-block !important;
+}
+
+/* Pay CTA Button matching /checkout .checkout-submit */
+.drapza-pay-btn {
+  margin-top: 0.85rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  padding: 0.95rem 1.5rem !important;
+  border-radius: 8px !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  cursor: pointer !important;
+  border: 1px solid #ffffff !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  width: 100% !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  touch-action: manipulation !important;
+}
+
+.drapza-pay-btn:hover:not(:disabled) {
+  background-color: #f4f6f2 !important;
+  border-color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+.drapza-pay-btn:active:not(:disabled) {
+  transform: scale(0.99) !important;
+}
+
+.drapza-pay-btn:disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+
+.drapza-payment-error {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  color: #fecaca !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.76rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  background-color: rgba(239, 68, 68, 0.14) !important;
+  border: 1px solid rgba(239, 68, 68, 0.38) !important;
+  padding: 0.7rem 0.95rem !important;
+  border-radius: 8px !important;
+  margin-top: 0.5rem !important;
+  line-height: 1.4 !important;
+}
+
+.drapza-payment-error svg {
+  color: #ef4444 !important;
+  flex-shrink: 0 !important;
+}
+
+.drapza-error-text {
+  color: #fecaca !important;
+  font-family: var(--font-dm-mono), monospace !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.35 !important;
+}
+
+/* Mobile Sticky Action Bar - hidden so page flows naturally to Order Summary and Confirm Order button */
+.drapza-mobile-sticky-action-bar {
+  display: none !important;
+}
+
+/* ==============================================================
+   MOBILE & TABLET RESPONSIVE STYLING (matching reference UI)
+   ============================================================== */
+@media (max-width: 768px) {
+  .drapza-payment-main-content {
+    padding: 6rem 0.95rem 3.5rem 0.95rem !important;
+    padding-top: max(6rem, calc(5.25rem + env(safe-area-inset-top, 0px))) !important;
+  }
+
+  .drapza-payment-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .drapza-delivery-cards-list {
+    gap: 0.75rem !important;
+  }
+
+  .drapza-deliv-card {
+    padding: 0.85rem 0.95rem !important;
+    border-radius: 12px !important;
+    gap: 0.65rem !important;
+  }
+
+  .drapza-deliv-left {
+    gap: 0.75rem !important;
+  }
+
+  .drapza-deliv-name {
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+  }
+
+  .drapza-deliv-desc {
+    font-size: 0.68rem !important;
+    font-weight: 400 !important;
+    line-height: 1.3 !important;
+  }
+
+  .drapza-deliv-price-val {
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+  }
+
+  .drapza-deliv-time-val {
+    font-size: 0.62rem !important;
+    font-weight: 400 !important;
+  }
+
+  .drapza-pm-list {
+    gap: 0.75rem !important;
+  }
+
+  .drapza-method-card {
+    padding: 0.95rem 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  .drapza-method-top {
+    gap: 0.75rem !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+  }
+
+  .drapza-method-left {
+    gap: 0.75rem !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .drapza-method-details {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .drapza-method-name {
+    font-size: 0.80rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1.25 !important;
+    gap: 5px !important;
+  }
+
+  .drapza-method-tag {
+    font-size: 0.55rem !important;
+    font-weight: 500 !important;
+    padding: 1.5px 5.5px !important;
+  }
+
+  .drapza-method-sub {
+    font-size: 0.68rem !important;
+    font-weight: 400 !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.03em !important;
+    margin-top: 3px !important;
+  }
+
+  .drapza-available-badge {
+    font-size: 0.60rem !important;
+    font-weight: 450 !important;
+    padding: 2.5px 7px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .drapza-method-notice {
+    font-size: 0.68rem !important;
+    font-weight: 400 !important;
+    line-height: 1.35 !important;
+    margin-top: 0.65rem !important;
+    padding-top: 0.55rem !important;
+  }
+
+  .drapza-brand-right {
+    flex-shrink: 0 !important;
+    gap: 0.35rem !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+
+  .drapza-brand-title {
+    font-size: 0.86rem !important;
+    font-weight: 600 !important;
+  }
+
+  .drapza-brand-badges {
+    gap: 0.25rem !important;
+  }
+
+  .drapza-badge-text {
+    font-size: 0.65rem !important;
+    font-weight: 450 !important;
+  }
+
+  .drapza-summary-col {
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 16px !important;
+    background-color: #121316 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .drapza-summary-col span {
+    font-weight: 450 !important;
+  }
+
+  .drapza-summary-col h5,
+  .drapza-summary-heading {
+    font-weight: 400 !important;
+  }
+
+  .drapza-pay-btn {
+    width: 100% !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.95rem 1.5rem !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    margin-top: 1.25rem !important;
+  }
+}
+
+/* Extra small adjustments (< 480px) */
+@media (max-width: 480px) {
+  .drapza-deliv-card {
+    padding: 0.75rem 0.85rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .drapza-deliv-left {
+    gap: 0.6rem !important;
+  }
+
+  .drapza-deliv-name {
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+  }
+
+  .drapza-deliv-desc {
+    font-size: 0.64rem !important;
+    font-weight: 400 !important;
+  }
+
+  .drapza-deliv-price-val {
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+  }
+
+  .drapza-deliv-time-val {
+    font-size: 0.58rem !important;
+    font-weight: 400 !important;
+  }
+
+  .drapza-method-card {
+    padding: 0.85rem 0.95rem !important;
+  }
+
+  .drapza-method-left {
+    gap: 0.65rem !important;
+  }
+
+  .drapza-method-name {
+    font-size: 0.76rem !important;
+    font-weight: 500 !important;
+  }
+
+  .drapza-method-sub {
+    font-size: 0.64rem !important;
+    font-weight: 400 !important;
+  }
+
+  .drapza-brand-title {
+    font-size: 0.80rem !important;
+    font-weight: 600 !important;
+  }
+
+  .drapza-badge-text {
+    font-size: 0.60rem !important;
+    font-weight: 450 !important;
+  }
+}

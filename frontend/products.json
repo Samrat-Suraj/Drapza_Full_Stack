@@ -1,0 +1,376 @@
+[
+  {
+    "name": "Unit 01",
+    "price": "1620",
+    "color": "Black",
+    "tag": "Deform",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "A modular black outer shell engineered with rigid layering and precision cuts—ideal for urban climates, built to disappear in low light."
+  },
+  {
+    "name": "Phase Field",
+    "price": "1440",
+    "color": "Stone",
+    "tag": "Sheerform",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Field-ready modular wear in stone tones, featuring directional seams and a draped silhouette for fluid movement across environments."
+  },
+  {
+    "name": "Subzero",
+    "price": "1710",
+    "color": "Ice",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Lightweight jacket in a subtle ice tone, crafted for colder atmospheres with breathable construction and quiet futurism at its core."
+  },
+  {
+    "name": "Echo Pattern",
+    "price": "1260",
+    "color": "Grey",
+    "tag": "Deform",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "description": "Textured grey layering piece with soft distortion surface details and a neutral aesthetic calibrated for motion and utility."
+  },
+  {
+    "name": "Soft Matter",
+    "price": "1080",
+    "color": "White",
+    "tag": "Sheerform",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Minimal white layer with soft-shell build and structural flow, balancing technical lines with fluid fabric motion."
+  },
+  {
+    "name": "Ghostwear",
+    "price": "1665",
+    "color": "White",
+    "tag": "Functionary",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Translucent white shell with matte tonal overlays—built for minimal visibility and sensory softness across temperature shifts."
+  },
+  {
+    "name": "Core Module",
+    "price": "1350",
+    "color": "Stone",
+    "tag": "Deform",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Stone-layered midweight core piece with minimal branding, modular attachments, and internal system paneling."
+  },
+  {
+    "name": "Persona Null",
+    "price": "1575",
+    "color": "Black",
+    "tag": "Sheerform",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Anti-identity outerwear in blackout, asymmetric cut lines and concealed fastenings—designed for detachment and drift."
+  },
+  {
+    "name": "Axis Drift",
+    "price": "1485",
+    "color": "Grey",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "A soft grey utility form built to wrap and reorient on body movement, echoing collapse and stretch in motion."
+  },
+  {
+    "name": "Patch v0.2",
+    "price": "990",
+    "color": "White",
+    "tag": "Deform",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Crisp white form with adaptive panel layout and micro utility pockets—a prototype layer made for future rewrites."
+  },
+  {
+    "name": "Relay Shell",
+    "price": "1305",
+    "color": "Black",
+    "tag": "Sheerform",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Shadow black outer with reactive fabric and structural folds, constructed to bypass signal and retain warmth."
+  },
+  {
+    "name": "Clone Form",
+    "price": "1170",
+    "color": "Ice",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Icy neutral silhouette with reflective accents and reversible construction—a dual-form expression of adaptive layering."
+  },
+  {
+    "name": "Cold Proxy",
+    "price": "1395",
+    "color": "Grey",
+    "tag": "Deform",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Soft grey insulated layer mimicking cold tactility, designed for semi-static zones and low interaction corridors."
+  },
+  {
+    "name": "Frame Shift",
+    "price": "1440",
+    "color": "Stone",
+    "tag": "Sheerform",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Stone-finished body with angular overlay panels and modular zip-outs—built to reconfigure with each movement frame."
+  },
+  {
+    "name": "Veil Unit",
+    "price": "1575",
+    "color": "Ice",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Semi-translucent layering piece in soft ice, designed for concealment and diffusion—ideal for fragmented lighting and modular outfitting."
+  },
+  {
+    "name": "Null Form",
+    "price": "1485",
+    "color": "Black",
+    "tag": "Deform",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "An all-black uniform shell stripped of markings, with dimensional construction lines and an identity-less profile made for clean resets."
+  },
+  {
+    "name": "Infra Veil",
+    "price": "1530",
+    "color": "White",
+    "tag": "Sheerform",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "A radiant white coat with subtle sublayer seams and soft mirrored accents, designed for high-contrast atmospheres and neutral layering."
+  },
+  {
+    "name": "Zone Artifact",
+    "price": "1665",
+    "color": "Stone",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Stone-colored soft-armor inspired shell jacket with reactive texture zones, adaptive stitch mapping, and tonal fracture lines."
+  },
+  {
+    "name": "Shellcode",
+    "price": "1440",
+    "color": "Grey",
+    "tag": "Deform",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Neutral grey long-form with sealed placket, hidden entry points, and binary stitch overlays—built like code, worn like static."
+  },
+  {
+    "name": "Second Host",
+    "price": "1350",
+    "color": "Ice",
+    "tag": "Sheerform",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Pale ice-toned skinwear form with low-profile cuffs and a neutral inner mesh—softly modular, designed for second-layer performance."
+  },
+  {
+    "name": "Noir Signal",
+    "price": "1710",
+    "color": "Black",
+    "tag": "Functionary",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Deep black statement outerwear with curved overlay paneling and signal-suppressed design for quiet visual presence in charged spaces."
+  },
+  {
+    "name": "Dust Layer",
+    "price": "1278",
+    "color": "Stone",
+    "tag": "Deform",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Low-movement layer in muted stone, cut with angular drop sleeves and a dust-soft finish that breaks light across the body."
+  },
+  {
+    "name": "Greycode",
+    "price": "1422",
+    "color": "Grey",
+    "tag": "Sheerform",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "A soft technical shell in neutral grey with encoded vent seams and microstructured collar—functionality compressed into silence."
+  },
+  {
+    "name": "Unbody",
+    "price": "1530",
+    "color": "Black",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "A blackout top-layer with sculpted tension zones and minimal profile, designed to disappear under low contrast and diffuse edge."
+  },
+  {
+    "name": "Pale Shard",
+    "price": "1305",
+    "color": "White",
+    "tag": "Deform",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Crisp white topcoat with shard-line darting and a nearly frameless silhouette that refracts form without reflecting structure."
+  },
+  {
+    "name": "Static Mist",
+    "price": "1215",
+    "color": "Grey",
+    "tag": "Sheerform",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Grey-toned wind layer with interference-resistant fiber blend, shaped to disrupt silhouettes in motion and dissolve into atmosphere."
+  },
+  {
+    "name": "Ghost Line",
+    "price": "1395",
+    "color": "Ice",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Pale minimal field uniform in ice, defined by seamless construction and directional venting for high fluidity across movement zones."
+  },
+  {
+    "name": "Phantom Skin",
+    "price": "1485",
+    "color": "White",
+    "tag": "Deform",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "High-density lightweight outer layer in white, designed with anatomical panel flow and soft-reactive pressure folds across spine line."
+  },
+  {
+    "name": "Overcast Proxy",
+    "price": "1350",
+    "color": "Grey",
+    "tag": "Sheerform",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "description": "Neutral grey proxy fit with curved arms and fog-treated finish—built for ghosted movement across filtered daylight corridors."
+  },
+  {
+    "name": "Neutral Drift",
+    "price": "1485",
+    "color": "Black",
+    "tag": "Functionary",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "description": "Minimal black utility form with adaptive paneling and neutral drift construction—designed for seamless integration across environments."
+  }
+]

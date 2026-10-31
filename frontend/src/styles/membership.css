@@ -1,0 +1,210 @@
+/* ==========================================================================
+   DRAPZA MEMBERSHIP PAGE ISOLATION - EXACT LUXURY ATELIER UI
+   Matches Image 1 Reference Perfectly - Completely Shields from Brutalist Global CSS
+   ========================================================================== */
+
+[data-membership-root] {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #111111;
+  background-color: #faf5f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-membership-root] * {
+  box-sizing: border-box;
+}
+
+/* Force standard font and normal casing on all elements */
+[data-membership-root] :is(p, span, a, div, strong, li, label, input, button, h1, h2, h3, h4, h5) {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Specific allowed uppercase tags */
+[data-membership-root] .membership-tag-uppercase {
+  text-transform: uppercase !important;
+  letter-spacing: 0.18em !important;
+}
+
+/* SVG and Lucide icon stabilization */
+[data-membership-root] svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+[data-membership-root] svg:not([fill="currentColor"]):not([fill*="#"]) {
+  fill: none;
+}
+
+/* Buttons reset within membership */
+[data-membership-root] button {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  text-transform: none !important;
+  cursor: pointer;
+  outline: none;
+  border-radius: 12px;
+  line-height: 1.2;
+}
+
+[data-membership-root] button:active {
+  transform: scale(0.98);
+}
+
+/* Hero Banner Card */
+.membership-hero-card {
+  background: linear-gradient(135deg, #fbf2ec 0%, #f7e7de 45%, #f2ddd1 100%) !important;
+  border: 1px solid #ead9ce !important;
+  border-radius: 28px !important;
+  box-shadow: 0 4px 24px -2px rgba(215, 180, 160, 0.18) !important;
+}
+
+/* Benefit Cards in Hero */
+.membership-benefit-card {
+  background-color: #ffffff !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.membership-benefit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.membership-benefit-icon-wrap {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.membership-benefit-icon-wrap svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Standard Plan Card (Silver & Platinum) */
+.membership-plan-card-standard {
+  background-color: #ffffff !important;
+  border: 1px solid #ebe4de !important;
+  border-radius: 24px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.membership-plan-card-standard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Popular Plan Card (Gold / Middle) */
+.membership-plan-card-popular {
+  background-color: #18181b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 24px !important;
+  color: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.membership-plan-card-popular:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.26) !important;
+}
+
+/* Checkmark icons in plans */
+.membership-check-circle-dark {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.membership-check-circle-dark svg {
+  width: 11px !important;
+  height: 11px !important;
+  stroke: #ffffff !important;
+  stroke-width: 3.5 !important;
+}
+
+.membership-check-circle-light {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  background-color: #ffffff !important;
+  color: #18181b !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.membership-check-circle-light svg {
+  width: 11px !important;
+  height: 11px !important;
+  stroke: #18181b !important;
+  stroke-width: 3.5 !important;
+}
+
+/* Buttons in Plans */
+.membership-plan-btn-outline {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid #111111 !important;
+  padding: 13px 20px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.15s ease !important;
+}
+
+.membership-plan-btn-outline:hover {
+  background-color: #f7f7f7 !important;
+  border-color: #000000 !important;
+}
+
+.membership-plan-btn-popular {
+  background-color: #dfb48c !important;
+  color: #18181b !important;
+  border: none !important;
+  padding: 13px 20px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.membership-plan-btn-popular:hover {
+  background-color: #d3a47a !important;
+}
+

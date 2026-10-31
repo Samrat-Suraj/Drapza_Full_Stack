@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Koulen&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "../styles/main.css";
+@import "../styles/admin.css";
+@import "../styles/payment.css";
+@import "../styles/order-confirmation.css";
+@import "../styles/membership.css";
+
+/* DRAPZA Design System Tokens */
+@theme {
+  --font-sans: var(--font-host-grotesk), 'Host Grotesk', system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), 'DM Mono', monospace;
+
+  --font-koulen: var(--font-koulen), 'Koulen', sans-serif;
+  --font-host-grotesk: var(--font-host-grotesk), 'Host Grotesk', sans-serif;
+  --font-dm-mono: var(--font-dm-mono), 'DM Mono', monospace;
+
+  --font-display: var(--font-koulen), 'Koulen', sans-serif;
+  --font-mono-technical: var(--font-dm-mono), 'DM Mono', monospace;
+  --font-body: var(--font-host-grotesk), 'Host Grotesk', system-ui, sans-serif;
+
+  --color-base-100: #edf1e8;
+  --color-base-200: #d7dbd2;
+  --color-base-300: #afb3ab;
+  --color-base-400: #969992;
+  --color-base-500: #7d807a;
+  --color-base-600: #1f1f1f;
+  --color-base-700: #0f0f0f;
+  --color-whatsapp: #25d366;
+
+  --color-obsidian-950: #05070a;
+  --color-obsidian-900: #0b0f19;
+  --color-obsidian-850: #101524;
+  --color-obsidian-800: #151b2e;
+  --color-obsidian-surface: #0e1118;
+}
+
+/* Live Preview & Studio Iframe Mode CSS suppression */
+body:has(.preview-mode) nav,
+body:has(.preview-mode) header,
+body:has(.preview-mode) footer,
+body:has(.preview-mode) .preloader,
+body:has(.preview-mode) .preloader-wrapper,
+body:has(.preview-mode) .pd-breadcrumb,
+body:has(.preview-mode) .contact-form,
+body:has(.preview-mode) .footer,
+body:has(.preview-mode) .cart-sidebar,
+body:has(.preview-mode) .cart-sidebar-overlay,
+body:has(.preview-mode) [class*="Navigation_"],
+body:has(.preview-mode) [class*="Preloader_"],
+body:has(.preview-mode) [class*="navigation"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body:has(.preview-mode) {
+  overflow-y: auto !important;
+}
+
+.page.preview-mode {
+  padding-top: 0 !important;
+}
+
+/* ==========================================================================
+   DRAPZA MODERN LOADING SKELETON & SHIMMER DESIGN SYSTEM
+   - Subtle left-to-right shimmer gradient
+   - Obsidian dark mode & neutral light mode variants
+   - Full prefers-reduced-motion accessibility
+   ========================================================================== */
+
+@keyframes drapza-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #e8ece4;
+  background-image: linear-gradient(90deg,
+      rgba(232, 236, 228, 0.9) 0%,
+      rgba(247, 249, 245, 0.95) 45%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(247, 249, 245, 0.95) 55%,
+      rgba(232, 236, 228, 0.9) 100%);
+  background-size: 250% 100%;
+  animation: drapza-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.skeleton-shimmer-subtle {
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f3ec;
+  background-image: linear-gradient(90deg,
+      rgba(240, 243, 236, 0.8) 0%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(240, 243, 236, 0.8) 100%);
+  background-size: 250% 100%;
+  animation: drapza-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.skeleton-shimmer-dark {
+  position: relative;
+  overflow: hidden;
+  background-color: #151b28;
+  background-image: linear-gradient(90deg,
+      rgba(21, 27, 40, 0.9) 0%,
+      rgba(34, 43, 62, 0.95) 45%,
+      rgba(45, 56, 80, 0.95) 50%,
+      rgba(34, 43, 62, 0.95) 55%,
+      rgba(21, 27, 40, 0.9) 100%);
+  background-size: 250% 100%;
+  animation: drapza-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.skeleton-shimmer-contrast {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(15, 15, 15, 0.15);
+  background-image: linear-gradient(90deg,
+      rgba(15, 15, 15, 0.15) 0%,
+      rgba(15, 15, 15, 0.25) 50%,
+      rgba(15, 15, 15, 0.15) 100%);
+  background-size: 250% 100%;
+  animation: drapza-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .skeleton-shimmer,
+  .skeleton-shimmer-subtle,
+  .skeleton-shimmer-dark,
+  .skeleton-shimmer-contrast {
+    animation: none !important;
+    background-image: none !important;
+  }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
