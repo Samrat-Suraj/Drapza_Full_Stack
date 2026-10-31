@@ -1126,211 +1126,220 @@ export const ProfilePage = () => {
                       </div>
                     )}
 
-                    <form onSubmit={handleSaveProfile} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                      {/* First Name Field */}
-                      <div>
-                        <div className={`profile-input-field ${personalFieldErrors.firstName || personalFieldErrors.name ? 'error' : ''}`}>
-                          <User size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
-                          <div className="profile-input-stack">
-                            <span className="profile-input-label">First Name</span>
-                            <input
-                              type="text"
-                              value={firstName}
-                              onChange={(e) => {
-                                setFirstName(e.target.value);
-                                if (personalFieldErrors.firstName || personalFieldErrors.name) {
-                                  setPersonalFieldErrors((prev) => ({ ...prev, firstName: '', name: '' }));
-                                }
-                              }}
-                              className="profile-input-val"
-                              placeholder="First Name"
-                            />
+                    <form onSubmit={handleSaveProfile} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                      {/* Row 1: First Name & Last Name (2 cols on desktop, 1 col on mobile) */}
+                      <div className="profile-form-grid-2col">
+                        {/* First Name Field */}
+                        <div>
+                          <div className={`profile-input-field ${personalFieldErrors.firstName || personalFieldErrors.name ? 'error' : ''}`}>
+                            <User size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
+                            <div className="profile-input-stack">
+                              <span className="profile-input-label">First Name</span>
+                              <input
+                                type="text"
+                                value={firstName}
+                                onChange={(e) => {
+                                  setFirstName(e.target.value);
+                                  if (personalFieldErrors.firstName || personalFieldErrors.name) {
+                                    setPersonalFieldErrors((prev) => ({ ...prev, firstName: '', name: '' }));
+                                  }
+                                }}
+                                className="profile-input-val"
+                                placeholder="First Name"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        {(personalFieldErrors.firstName || personalFieldErrors.name) && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
-                            {personalFieldErrors.firstName || personalFieldErrors.name}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Last Name Field */}
-                      <div>
-                        <div className={`profile-input-field ${personalFieldErrors.lastName ? 'error' : ''}`}>
-                          <User size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
-                          <div className="profile-input-stack">
-                            <span className="profile-input-label">Last Name</span>
-                            <input
-                              type="text"
-                              value={lastName}
-                              onChange={(e) => {
-                                setLastName(e.target.value);
-                                if (personalFieldErrors.lastName) {
-                                  setPersonalFieldErrors((prev) => ({ ...prev, lastName: '' }));
-                                }
-                              }}
-                              className="profile-input-val"
-                              placeholder="Last Name"
-                            />
-                          </div>
-                        </div>
-                        {personalFieldErrors.lastName && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
-                            {personalFieldErrors.lastName}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Email Field */}
-                      <div>
-                        <div className="profile-input-field" style={{ backgroundColor: '#fcfdfb' }}>
-                          <Mail size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
-                          <div className="profile-input-stack">
-                            <span className="profile-input-label">Email</span>
-                            <input
-                              type="email"
-                              value={email}
-                              readOnly
-                              disabled
-                              className="profile-input-val"
-                              style={{ color: '#555850', cursor: 'not-allowed' }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Phone Row */}
-                      <div>
-                        <div className="profile-phone-row">
-                          <div className="profile-phone-code-pill">
-                            <Phone size={16} stroke="#6b7280" />
-                            <select
-                              value={countryCode}
-                              onChange={(e) => setCountryCode(e.target.value)}
-                              className="profile-phone-code-select"
-                            >
-                              <option value="+91">(+91)</option>
-                              <option value="+1">(+1)</option>
-                              <option value="+44">(+44)</option>
-                              <option value="+33">(+33)</option>
-                              <option value="+31">(+31)</option>
-                            </select>
-                            <ChevronDown size={13} stroke="#6b7280" />
-                          </div>
-
-                          <div className={`profile-phone-num-pill ${personalFieldErrors.phone ? 'error' : ''}`}>
-                            <input
-                              type="tel"
-                              value={phone}
-                              onChange={(e) => {
-                                setPhone(e.target.value);
-                                if (personalFieldErrors.phone) setPersonalFieldErrors((prev) => ({ ...prev, phone: '' }));
-                              }}
-                              placeholder="9794603102"
-                              className="profile-phone-input"
-                            />
-                          </div>
-                        </div>
-                        {personalFieldErrors.phone && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
-                            {personalFieldErrors.phone}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Date of Birth Picker */}
-                      <div>
-                        <div
-                          className={`profile-dob-pill ${personalFieldErrors.dob ? 'error' : ''}`}
-                          onClick={handleOpenDatePicker}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                            <Calendar size={18} stroke="#6b7280" />
-                            <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#111315'}}>
-                              {dob || '14 / 08 / 1998'}
+                          {(personalFieldErrors.firstName || personalFieldErrors.name) && (
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                              {personalFieldErrors.firstName || personalFieldErrors.name}
                             </span>
-                            <ChevronDown size={14} stroke="#6b7280" />
-                          </div>
-                          <ChevronDown size={16} stroke="#111315" />
+                          )}
+                        </div>
 
-                          <input
-                            ref={dateInputRef}
-                            type="date"
-                            value={getIsoDate(dob)}
-                            max={new Date().toISOString().split('T')[0]}
-                            min="1920-01-01"
-                            onChange={(e) => {
-                              if (e.target.value) {
-                                const parts = e.target.value.split('-');
-                                if (parts.length === 3) {
-                                  const formatted = `${parts[2]} / ${parts[1]} / ${parts[0]}`;
-                                  setDob(formatted);
-                                  if (personalFieldErrors.dob) {
-                                    setPersonalFieldErrors((prev) => ({ ...prev, dob: '' }));
+                        {/* Last Name Field */}
+                        <div>
+                          <div className={`profile-input-field ${personalFieldErrors.lastName ? 'error' : ''}`}>
+                            <User size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
+                            <div className="profile-input-stack">
+                              <span className="profile-input-label">Last Name</span>
+                              <input
+                                type="text"
+                                value={lastName}
+                                onChange={(e) => {
+                                  setLastName(e.target.value);
+                                  if (personalFieldErrors.lastName) {
+                                    setPersonalFieldErrors((prev) => ({ ...prev, lastName: '' }));
+                                  }
+                                }}
+                                className="profile-input-val"
+                                placeholder="Last Name"
+                              />
+                            </div>
+                          </div>
+                          {personalFieldErrors.lastName && (
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                              {personalFieldErrors.lastName}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Row 2: Email & Phone (2 cols on desktop, 1 col on mobile) */}
+                      <div className="profile-form-grid-2col">
+                        {/* Email Field */}
+                        <div>
+                          <div className="profile-input-field" style={{ backgroundColor: '#fcfdfb' }}>
+                            <Mail size={18} stroke="#6b7280" style={{ flexShrink: 0 }} />
+                            <div className="profile-input-stack">
+                              <span className="profile-input-label">Email</span>
+                              <input
+                                type="email"
+                                value={email}
+                                readOnly
+                                disabled
+                                className="profile-input-val"
+                                style={{ color: '#555850', cursor: 'not-allowed' }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Phone Row */}
+                        <div>
+                          <div className="profile-phone-row">
+                            <div className="profile-phone-code-pill">
+                              <Phone size={16} stroke="#6b7280" />
+                              <select
+                                value={countryCode}
+                                onChange={(e) => setCountryCode(e.target.value)}
+                                className="profile-phone-code-select"
+                              >
+                                <option value="+91">(+91)</option>
+                                <option value="+1">(+1)</option>
+                                <option value="+44">(+44)</option>
+                                <option value="+33">(+33)</option>
+                                <option value="+31">(+31)</option>
+                              </select>
+                              <ChevronDown size={13} stroke="#6b7280" />
+                            </div>
+
+                            <div className={`profile-phone-num-pill ${personalFieldErrors.phone ? 'error' : ''}`}>
+                              <input
+                                type="tel"
+                                value={phone}
+                                onChange={(e) => {
+                                  setPhone(e.target.value);
+                                  if (personalFieldErrors.phone) setPersonalFieldErrors((prev) => ({ ...prev, phone: '' }));
+                                }}
+                                placeholder="9794603102"
+                                className="profile-phone-input"
+                              />
+                            </div>
+                          </div>
+                          {personalFieldErrors.phone && (
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                              {personalFieldErrors.phone}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Row 3: DOB & Gender (2 cols on desktop, 1 col on mobile) */}
+                      <div className="profile-form-grid-2col">
+                        {/* Date of Birth Picker */}
+                        <div>
+                          <div
+                            className={`profile-dob-pill ${personalFieldErrors.dob ? 'error' : ''}`}
+                            onClick={handleOpenDatePicker}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                              <Calendar size={18} stroke="#6b7280" />
+                              <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#111315'}}>
+                                {dob || '14 / 08 / 1998'}
+                              </span>
+                              <ChevronDown size={14} stroke="#6b7280" />
+                            </div>
+                            <ChevronDown size={16} stroke="#111315" />
+
+                            <input
+                              ref={dateInputRef}
+                              type="date"
+                              value={getIsoDate(dob)}
+                              max={new Date().toISOString().split('T')[0]}
+                              min="1920-01-01"
+                              onChange={(e) => {
+                                if (e.target.value) {
+                                  const parts = e.target.value.split('-');
+                                  if (parts.length === 3) {
+                                    const formatted = `${parts[2]} / ${parts[1]} / ${parts[0]}`;
+                                    setDob(formatted);
+                                    if (personalFieldErrors.dob) {
+                                      setPersonalFieldErrors((prev) => ({ ...prev, dob: '' }));
+                                    }
                                   }
                                 }
-                              }
-                            }}
-                            tabIndex={-1}
-                            aria-hidden="true"
-                            style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }}
-                          />
+                              }}
+                              tabIndex={-1}
+                              aria-hidden="true"
+                              style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }}
+                            />
+                          </div>
+                          {personalFieldErrors.dob && (
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                              {personalFieldErrors.dob}
+                            </span>
+                          )}
                         </div>
-                        {personalFieldErrors.dob && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
-                            {personalFieldErrors.dob}
-                          </span>
-                        )}
-                      </div>
 
-                      {/* Gender Selector Cards */}
-                      <div>
-                        <div className="profile-gender-selection-row" role="radiogroup" aria-label="Select Gender">
-                          {/* Male Card */}
-                          <button
-                            type="button"
-                            role="radio"
-                            aria-checked={gender === 'male'}
-                            onClick={() => {
-                              setGender('male');
-                              if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
-                            }}
-                            className={`profile-gender-pill-card ${gender === 'male' ? 'selected' : ''}`}
-                          >
-                            {gender === 'male' && (
-                              <span className="profile-gender-check-badge">
-                                <Check size={11} stroke="#ffffff" strokeWidth={3} />
-                              </span>
-                            )}
-                            <span style={{ fontSize: '1.25rem', lineHeight: 1, marginBottom: '2px' }}>♂</span>
-                            <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em' }}>MALE</span>
-                          </button>
+                        {/* Gender Selector Cards */}
+                        <div>
+                          <div className="profile-gender-selection-row" role="radiogroup" aria-label="Select Gender">
+                            {/* Male Card */}
+                            <button
+                              type="button"
+                              role="radio"
+                              aria-checked={gender === 'male'}
+                              onClick={() => {
+                                setGender('male');
+                                if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
+                              }}
+                              className={`profile-gender-pill-card ${gender === 'male' ? 'selected' : ''}`}
+                            >
+                              {gender === 'male' && (
+                                <span className="profile-gender-check-badge">
+                                  <Check size={11} stroke="#ffffff" strokeWidth={3} />
+                                </span>
+                              )}
+                              <span style={{ fontSize: '1.25rem', lineHeight: 1, marginBottom: '2px' }}>♂</span>
+                              <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em' }}>MALE</span>
+                            </button>
 
-                          {/* Female Card */}
-                          <button
-                            type="button"
-                            role="radio"
-                            aria-checked={gender === 'female'}
-                            onClick={() => {
-                              setGender('female');
-                              if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
-                            }}
-                            className={`profile-gender-pill-card ${gender === 'female' ? 'selected' : ''}`}
-                          >
-                            {gender === 'female' && (
-                              <span className="profile-gender-check-badge">
-                                <Check size={11} stroke="#ffffff" strokeWidth={3} />
-                              </span>
-                            )}
-                            <span style={{ fontSize: '1.25rem', lineHeight: 1, marginBottom: '2px' }}>♀</span>
-                            <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em' }}>FEMALE</span>
-                          </button>
+                            {/* Female Card */}
+                            <button
+                              type="button"
+                              role="radio"
+                              aria-checked={gender === 'female'}
+                              onClick={() => {
+                                setGender('female');
+                                if (personalFieldErrors.gender) setPersonalFieldErrors((prev) => ({ ...prev, gender: '' }));
+                              }}
+                              className={`profile-gender-pill-card ${gender === 'female' ? 'selected' : ''}`}
+                            >
+                              {gender === 'female' && (
+                                <span className="profile-gender-check-badge">
+                                  <Check size={11} stroke="#ffffff" strokeWidth={3} />
+                                </span>
+                              )}
+                              <span style={{ fontSize: '1.25rem', lineHeight: 1, marginBottom: '2px' }}>♀</span>
+                              <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em' }}>FEMALE</span>
+                            </button>
+                          </div>
+                          {personalFieldErrors.gender && (
+                            <span style={{ color: '#ef4444', fontSize: '0.68rem', marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
+                              {personalFieldErrors.gender}
+                            </span>
+                          )}
                         </div>
-                        {personalFieldErrors.gender && (
-                          <span style={{ color: '#ef4444', fontSize: '0.68rem',  marginTop: '0.2rem', fontWeight: 500, display: 'block', paddingLeft: '0.5rem' }}>
-                            {personalFieldErrors.gender}
-                          </span>
-                        )}
                       </div>
 
                       {/* Informational Box */}
@@ -1350,33 +1359,35 @@ export const ProfilePage = () => {
                       </div>
 
                       {/* Action Buttons: Save Changes & Cancel */}
-                      <button
-                        type="submit"
-                        disabled={isUpdatingProfile}
-                        className="profile-btn-save"
-                      >
-                        <Save size={18} stroke="#ffffff" />
-                        <span>{isUpdatingProfile ? 'Saving...' : 'Save Changes'}</span>
-                      </button>
+                      <div className="profile-form-actions-row">
+                        <button
+                          type="submit"
+                          disabled={isUpdatingProfile}
+                          className="profile-btn-save"
+                        >
+                          <Save size={18} stroke="#ffffff" />
+                          <span>{isUpdatingProfile ? 'Saving...' : 'Save Changes'}</span>
+                        </button>
 
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const parts = (currentUser.name || 'DRAPZA ADMIN').trim().split(' ');
-                          setFirstName(parts[0] || 'DRAPZA');
-                          setLastName(parts.slice(1).join(' ') || 'ADMIN');
-                          setPhone(currentUser.phone || '9794603102');
-                          setGender(currentUser.gender || 'male');
-                          setDob(currentUser.dob || '14 / 08 / 1998');
-                          setPersonalFieldErrors({});
-                          setSaveError('');
-                          setMobileSubView('hub');
-                        }}
-                        className="profile-btn-cancel"
-                      >
-                        <X size={18} stroke="#111315" />
-                        <span>Cancel</span>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const parts = (currentUser.name || 'DRAPZA ADMIN').trim().split(' ');
+                            setFirstName(parts[0] || 'DRAPZA');
+                            setLastName(parts.slice(1).join(' ') || 'ADMIN');
+                            setPhone(currentUser.phone || '9794603102');
+                            setGender(currentUser.gender || 'male');
+                            setDob(currentUser.dob || '14 / 08 / 1998');
+                            setPersonalFieldErrors({});
+                            setSaveError('');
+                            setMobileSubView('hub');
+                          }}
+                          className="profile-btn-cancel"
+                        >
+                          <X size={18} stroke="#111315" />
+                          <span>Cancel</span>
+                        </button>
+                      </div>
                     </form>
                   </div>
                 )}
