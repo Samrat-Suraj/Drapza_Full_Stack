@@ -46,7 +46,10 @@ import {
   X,
   Pencil,
   Info,
-  ChevronDown
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp
 } from 'lucide-react';
 import { CustomerReturnModal } from '../components/drapza/CustomerReturnModal';
 import { CancelOrderModal } from '../components/drapza/CancelOrderModal';
@@ -73,6 +76,9 @@ export const ProfilePage = () => {
   useEffect(() => {
     if (tabParam && ['personal', 'orders', 'addresses', 'wishlist', 'cart', 'preferences'].includes(tabParam)) {
       setActiveTab(tabParam);
+      if (tabParam !== 'personal') {
+        setMobileSubView(tabParam);
+      }
     }
   }, [tabParam]);
 
@@ -84,8 +90,10 @@ export const ProfilePage = () => {
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const [cancelTargetOrder, setCancelTargetOrder] = useState(null);
 
-  // Active Menu Tab
+  // Active Menu Tab & Mobile Sub-view
   const [activeTab, setActiveTab] = useState('personal');
+  const [mobileSubView, setMobileSubView] = useState('hub'); // 'hub' | 'orders' | 'wishlist' | 'cart' | 'addresses' | 'preferences'
+  const [isPersonalAccordionOpen, setIsPersonalAccordionOpen] = useState(true);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
   // Wishlist State (stored in localStorage)
@@ -180,12 +188,12 @@ export const ProfilePage = () => {
   };
 
   const tabLabels = {
-    orders: 'My orders',
-    wishlist: 'My Wishlist',
-    cart: 'My Cart',
+    orders: 'Order History',
+    wishlist: 'Wishlist & Liked',
+    cart: 'My Shopping Bag',
     personal: 'Personal Information',
-    addresses: 'Addresses',
-    preferences: 'Contact Preferences',
+    addresses: 'Saved Addresses',
+    preferences: 'Preference & Security',
   };
 
   const navItems = [
@@ -309,49 +317,6 @@ export const ProfilePage = () => {
     }
   };
 
-  // Mobile Dock Navigation Items (Matching Left Floating Capsule Dock in Screenshot)
-  const mobileDockItems = [
-    {
-      id: 'cart',
-      label: 'My Cart',
-      icon: (isActive) => <ShoppingCart size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-    {
-      id: 'wishlist',
-      label: 'My Wishlist',
-      icon: (isActive) => <Heart size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-    {
-      id: 'orders',
-      label: 'My Orders',
-      icon: (isActive) => <ShoppingBag size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-    {
-      id: 'personal',
-      label: 'Personal Information',
-      icon: (isActive) => <User size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-    {
-      id: 'addresses',
-      label: 'Addresses',
-      icon: (isActive) => <MapPin size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-    {
-      id: 'preferences',
-      label: 'Settings',
-      icon: (isActive) => <Settings size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-    {
-      id: 'logout',
-      label: 'Sign Out',
-      action: () => {
-        logout();
-        router.push('/');
-      },
-      icon: (isActive) => <LogOut size={20} stroke={isActive ? '#ffffff' : '#2c2e33'} strokeWidth={isActive ? 2.2 : 1.8} />,
-    },
-  ];
-
   // Address Modal State
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addrError, setAddrError] = useState('');
@@ -459,7 +424,9 @@ export const ProfilePage = () => {
   }, [currentUser?.name, currentUser?.email, currentUser?.phone, currentUser?.gender, currentUser?.dob]);
 
   const handleSaveProfile = async (e) => {
-    e.preventDefault();
+    if (e && typeof e.preventDefault === 'function') {
+      e.preventDefault();
+    }
     setSaveError('');
     setSaveSuccess(false);
 
@@ -1234,26 +1201,23 @@ export const ProfilePage = () => {
             gap: 1rem;
           }
 
-          /* Mobile Top Bar Header */
+          /* Mobile Sticky Top Header */
           .profile-ui .profile-mobile-top-header {
             display: none;
             align-items: center;
             justify-content: space-between;
-            padding: 0.65rem 0.25rem 0.85rem 0.25rem;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background-color: rgba(237, 241, 232, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.65rem 0.25rem;
+            margin-bottom: 0.85rem;
+            border-bottom: 1px solid rgba(215, 219, 210, 0.8);
             width: 100%;
           }
-          .profile-ui .profile-mobile-title {
-            font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, sans-serif !important;
-            font-size: 1.18rem !important;
-            font-weight: 700 !important;
-            color: #111315 !important;
-            margin: 0 !important;
-            text-align: center;
-            text-transform: none !important;
-            letter-spacing: normal !important;
-            flex: 1;
-          }
-          .profile-ui .profile-mobile-icon-btn {
+          .profile-ui .profile-mobile-header-btn {
             background: transparent;
             border: none;
             cursor: pointer;
@@ -1261,13 +1225,45 @@ export const ProfilePage = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #111315;
-            position: relative;
+            color: #141513;
             border-radius: 8px;
             transition: opacity 0.15s ease;
           }
-          .profile-ui .profile-mobile-icon-btn:active {
-            opacity: 0.7;
+          .profile-ui .profile-mobile-header-btn:active {
+            opacity: 0.6;
+          }
+          .profile-ui .profile-mobile-header-title {
+            font-family: var(--font-host-grotesk), sans-serif !important;
+            font-size: 1.15rem !important;
+            font-weight: 700 !important;
+            color: #141513 !important;
+            margin: 0 !important;
+            text-align: center;
+            text-transform: none !important;
+            letter-spacing: -0.01em !important;
+            flex: 1;
+          }
+          .profile-ui .profile-mobile-save-btn {
+            background-color: #141513;
+            color: #ffffff;
+            border: none;
+            border-radius: 9999px;
+            padding: 0.38rem 0.95rem;
+            font-family: var(--font-dm-mono), monospace;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 8px rgba(20, 21, 19, 0.15);
+          }
+          .profile-ui .profile-mobile-save-btn:active {
+            transform: scale(0.96);
+            opacity: 0.85;
+          }
+          .profile-ui .profile-mobile-bag-btn {
+            position: relative;
           }
           .profile-ui .profile-mobile-cart-badge {
             position: absolute;
@@ -1288,128 +1284,272 @@ export const ProfilePage = () => {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
           }
 
-          /* Mobile Gradient User Profile Card */
-          .profile-ui .profile-mobile-user-card {
+          /* Mobile Hub Container */
+          .profile-ui .profile-mobile-wrap {
             display: none;
-            background: linear-gradient(135deg, #f5f0ff 0%, #ffffff 50%, #ede6ff 100%);
-            border: 1px solid #ebdfff;
-            border-radius: 20px;
-            padding: 1.1rem 1.25rem;
-            align-items: center;
-            gap: 1.1rem;
-            box-shadow: 0 4px 20px rgba(130, 90, 230, 0.06);
-            margin-bottom: 0.85rem;
             width: 100%;
           }
-          .profile-ui .profile-mobile-avatar-wrap {
+
+          /* Profile Avatar & Hero Section */
+          .profile-ui .profile-hub-avatar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.4rem 0 1.25rem 0;
+          }
+          .profile-ui .profile-hub-avatar-wrap {
             position: relative;
-            width: 66px;
-            height: 66px;
-            flex-shrink: 0;
-          }
-          .profile-ui .profile-mobile-avatar-ring {
-            width: 66px;
-            height: 66px;
+            width: 94px;
+            height: 94px;
             border-radius: 50%;
-            overflow: hidden;
             border: 3px solid #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            background-color: #f1f2f6;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 0 0 1px #d7dbd2;
+            overflow: hidden;
+            background-color: #f2f5ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
-          .profile-ui .profile-mobile-avatar-img {
+          .profile-ui .profile-hub-avatar-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
           }
-          .profile-ui .profile-mobile-avatar-edit-btn {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background-color: #111315;
-            border: 2px solid #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          .profile-ui .profile-hub-edit-picture-btn {
+            background: none;
+            border: none;
+            color: #7d807a;
+            font-family: var(--font-host-grotesk), sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-decoration: underline;
             cursor: pointer;
-            padding: 0;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            margin-top: 0.45rem;
+            padding: 0.2rem 0.5rem;
+            transition: color 0.15s ease;
           }
-          .profile-ui .profile-mobile-user-meta {
-            overflow: hidden;
+          .profile-ui .profile-hub-edit-picture-btn:hover {
+            color: #141513;
           }
-          .profile-ui .profile-mobile-user-name {
-            font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, sans-serif !important;
-            font-size: 1.05rem !important;
-            font-weight: 700 !important;
-            color: #111315 !important;
-            margin: 0 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.02em !important;
-            line-height: 1.2 !important;
+          .profile-ui .profile-hub-user-name {
+            font-family: var(--font-koulen), sans-serif !important;
+            font-size: 1.65rem !important;
+            letter-spacing: 0.03em !important;
+            color: #141513 !important;
+            line-height: 1.1 !important;
+            margin: 0.65rem 0 0.15rem 0 !important;
           }
-          .profile-ui .profile-mobile-user-email {
-            font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, sans-serif !important;
-            font-size: 0.78rem !important;
+          .profile-ui .profile-hub-user-subtitle {
+            font-family: var(--font-dm-mono), monospace !important;
+            font-size: 0.75rem !important;
             color: #7d807a !important;
-            margin: 3px 0 0 0 !important;
-            word-break: break-all;
+            margin: 0 !important;
           }
 
-          /* Left Vertical Floating Dock Pill */
-          .profile-ui .profile-mobile-dock {
-            display: none;
-            width: 48px;
-            min-width: 48px;
-            max-width: 48px;
-            background-color: #ffffff;
-            border-radius: 9999px;
-            border: 1px solid #ebece8;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-            padding: 0.65rem 0.25rem;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            position: sticky;
-            top: 72px;
-            z-index: 25;
-            flex-shrink: 0;
-          }
-          .profile-ui .profile-dock-btn {
-            width: 38px;
-            height: 38px;
+          /* Alert messages */
+          .profile-ui .profile-hub-alert {
+            padding: 0.65rem 0.95rem;
             border-radius: 12px;
+            font-size: 0.78rem;
+            font-family: var(--font-host-grotesk), sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+          }
+          .profile-ui .profile-hub-alert.success {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+          }
+          .profile-ui .profile-hub-alert.error {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+          }
+
+          /* Quick Stats Row */
+          .profile-ui .profile-hub-stats-row {
+            display: flex;
+            gap: 0.55rem;
+            width: 100%;
+            margin-bottom: 0.85rem;
+          }
+          .profile-ui .profile-hub-stat-pill {
+            flex: 1;
+            background-color: #ffffff;
+            border: 1px solid #d7dbd2;
+            border-radius: 12px;
+            padding: 0.65rem 0.4rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            background: transparent;
-            border: none;
+            gap: 0.35rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
             cursor: pointer;
-            color: #2c2e33;
-            transition: all 0.18s ease;
+            transition: all 0.15s ease;
+          }
+          .profile-ui .profile-hub-stat-pill:active {
+            background-color: #f2f5ee;
+            transform: scale(0.98);
+          }
+          .profile-ui .profile-hub-stat-label {
+            font-family: var(--font-host-grotesk), sans-serif;
+            font-size: 0.78rem;
+            color: #7d807a;
+            font-weight: 500;
+          }
+          .profile-ui .profile-hub-stat-val {
+            font-family: var(--font-dm-mono), monospace;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #141513;
+          }
+
+          /* Personal Information Accordion Card */
+          .profile-ui .profile-hub-card {
+            background-color: #ffffff;
+            border: 1px solid #d7dbd2;
+            border-radius: 16px;
+            padding: 1.05rem 1.15rem;
+            margin-bottom: 0.85rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+          }
+          .profile-ui .profile-hub-accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
             padding: 0;
+            cursor: pointer;
+            user-select: none;
           }
-          .profile-ui .profile-dock-btn:hover:not(.active) {
-            background-color: #f4f6f2;
+          .profile-ui .profile-hub-accordion-title {
+            font-family: var(--font-host-grotesk), sans-serif !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            color: #141513 !important;
+            margin: 0 !important;
+            text-transform: none !important;
           }
-          .profile-ui .profile-dock-btn.active {
-            background-color: #111315;
-            color: #ffffff;
-            box-shadow: 0 3px 12px rgba(17, 19, 21, 0.2);
+          .profile-ui .profile-hub-accordion-chevron {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7d807a;
           }
-          .profile-ui .profile-dock-active-pill {
-            position: absolute;
-            left: -3px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 18px;
-            border-radius: 4px;
-            background: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
-            box-shadow: 0 0 8px rgba(99, 102, 241, 0.7);
+          .profile-ui .profile-hub-fields-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-top: 0.95rem;
+            padding-top: 0.95rem;
+            border-top: 1px solid #edf1e8;
+          }
+          .profile-ui .profile-hub-field-row {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+          }
+          .profile-ui .profile-hub-field-icon {
+            width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7d807a;
+            flex-shrink: 0;
+          }
+          .profile-ui .profile-hub-field-label {
+            font-family: var(--font-host-grotesk), sans-serif;
+            font-size: 0.82rem;
+            color: #7d807a;
+            font-weight: 500;
+            min-width: 58px;
+            flex-shrink: 0;
+          }
+          .profile-ui .profile-hub-field-pill {
+            flex: 1;
+            background-color: #f7f9f5;
+            border: 1px solid #d7dbd2;
+            border-radius: 10px;
+            padding: 0.48rem 0.75rem;
+            font-family: var(--font-dm-mono), monospace;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #141513;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          /* Navigation Menu Card */
+          .profile-ui .profile-hub-menu-card {
+            background-color: #ffffff;
+            border: 1px solid #d7dbd2;
+            border-radius: 16px;
+            padding: 0.35rem 0.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            margin-bottom: 2rem;
+          }
+          .profile-ui .profile-hub-menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.85rem 0.75rem;
+            background: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            user-select: none;
+            text-align: left;
+          }
+          .profile-ui .profile-hub-menu-item:hover,
+          .profile-ui .profile-hub-menu-item:active {
+            background-color: #f7f9f5;
+          }
+          .profile-ui .profile-hub-menu-item-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+          }
+          .profile-ui .profile-hub-menu-item-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #141513;
+          }
+          .profile-ui .profile-hub-menu-item-label {
+            font-family: var(--font-host-grotesk), sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #141513;
+          }
+          .profile-ui .profile-hub-badge {
+            font-size: 0.68rem;
+            font-family: var(--font-dm-mono), monospace;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            background-color: #f59e0b;
+            color: #000000;
+            font-weight: 800;
+            line-height: 1.2;
+          }
+          .profile-ui .profile-hub-menu-divider {
+            height: 1px;
+            background-color: #edf1e8;
+            margin: 0.25rem 0.5rem;
+          }
+          .profile-ui .profile-hub-menu-item.destructive .profile-hub-menu-item-icon,
+          .profile-ui .profile-hub-menu-item.destructive .profile-hub-menu-item-label {
+            color: #ef4444 !important;
           }
 
           /* Modern Form Input Fields (Matches screenshot) */
@@ -1650,7 +1790,7 @@ export const ProfilePage = () => {
               display: none !important;
             }
             .drapza-profile-page {
-              padding: 0.65rem 0.65rem 3.5rem 0.65rem !important;
+              padding: 0.5rem 0.85rem 7.5rem 0.85rem !important;
             }
             .profile-ui .profile-header-section {
               display: none !important;
@@ -1661,17 +1801,17 @@ export const ProfilePage = () => {
             .profile-ui .profile-mobile-top-header {
               display: flex !important;
             }
-            .profile-ui .profile-mobile-user-card {
-              display: flex !important;
+            .profile-ui .profile-mobile-wrap.mobile-visible {
+              display: block !important;
             }
-            .profile-ui .profile-mobile-dock {
-              display: flex !important;
+            .profile-ui .profile-mobile-wrap.mobile-hidden {
+              display: none !important;
             }
-            .profile-ui .profile-container {
-              display: flex !important;
-              flex-direction: row !important;
-              align-items: flex-start !important;
-              gap: 0.65rem !important;
+            .profile-ui .profile-container.mobile-hidden {
+              display: none !important;
+            }
+            .profile-ui .profile-container.mobile-visible {
+              display: block !important;
               width: 100% !important;
               max-width: 100% !important;
               margin: 0 0 2rem 0 !important;
@@ -1680,12 +1820,12 @@ export const ProfilePage = () => {
             .profile-ui .profile-main {
               flex: 1 !important;
               min-width: 0 !important;
-              width: calc(100% - 56px) !important;
+              width: 100% !important;
             }
             .profile-ui .profile-card {
               background-color: #ffffff !important;
-              border-radius: 20px !important;
-              border: 1px solid #ebece8 !important;
+              border-radius: 16px !important;
+              border: 1px solid #d7dbd2 !important;
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
               padding: 1.15rem 0.95rem !important;
               min-height: auto !important;
@@ -1718,15 +1858,6 @@ export const ProfilePage = () => {
             .profile-ui .profile-wishlist-grid {
               grid-template-columns: 1fr !important;
             }
-            .profile-ui .profile-mobile-dock {
-              width: 44px !important;
-              min-width: 44px !important;
-              max-width: 44px !important;
-            }
-            .profile-ui .profile-dock-btn {
-              width: 34px !important;
-              height: 34px !important;
-            }
           }
 
           /* Desktop (> 768px) - Keeps PC sidebar, hides mobile bars */
@@ -1734,17 +1865,21 @@ export const ProfilePage = () => {
             .profile-ui .profile-mobile-top-header {
               display: none !important;
             }
-            .profile-ui .profile-mobile-user-card {
+            .profile-ui .profile-mobile-wrap {
               display: none !important;
             }
             .profile-ui .profile-mobile-dock {
               display: none !important;
             }
             .profile-ui .profile-sidebar {
-              display: block !important;
+              display: flex !important;
             }
             .profile-ui .profile-header-section {
               display: block !important;
+            }
+            .profile-ui .profile-container {
+              display: grid !important;
+              grid-template-columns: 290px 1fr !important;
             }
           }
         `}</style>
@@ -1823,52 +1958,72 @@ export const ProfilePage = () => {
             </div>
           </div>
 
-          {/* Mobile Top Header (Shown on <= 768px only) */}
+          {/* Mobile Sticky Top Header (Shown on <= 768px only) */}
           <div className="profile-mobile-top-header">
             <button
               type="button"
-              onClick={() => setMobileDrawerOpen(true)}
-              className="profile-mobile-icon-btn"
-              aria-label="Open navigation menu"
+              onClick={() => {
+                if (mobileSubView !== 'hub') {
+                  setMobileSubView('hub');
+                } else {
+                  router.push('/');
+                }
+              }}
+              className="profile-mobile-header-btn"
+              aria-label="Back"
             >
-              <Menu size={22} stroke="#111315" />
+              <ChevronLeft size={22} stroke="#141513" />
             </button>
-            <h1 className="profile-mobile-title">
-              My Account
+
+            <h1 className="profile-mobile-header-title">
+              {mobileSubView === 'hub' ? 'Account Settings' : (tabLabels[activeTab] || 'Account Settings')}
             </h1>
-            <button
-              type="button"
-              onClick={() => toggleCart?.()}
-              className="profile-mobile-icon-btn profile-mobile-bag-btn"
-              aria-label="Open Shopping Bag"
-            >
-              <ShoppingBag size={21} stroke="#111315" />
-              {(totalCount > 0 || cartItems.length > 0) && (
-                <span className="profile-mobile-cart-badge">
-                  {totalCount || cartItems.length}
-                </span>
-              )}
-            </button>
+
+            {mobileSubView === 'hub' ? (
+              <button
+                type="button"
+                onClick={handleSaveProfile}
+                disabled={isUpdatingProfile}
+                className="profile-mobile-save-btn"
+              >
+                {isUpdatingProfile ? 'Saving...' : 'Save'}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => toggleCart?.()}
+                className="profile-mobile-header-btn profile-mobile-bag-btn"
+                aria-label="Shopping Bag"
+              >
+                <ShoppingBag size={20} stroke="#141513" />
+                {(totalCount > 0 || cartItems.length > 0) && (
+                  <span className="profile-mobile-cart-badge">
+                    {totalCount || cartItems.length}
+                  </span>
+                )}
+              </button>
+            )}
           </div>
 
-          {/* Mobile User Profile Banner Card (Shown on <= 768px only) */}
-          <div className="profile-mobile-user-card">
-            <div className="profile-mobile-avatar-wrap">
-              <div className="profile-mobile-avatar-ring">
+          {/* Mobile Hub View (Shown on <= 768px when mobileSubView === 'hub') */}
+          <div className={`profile-mobile-wrap ${mobileSubView === 'hub' ? 'mobile-visible' : 'mobile-hidden'}`}>
+            {/* 1. Profile Sculpture Avatar & Details */}
+            <div className="profile-hub-avatar-section">
+              <div className="profile-hub-avatar-wrap">
                 <img
                   src={avatarPreview || '/avatar-sculpture.jpg'}
                   alt="Profile Avatar"
-                  className="profile-mobile-avatar-img"
+                  className="profile-hub-avatar-img"
                   onError={(e) => { e.currentTarget.src = '/profile-avatar.jpg'; }}
                 />
               </div>
+
               <button
                 type="button"
                 onClick={() => avatarUploadRef.current?.click()}
-                className="profile-mobile-avatar-edit-btn"
-                title="Change Avatar"
+                className="profile-hub-edit-picture-btn"
               >
-                <Pencil size={11} stroke="#ffffff" />
+                Edit Picture
               </button>
               <input
                 ref={avatarUploadRef}
@@ -1877,20 +2032,288 @@ export const ProfilePage = () => {
                 style={{ display: 'none' }}
                 onChange={handleAvatarChange}
               />
-            </div>
 
-            <div className="profile-mobile-user-meta">
-              <h2 className="profile-mobile-user-name">
+              <h2 className="profile-hub-user-name">
                 {currentUser.name || 'DRAPZA ADMIN'}
               </h2>
-              <p className="profile-mobile-user-email">
-                {currentUser.email || 'drapza.cloth@gmail.com'}
+              <p className="profile-hub-user-subtitle">
+                {(currentUser.username || (currentUser.name ? currentUser.name.toLowerCase().replace(/\s+/g, '_') : 'drapza_admin')) + ' • ' + (currentUser.email || 'drapza.cloth@gmail.com')}
               </p>
+            </div>
+
+            {/* Success / Error alerts on Hub */}
+            {saveSuccess && (
+              <div className="profile-hub-alert success">
+                <span>✓</span> Profile settings updated successfully.
+              </div>
+            )}
+            {saveError && (
+              <div className="profile-hub-alert error">
+                {saveError}
+              </div>
+            )}
+
+            {/* 2. Quick Stats Row: Orders | Liked | Points */}
+            <div className="profile-hub-stats-row">
+              <div
+                className="profile-hub-stat-pill"
+                onClick={() => {
+                  setActiveTab('orders');
+                  setMobileSubView('orders');
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <span className="profile-hub-stat-label">Orders:</span>
+                <span className="profile-hub-stat-val">{ordersData?.orders?.length ?? 42}</span>
+              </div>
+              <div
+                className="profile-hub-stat-pill"
+                onClick={() => {
+                  setActiveTab('wishlist');
+                  setMobileSubView('wishlist');
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <span className="profile-hub-stat-label">Liked:</span>
+                <span className="profile-hub-stat-val">{wishlistItems?.length || 128}</span>
+              </div>
+              <div
+                className="profile-hub-stat-pill"
+                onClick={() => {
+                  setActiveTab('preferences');
+                  setMobileSubView('preferences');
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <span className="profile-hub-stat-label">Points:</span>
+                <span className="profile-hub-stat-val">{currentUser?.points ? currentUser.points.toLocaleString() : '1,200'}</span>
+              </div>
+            </div>
+
+            {/* 3. Personal Information Accordion Card */}
+            <div className="profile-hub-card">
+              <button
+                type="button"
+                className="profile-hub-accordion-header"
+                onClick={() => setIsPersonalAccordionOpen(!isPersonalAccordionOpen)}
+                aria-expanded={isPersonalAccordionOpen}
+              >
+                <h3 className="profile-hub-accordion-title">Personal Information</h3>
+                <div className="profile-hub-accordion-chevron">
+                  {isPersonalAccordionOpen ? (
+                    <ChevronUp size={18} stroke="#7d807a" />
+                  ) : (
+                    <ChevronDown size={18} stroke="#7d807a" />
+                  )}
+                </div>
+              </button>
+
+              {isPersonalAccordionOpen && (
+                <div className="profile-hub-fields-list">
+                  {/* Email */}
+                  <div className="profile-hub-field-row">
+                    <div className="profile-hub-field-icon">
+                      <Mail size={16} stroke="#7d807a" />
+                    </div>
+                    <span className="profile-hub-field-label">Email</span>
+                    <div className="profile-hub-field-pill" title={email || currentUser.email}>
+                      {email || currentUser.email || 'drapza.cloth@gmail.com'}
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="profile-hub-field-row">
+                    <div className="profile-hub-field-icon">
+                      <Phone size={16} stroke="#7d807a" />
+                    </div>
+                    <span className="profile-hub-field-label">Phone</span>
+                    <div className="profile-hub-field-pill">
+                      {countryCode} {phone || currentUser.phone || '9794603102'}
+                    </div>
+                  </div>
+
+                  {/* Gender */}
+                  <div className="profile-hub-field-row">
+                    <div className="profile-hub-field-icon">
+                      <User size={16} stroke="#7d807a" />
+                    </div>
+                    <span className="profile-hub-field-label">Gender</span>
+                    <div className="profile-hub-field-pill">
+                      {gender ? (gender.charAt(0).toUpperCase() + gender.slice(1)) : 'Male'}
+                    </div>
+                  </div>
+
+                  {/* DOB */}
+                  <div className="profile-hub-field-row">
+                    <div className="profile-hub-field-icon">
+                      <Calendar size={16} stroke="#7d807a" />
+                    </div>
+                    <span className="profile-hub-field-label">DOB</span>
+                    <div className="profile-hub-field-pill">
+                      {dob || '14/08/1998'}
+                    </div>
+                  </div>
+
+                  {/* Quick Edit Full Profile Link */}
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '0.45rem' }}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveTab('personal');
+                        setMobileSubView('personal');
+                      }}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#141513',
+                        fontSize: '0.74rem',
+                        fontWeight: 600,
+                        fontFamily: 'var(--font-dm-mono), monospace',
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                        padding: '0.2rem 0',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                      }}
+                    >
+                      <span>Edit Personal Details</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 4. Navigation Menu Card */}
+            <div className="profile-hub-menu-card">
+              {/* My Shopping Bag */}
+              <button
+                type="button"
+                className="profile-hub-menu-item"
+                onClick={() => {
+                  setActiveTab('cart');
+                  setMobileSubView('cart');
+                }}
+              >
+                <div className="profile-hub-menu-item-left">
+                  <span className="profile-hub-menu-item-icon">
+                    <ShoppingCart size={19} stroke="#141513" />
+                  </span>
+                  <span className="profile-hub-menu-item-label">My Shopping Bag</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  {totalCount > 0 && (
+                    <span className="profile-hub-badge">{totalCount}</span>
+                  )}
+                  <ChevronRight size={18} stroke="#afb3ab" />
+                </div>
+              </button>
+
+              {/* Wishlist & Liked */}
+              <button
+                type="button"
+                className="profile-hub-menu-item"
+                onClick={() => {
+                  setActiveTab('wishlist');
+                  setMobileSubView('wishlist');
+                }}
+              >
+                <div className="profile-hub-menu-item-left">
+                  <span className="profile-hub-menu-item-icon">
+                    <Heart size={19} stroke="#141513" />
+                  </span>
+                  <span className="profile-hub-menu-item-label">Wishlist & Liked</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  {wishlistItems.length > 0 && (
+                    <span className="profile-hub-badge">{wishlistItems.length}</span>
+                  )}
+                  <ChevronRight size={18} stroke="#afb3ab" />
+                </div>
+              </button>
+
+              {/* Order History */}
+              <button
+                type="button"
+                className="profile-hub-menu-item"
+                onClick={() => {
+                  setActiveTab('orders');
+                  setMobileSubView('orders');
+                }}
+              >
+                <div className="profile-hub-menu-item-left">
+                  <span className="profile-hub-menu-item-icon">
+                    <ShoppingBag size={19} stroke="#141513" />
+                  </span>
+                  <span className="profile-hub-menu-item-label">Order History</span>
+                </div>
+                <ChevronRight size={18} stroke="#afb3ab" />
+              </button>
+
+              {/* Saved Addresses */}
+              <button
+                type="button"
+                className="profile-hub-menu-item"
+                onClick={() => {
+                  setActiveTab('addresses');
+                  setMobileSubView('addresses');
+                }}
+              >
+                <div className="profile-hub-menu-item-left">
+                  <span className="profile-hub-menu-item-icon">
+                    <MapPin size={19} stroke="#141513" />
+                  </span>
+                  <span className="profile-hub-menu-item-label">Saved Addresses</span>
+                </div>
+                <ChevronRight size={18} stroke="#afb3ab" />
+              </button>
+
+              {/* Preference & Security */}
+              <button
+                type="button"
+                className="profile-hub-menu-item"
+                onClick={() => {
+                  setActiveTab('preferences');
+                  setMobileSubView('preferences');
+                }}
+              >
+                <div className="profile-hub-menu-item-left">
+                  <span className="profile-hub-menu-item-icon">
+                    <Settings size={19} stroke="#141513" />
+                  </span>
+                  <span className="profile-hub-menu-item-label">Preference & Security</span>
+                </div>
+                <ChevronRight size={18} stroke="#afb3ab" />
+              </button>
+
+              {/* Divider before Sign Out */}
+              <div className="profile-hub-menu-divider" />
+
+              {/* Sign Out */}
+              <button
+                type="button"
+                className="profile-hub-menu-item destructive"
+                onClick={() => {
+                  logout();
+                  router.push('/');
+                }}
+              >
+                <div className="profile-hub-menu-item-left">
+                  <span className="profile-hub-menu-item-icon">
+                    <LogOut size={19} stroke="#ef4444" />
+                  </span>
+                  <span className="profile-hub-menu-item-label" style={{ color: '#ef4444' }}>Sign Out</span>
+                </div>
+              </button>
             </div>
           </div>
 
           {/* Main Content Layout Container */}
-          <div className="profile-container">
+          <div className={`profile-container ${mobileSubView === 'hub' ? 'mobile-hidden' : 'mobile-visible'}`}>
 
             {/* PC Left Sidebar */}
             <aside className="profile-sidebar">
@@ -2023,32 +2446,6 @@ export const ProfilePage = () => {
                   </button>
                 </div>
               </nav>
-            </aside>
-
-            {/* Mobile Left Floating Dock (<= 768px, matching left floating capsule dock in screenshot) */}
-            <aside className="profile-mobile-dock" aria-label="Account navigation dock">
-              {mobileDockItems.map((item) => {
-                const isActive = activeTab === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => {
-                      if (item.action) {
-                        item.action();
-                      } else {
-                        setActiveTab(item.id);
-                      }
-                    }}
-                    className={`profile-dock-btn ${isActive ? 'active' : ''}`}
-                    title={item.label}
-                    aria-label={item.label}
-                  >
-                    {isActive && <span className="profile-dock-active-pill" />}
-                    {item.icon(isActive)}
-                  </button>
-                );
-              })}
             </aside>
 
             <main className="profile-main">
@@ -2375,6 +2772,7 @@ export const ProfilePage = () => {
                           setDob(currentUser.dob || '14 / 08 / 1998');
                           setPersonalFieldErrors({});
                           setSaveError('');
+                          setMobileSubView('hub');
                         }}
                         className="profile-btn-cancel"
                       >
