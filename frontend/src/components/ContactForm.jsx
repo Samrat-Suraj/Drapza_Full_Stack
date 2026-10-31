@@ -167,6 +167,17 @@ export const ContactForm = ({
             textTransform: 'uppercase',
             fontWeight: 400,
             letterSpacing: 'clamp(-0.15rem, -1vw, -0.25rem)',
+            fontSize: 'clamp(4rem, 10vw, 10rem)',
+            lineHeight: 0.8,
+            whiteSpace: 'nowrap',
+            color: 'var(--base-400)',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(5)',
+            transformOrigin: '50% 50%',
+            pointerEvents: 'none',
+            userSelect: 'none',
           }}
         >
           {watermark}

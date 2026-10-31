@@ -866,58 +866,58 @@
   flex-shrink: 0;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) * {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) * {
   -webkit-user-select: none;
   user-select: none;
   margin: 0;
   padding: 0;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) {
   background-color: var(--base-100);
   color: var(--base-700);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) img,
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) svg:not(.lucide) {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) img,
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) svg:not(.lucide) {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) svg.lucide {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) svg.lucide {
   object-fit: contain;
   flex-shrink: 0;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) :is(h1, h2, h3, h4, h5) {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) :is(h1, h2, h3, h4, h5) {
   text-transform: uppercase;
   font-family: var(--font-koulen), sans-serif;
   font-weight: 400;
   line-height: .8;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) h1 {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) h1 {
   letter-spacing: clamp(-.15rem, -1vw, -.25rem);
   font-size: clamp(4rem, 10vw, 10rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) h2 {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) h2 {
   letter-spacing: clamp(-.0125rem, -.75vw, -.2rem);
   font-size: clamp(3.25rem, 8vw, 8rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) h3 {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) h3 {
   letter-spacing: clamp(-.035rem, -.5vw, -.075rem);
   font-size: clamp(2.5rem, 6.5vw, 5rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) h4 {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) h4 {
   letter-spacing: clamp(0rem, -.5vw, -.075rem);
   font-size: clamp(2rem, 4.5vw, 4rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) h5 {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) h5 {
   letter-spacing: clamp(0rem, -.25vw, -.05rem);
   font-size: clamp(1.25rem, 2vw, 3rem);
 }
@@ -1300,7 +1300,7 @@ button.drapza-btn-primary span {
 }
 
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) :is(a, p, span) {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) :is(a, p, span) {
   text-transform: uppercase;
   color: var(--base-700);
   font-family: var(--font-dm-mono), monospace;
@@ -1310,15 +1310,15 @@ button.drapza-btn-primary span {
   text-decoration: none;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) :is(a.md, p.md, span.md) {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) :is(a.md, p.md, span.md) {
   font-size: clamp(1rem, .8vw, 1.25rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) :is(a.lg, p.lg, span.lg) {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) :is(a.lg, p.lg, span.lg) {
   font-size: clamp(1.1rem, .85vw, 1.35rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) p.bodyCopy {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) p.bodyCopy {
   text-transform: none;
   font-family: var(--font-host-grotesk), sans-serif;
   letter-spacing: -.01rem;
@@ -1327,15 +1327,15 @@ button.drapza-btn-primary span {
   line-height: 1.1;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) p.bodyCopy.md {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) p.bodyCopy.md {
   font-size: clamp(1.25rem, .85vw, 1.35rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) p.bodyCopy.lg {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) p.bodyCopy.lg {
   font-size: clamp(1.375rem, .95vw, 1.45rem);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) button {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) button {
   text-transform: uppercase;
   color: var(--base-700);
   font-family: var(--font-dm-mono), monospace;
@@ -1351,21 +1351,21 @@ button.drapza-btn-primary span {
   transition: all .3s ease-in-out;
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) button:active {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) button:active {
   transform: scale(.95);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) button.primary {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) button.primary {
   background: var(--base-700);
   color: var(--base-100);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) button.secondary {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) button.secondary {
   background: var(--base-400);
   color: var(--base-100);
 }
 
-:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root])):not(:has([data-profile-root]))) .btn a {
+:where(body:not(:has([data-admin-root])):not(:has([data-membership-root])):not(:has([data-visual-search-root]))) .btn a {
   background: var(--base-200);
   color: var(--base-700);
   text-transform: uppercase;
@@ -2764,11 +2764,20 @@ footer .footer-row:nth-child(2) .footer-copyright p:nth-child(2) {
 }
 
 .contact-form .contact-parallax-image-wrapper h1 {
-  color: var(--base-400);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(5)
+  color: var(--base-400) !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(5);
+  transform-origin: 50% 50% !important;
+  font-family: var(--font-koulen), 'Koulen', sans-serif !important;
+  font-size: clamp(4rem, 10vw, 10rem) !important;
+  line-height: 0.8 !important;
+  letter-spacing: clamp(-0.15rem, -1vw, -0.25rem) !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  user-select: none !important;
 }
 
 .contact-form .contact-parallax-image-wrapper img {
