@@ -40,12 +40,6 @@ export function MobileBottomNav() {
       .catch(() => {});
   }, []);
 
-  // Tabs configured:
-  // Tab 1: Home (Index 0)
-  // Tab 2: WhatsApp (Index 1) - Replaced Search position
-  // Tab 3: Search (Index 2) - Moved to CENTER
-  // Tab 4: Bag (Index 3)
-  // Tab 5: Profile (Index 4)
   const tabs: NavTabItem[] = [
     {
       id: "home",
@@ -53,8 +47,8 @@ export function MobileBottomNav() {
       href: "/",
       icon: (isActive: boolean) => (
         <svg
-          width="19"
-          height="19"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -116,8 +110,8 @@ export function MobileBottomNav() {
       icon: (isActive: boolean) => (
         <div className="relative flex items-center justify-center">
           <svg
-            width="19"
-            height="19"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -146,8 +140,8 @@ export function MobileBottomNav() {
       href: "/profile",
       icon: (isActive: boolean) => (
         <svg
-          width="19"
-          height="19"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -201,17 +195,17 @@ export function MobileBottomNav() {
 
   // Geometry parameters
   const H = 64; // Height of the navbar
-  const R = 24; // Corner radius of the navbar
-  const w = 28; // Half-width of the scooped notch
-  const d = 20; // Depth of the scooped notch
-  const c1 = 14;
-  const c2 = 12;
+  const R = 26; // Corner radius of the navbar
+  const w = 26; // Half-width of the scooped notch
+  const d = 17; // Depth of the scooped notch
+  const c1 = 13;
+  const c2 = 11;
 
-  // Calculate tab centers so notch edges never overlap corner arcs
+  // Calculate tab centers with comfortable padding so notch never collides with corners
   const getTabCenter = useCallback(
     (idx: number, totalW: number) => {
-      const firstCenter = R + w;
-      const lastCenter = totalW - (R + w);
+      const firstCenter = R + w - 4; // ~48px
+      const lastCenter = totalW - (R + w - 4);
       return firstCenter + (idx * (lastCenter - firstCenter)) / 4;
     },
     [R, w]
@@ -228,7 +222,7 @@ export function MobileBottomNav() {
 
     gsap.to(posRef.current, {
       x: targetX,
-      duration: 0.38,
+      duration: 0.35,
       ease: "power3.out",
       onUpdate: () => {
         setAnimatedX(posRef.current.x);
@@ -286,12 +280,26 @@ export function MobileBottomNav() {
     <nav
       ref={navContainerRef}
       aria-label="Mobile Bottom Navigation"
-      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-[380px] md:hidden pointer-events-auto select-none"
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-[400px] md:hidden pointer-events-auto select-none"
       style={{
         height: `${H}px`,
         filter: "drop-shadow(0 14px 34px rgba(0, 0, 0, 0.12))",
+        fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
+      <style>{`
+        .drapza-bottom-nav-btn {
+          font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          text-transform: none !important;
+          letter-spacing: normal !important;
+        }
+        .drapza-bottom-nav-btn span {
+          font-family: inherit !important;
+          text-transform: none !important;
+          letter-spacing: normal !important;
+        }
+      `}</style>
+
       {/* 1. Curved Scoop SVG Background */}
       <svg
         width={containerWidth}
@@ -314,13 +322,13 @@ export function MobileBottomNav() {
       <div
         ref={circleRef}
         aria-hidden="true"
-        className="absolute pointer-events-none z-10 flex items-center justify-center rounded-full bg-white border border-[#e5e7eb] shadow-[0_8px_18px_rgba(0,0,0,0.1)]"
+        className="absolute pointer-events-none z-20 flex items-center justify-center rounded-full bg-white border border-[#e5e7eb] shadow-[0_8px_20px_rgba(0,0,0,0.12),0_2px_6px_rgba(0,0,0,0.06)]"
         style={{
-          width: "46px",
-          height: "46px",
-          top: "-15px",
+          width: "48px",
+          height: "48px",
+          top: "-16px",
           left: 0,
-          transform: `translateX(${animatedX - 23}px)`,
+          transform: `translateX(${animatedX - 24}px)`,
           willChange: "transform",
         }}
       >
@@ -332,13 +340,16 @@ export function MobileBottomNav() {
       {/* 3. Active Label beneath the scooped cradle */}
       <div
         aria-hidden="true"
-        className="absolute pointer-events-none z-10 text-center font-bold text-[11px] text-[#111111] tracking-tight"
+        className="absolute pointer-events-none z-10 text-center font-bold text-[10.5px] text-[#0f0f0f] tracking-tight leading-none flex items-center justify-center"
         style={{
-          width: "60px",
-          bottom: "7px",
+          width: "68px",
+          bottom: "10px",
           left: 0,
-          transform: `translateX(${animatedX - 30}px)`,
+          transform: `translateX(${animatedX - 34}px)`,
           willChange: "transform",
+          fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          textTransform: "none",
+          whiteSpace: "nowrap",
         }}
       >
         {activeTab.label}
@@ -355,10 +366,10 @@ export function MobileBottomNav() {
               key={tab.id}
               type="button"
               onClick={() => handleTabClick(idx)}
-              className="absolute top-0 bottom-0 flex flex-col items-center justify-center cursor-pointer transition-opacity active:opacity-60 focus:outline-hidden"
+              className="drapza-bottom-nav-btn absolute top-0 bottom-0 flex flex-col items-center justify-center cursor-pointer transition-opacity active:opacity-60 focus:outline-hidden"
               style={{
-                width: "56px",
-                left: `${centerX - 28}px`,
+                width: "60px",
+                left: `${centerX - 30}px`,
               }}
               aria-label={tab.label}
               aria-selected={isActive}
@@ -369,12 +380,19 @@ export function MobileBottomNav() {
                 className={`flex flex-col items-center transition-all duration-200 ${
                   isActive
                     ? "opacity-0 scale-75 pointer-events-none"
-                    : "opacity-100 scale-100 text-[#737373]"
+                    : "opacity-100 scale-100 text-[#666666] hover:text-[#111111]"
                 }`}
                 style={{ paddingTop: "2px" }}
               >
-                <span className="mb-1 text-inherit">{tab.icon(false)}</span>
-                <span className="text-[10px] font-medium leading-none text-inherit">
+                <span className="mb-1 text-inherit flex items-center justify-center">{tab.icon(false)}</span>
+                <span
+                  className="text-[10px] font-medium leading-none text-inherit tracking-tight"
+                  style={{
+                    fontFamily: "var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                    textTransform: "none",
+                    whiteSpace: "nowrap",
+                  }}
+                >
                   {tab.label}
                 </span>
               </div>
