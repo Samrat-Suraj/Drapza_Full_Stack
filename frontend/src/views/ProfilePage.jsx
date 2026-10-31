@@ -565,39 +565,45 @@ export const ProfilePage = () => {
               }
             }
 
-            /* DRAPZA Design System Core Typography & Architecture */
+            /* DRAPZA Luxury Atelier Typography - Matches Membership System */
             .profile-ui,
             .profile-ui * {
               box-sizing: border-box;
             }
             .profile-ui {
-              font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-              color: #1a1c18;
+              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+              color: #111111;
               -webkit-font-smoothing: antialiased;
               -moz-osx-font-smoothing: grayscale;
             }
-            
-            /* Headings: Strictly Koulen Bold Display */
+
+            /* Force standard font and normal casing on all elements by default */
+            .profile-ui :is(p, span, a, div, strong, li, label, input, select, textarea, button, h1, h2, h3, h4, h5) {
+              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+              letter-spacing: normal;
+            }
+
+            /* Headings: Clean, modern, high-contrast luxury styling matching membership */
             .profile-ui :is(h1, h2, h3, h4, h5) {
-              font-family: var(--font-koulen), sans-serif !important;
-              text-transform: uppercase !important;
-              font-weight: 400 !important;
-              line-height: 1 !important;
-              letter-spacing: clamp(0rem, -0.25vw, -0.05rem) !important;
-              color: #141513 !important;
+              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+              font-weight: 700 !important;
+              color: #111111 !important;
+              line-height: 1.2 !important;
+              letter-spacing: -0.025em !important;
+              text-transform: none !important;
             }
 
-            /* Paragraphs, descriptions and body copy: Soft, readable Host Grotesk */
+            /* Paragraphs, descriptions and body copy: Soft, readable, elegant */
             .profile-ui p {
-              font-family: var(--font-host-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-              color: #63675f;
-              font-weight: 400;
-              line-height: 1.55;
+              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+              color: #555852 !important;
+              font-weight: 400 !important;
+              line-height: 1.55 !important;
             }
 
-            /* Technical labels, inputs, code tags, button text: Clean DM Mono */
+            /* Technical labels, inputs, code tags, button text */
             .profile-ui :is(button, input, select, textarea, .profile-mono) {
-              font-family: var(--font-dm-mono), monospace;
+              font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
             }
 
             /* Top Header Area matching /checkout & /payment */
@@ -1233,30 +1239,30 @@ export const ProfilePage = () => {
             opacity: 0.6;
           }
           .profile-ui .profile-mobile-header-title {
-            font-family: var(--font-host-grotesk), sans-serif !important;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             font-size: 1.15rem !important;
             font-weight: 700 !important;
-            color: #141513 !important;
+            color: #111111 !important;
             margin: 0 !important;
             text-align: center;
             text-transform: none !important;
-            letter-spacing: -0.01em !important;
+            letter-spacing: -0.025em !important;
             flex: 1;
           }
           .profile-ui .profile-mobile-save-btn {
-            background-color: #141513;
+            background-color: #111111;
             color: #ffffff;
             border: none;
             border-radius: 9999px;
-            padding: 0.38rem 0.95rem;
-            font-family: var(--font-dm-mono), monospace;
-            font-size: 0.76rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+            padding: 0.42rem 1.15rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: normal;
+            text-transform: none;
             cursor: pointer;
             transition: all 0.15s ease;
-            box-shadow: 0 2px 8px rgba(20, 21, 19, 0.15);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
           }
           .profile-ui .profile-mobile-save-btn:active {
             transform: scale(0.96);
@@ -1300,11 +1306,11 @@ export const ProfilePage = () => {
           }
           .profile-ui .profile-hub-avatar-wrap {
             position: relative;
-            width: 94px;
-            height: 94px;
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
-            border: 3px solid #ffffff;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 0 0 1px #d7dbd2;
+            border: 3.5px solid #ffffff;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             background-color: #f2f5ef;
             display: flex;
@@ -1319,31 +1325,35 @@ export const ProfilePage = () => {
           .profile-ui .profile-hub-edit-picture-btn {
             background: none;
             border: none;
-            color: #7d807a;
-            font-family: var(--font-host-grotesk), sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
+            color: #52525b;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-decoration: underline;
             cursor: pointer;
-            margin-top: 0.45rem;
+            margin-top: 0.5rem;
             padding: 0.2rem 0.5rem;
             transition: color 0.15s ease;
           }
           .profile-ui .profile-hub-edit-picture-btn:hover {
-            color: #141513;
+            color: #111111;
           }
           .profile-ui .profile-hub-user-name {
-            font-family: var(--font-koulen), sans-serif !important;
-            font-size: 1.65rem !important;
-            letter-spacing: 0.03em !important;
-            color: #141513 !important;
-            line-height: 1.1 !important;
-            margin: 0.65rem 0 0.15rem 0 !important;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 1.45rem !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.025em !important;
+            color: #111111 !important;
+            line-height: 1.2 !important;
+            margin: 0.75rem 0 0.2rem 0 !important;
+            text-transform: none !important;
           }
           .profile-ui .profile-hub-user-subtitle {
-            font-family: var(--font-dm-mono), monospace !important;
-            font-size: 0.75rem !important;
-            color: #7d807a !important;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 0.82rem !important;
+            font-weight: 400 !important;
+            color: #71717a !important;
+            letter-spacing: normal !important;
             margin: 0 !important;
           }
 
@@ -1352,7 +1362,7 @@ export const ProfilePage = () => {
             padding: 0.65rem 0.95rem;
             border-radius: 12px;
             font-size: 0.78rem;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             font-weight: 600;
             margin-bottom: 0.85rem;
             display: flex;
@@ -1370,52 +1380,14 @@ export const ProfilePage = () => {
             color: #991b1b;
           }
 
-          /* Quick Stats Row */
-          .profile-ui .profile-hub-stats-row {
-            display: flex;
-            gap: 0.55rem;
-            width: 100%;
-            margin-bottom: 0.85rem;
-          }
-          .profile-ui .profile-hub-stat-pill {
-            flex: 1;
-            background-color: #ffffff;
-            border: 1px solid #d7dbd2;
-            border-radius: 12px;
-            padding: 0.65rem 0.4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.35rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-            cursor: pointer;
-            transition: all 0.15s ease;
-          }
-          .profile-ui .profile-hub-stat-pill:active {
-            background-color: #f2f5ee;
-            transform: scale(0.98);
-          }
-          .profile-ui .profile-hub-stat-label {
-            font-family: var(--font-host-grotesk), sans-serif;
-            font-size: 0.78rem;
-            color: #7d807a;
-            font-weight: 500;
-          }
-          .profile-ui .profile-hub-stat-val {
-            font-family: var(--font-dm-mono), monospace;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #141513;
-          }
-
           /* Personal Information Accordion Card */
           .profile-ui .profile-hub-card {
             background-color: #ffffff;
-            border: 1px solid #d7dbd2;
-            border-radius: 16px;
-            padding: 1.05rem 1.15rem;
-            margin-bottom: 0.85rem;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e6de;
+            border-radius: 20px;
+            padding: 1.25rem 1.25rem;
+            margin-bottom: 0.95rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
           }
           .profile-ui .profile-hub-accordion-header {
             display: flex;
@@ -1429,31 +1401,32 @@ export const ProfilePage = () => {
             user-select: none;
           }
           .profile-ui .profile-hub-accordion-title {
-            font-family: var(--font-host-grotesk), sans-serif !important;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             font-size: 1.05rem !important;
             font-weight: 700 !important;
-            color: #141513 !important;
+            color: #111111 !important;
             margin: 0 !important;
             text-transform: none !important;
+            letter-spacing: -0.02em !important;
           }
           .profile-ui .profile-hub-accordion-chevron {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7d807a;
+            color: #71717a;
           }
           .profile-ui .profile-hub-fields-list {
             display: flex;
             flex-direction: column;
-            gap: 0.65rem;
-            margin-top: 0.95rem;
-            padding-top: 0.95rem;
+            gap: 0.7rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
             border-top: 1px solid #edf1e8;
           }
           .profile-ui .profile-hub-field-row {
             display: flex;
             align-items: center;
-            gap: 0.65rem;
+            gap: 0.75rem;
             width: 100%;
           }
           .profile-ui .profile-hub-field-icon {
@@ -1461,40 +1434,41 @@ export const ProfilePage = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7d807a;
+            color: #71717a;
             flex-shrink: 0;
           }
           .profile-ui .profile-hub-field-label {
-            font-family: var(--font-host-grotesk), sans-serif;
-            font-size: 0.82rem;
-            color: #7d807a;
-            font-weight: 500;
-            min-width: 58px;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 0.84rem !important;
+            color: #71717a !important;
+            font-weight: 500 !important;
+            min-width: 62px;
             flex-shrink: 0;
           }
           .profile-ui .profile-hub-field-pill {
             flex: 1;
-            background-color: #f7f9f5;
-            border: 1px solid #d7dbd2;
-            border-radius: 10px;
-            padding: 0.48rem 0.75rem;
-            font-family: var(--font-dm-mono), monospace;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #141513;
+            background-color: #f8faf6;
+            border: 1px solid #dce0d8;
+            border-radius: 12px;
+            padding: 0.52rem 0.9rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            color: #18181b !important;
             text-align: right;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            letter-spacing: normal !important;
           }
 
           /* Navigation Menu Card */
           .profile-ui .profile-hub-menu-card {
             background-color: #ffffff;
-            border: 1px solid #d7dbd2;
-            border-radius: 16px;
-            padding: 0.35rem 0.5rem;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e6de;
+            border-radius: 20px;
+            padding: 0.5rem 0.6rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             margin-bottom: 2rem;
           }
           .profile-ui .profile-hub-menu-item {
@@ -1502,12 +1476,12 @@ export const ProfilePage = () => {
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 0.85rem 0.75rem;
+            padding: 0.9rem 0.85rem;
             background: none;
             border: none;
-            border-radius: 10px;
+            border-radius: 14px;
             cursor: pointer;
-            transition: background-color 0.15s ease;
+            transition: all 0.15s ease;
             user-select: none;
             text-align: left;
           }
@@ -1518,25 +1492,31 @@ export const ProfilePage = () => {
           .profile-ui .profile-hub-menu-item-left {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.85rem;
           }
           .profile-ui .profile-hub-menu-item-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #141513;
+            color: #18181b;
           }
           .profile-ui .profile-hub-menu-item-label {
-            font-family: var(--font-host-grotesk), sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #141513;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            font-size: 0.94rem !important;
+            font-weight: 600 !important;
+            letter-spacing: -0.015em !important;
+            color: #18181b !important;
           }
           .profile-ui .profile-hub-badge {
-            font-size: 0.68rem;
-            font-family: var(--font-dm-mono), monospace;
-            padding: 2px 7px;
+            font-size: 0.72rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+            padding: 2px 8px;
             border-radius: 9999px;
+            background-color: #18181b;
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+          }
             background-color: #f59e0b;
             color: #000000;
             font-weight: 800;
@@ -1593,7 +1573,7 @@ export const ProfilePage = () => {
             color: #111315;
             font-size: 0.88rem;
             font-weight: 600;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             padding: 0;
             width: 100%;
           }
@@ -1620,7 +1600,7 @@ export const ProfilePage = () => {
             color: #111315;
             font-size: 0.85rem;
             font-weight: 600;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             cursor: pointer;
           }
           .profile-ui .profile-phone-num-pill {
@@ -1647,7 +1627,7 @@ export const ProfilePage = () => {
             color: #111315;
             font-size: 0.88rem;
             font-weight: 600;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             width: 100%;
             padding: 0;
           }
@@ -1726,10 +1706,10 @@ export const ProfilePage = () => {
             margin-top: 0.25rem;
           }
           .profile-ui .profile-info-notice-text {
-            font-size: 0.72rem;
+            font-size: 0.74rem;
             color: #4338ca;
             line-height: 1.45;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             margin: 0;
           }
           .profile-ui .profile-info-notice-link {
@@ -1742,14 +1722,14 @@ export const ProfilePage = () => {
           }
           .profile-ui .profile-btn-save {
             width: 100%;
-            background-color: #111315;
+            background-color: #111111;
             color: #ffffff;
             border: none;
             border-radius: 14px;
             padding: 0.8rem 1rem;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1765,13 +1745,13 @@ export const ProfilePage = () => {
           .profile-ui .profile-btn-cancel {
             width: 100%;
             background-color: #ffffff;
-            color: #111315;
-            border: 1.5px solid #111315;
+            color: #111111;
+            border: 1.5px solid #d7dbd2;
             border-radius: 14px;
             padding: 0.8rem 1rem;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: var(--font-host-grotesk), sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1949,10 +1929,10 @@ export const ProfilePage = () => {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-              <h1 style={{ fontFamily: 'var(--font-koulen), sans-serif', fontSize: '2.4rem', textTransform: 'uppercase', letterSpacing: '0.03em', lineHeight: 0.95, margin: 0, color: '#141513' }}>
+              <h1 style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif", fontSize: '2.1rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.025em', lineHeight: 1.05, margin: 0, color: '#111111' }}>
                 MEMBER CLIENT TERMINAL
               </h1>
-              <p style={{ fontFamily: 'var(--font-host-grotesk), sans-serif', fontSize: '0.82rem', color: '#63675f', margin: 0, fontWeight: 400, letterSpacing: '0.01em' }}>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif", fontSize: '0.84rem', color: '#6b7280', margin: 0, fontWeight: 400, letterSpacing: 'normal' }}>
                 Personal identity, order archive & atelier account
               </p>
             </div>
@@ -2128,16 +2108,16 @@ export const ProfilePage = () => {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#141513',
-                        fontSize: '0.74rem',
+                        color: '#111111',
+                        fontSize: '0.8rem',
                         fontWeight: 600,
-                        fontFamily: 'var(--font-dm-mono), monospace',
+                        fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
                         textDecoration: 'underline',
                         cursor: 'pointer',
                         padding: '0.2rem 0',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.3rem',
+                        gap: '0.35rem',
                       }}
                     >
                       <span>Edit Personal Details</span>
@@ -2291,10 +2271,10 @@ export const ProfilePage = () => {
                 </div>
 
                 <div className="profile-user-info">
-                  <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.75rem', fontFamily: 'var(--font-koulen), sans-serif', color: 'var(--base-700, #0f0f0f)', letterSpacing: '0.04em', textTransform: 'uppercase', lineHeight: 1.1 }}>
+                  <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.28rem', fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif", color: '#111111', fontWeight: 700, letterSpacing: '-0.02em', textTransform: 'none', lineHeight: 1.2 }}>
                     {currentUser.name || 'Denis Holland'}
                   </h3>
-                  <div style={{ fontSize: '0.74rem', color: 'var(--base-500, #7d807a)', fontFamily: 'var(--font-dm-mono), monospace', marginBottom: '0', wordBreak: 'break-all' }}>
+                  <div style={{ fontSize: '0.78rem', color: '#71717a', fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif", marginBottom: '0', wordBreak: 'break-all' }}>
                     {currentUser.email || 'client@drapza.com'}
                   </div>
                 </div>
@@ -2322,11 +2302,11 @@ export const ProfilePage = () => {
                         border: isActive ? '1px solid var(--base-700, #0f0f0f)' : '1px solid transparent',
                         backgroundColor: isActive ? 'var(--base-700, #0f0f0f)' : 'transparent',
                         color: isActive ? '#ffffff' : 'var(--base-500, #7d807a)',
-                        fontFamily: 'var(--font-dm-mono), monospace',
-                        fontSize: '0.78rem',
-                        fontWeight: isActive ? 700 : 600,
-                        letterSpacing: '0.04em',
-                        textTransform: 'uppercase',
+                        fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
+                        fontSize: '0.84rem',
+                        fontWeight: isActive ? 600 : 500,
+                        letterSpacing: '-0.01em',
+                        textTransform: 'none',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease',
                       }}
@@ -2339,14 +2319,14 @@ export const ProfilePage = () => {
                       </div>
                       {item.badge != null && (
                         <span style={{
-                          fontSize: '9px',
-                          fontFamily: 'var(--font-dm-mono), monospace',
+                          fontSize: '10px',
+                          fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
                           padding: '2px 8px',
                           borderRadius: '9999px',
                           backgroundColor: isActive ? '#f59e0b' : 'var(--base-200, #d7dbd2)',
                           color: isActive ? '#000000' : 'var(--base-700, #0f0f0f)',
-                          fontWeight: 800,
-                          letterSpacing: '0.04em',
+                          fontWeight: 700,
+                          letterSpacing: 'normal',
                           lineHeight: 1.2,
                           display: 'inline-flex',
                           alignItems: 'center',
@@ -2378,11 +2358,11 @@ export const ProfilePage = () => {
                       border: '1px solid transparent',
                       backgroundColor: 'transparent',
                       color: 'var(--base-500, #7d807a)',
-                      fontFamily: 'var(--font-dm-mono), monospace',
-                      fontSize: '0.78rem',
-                      fontWeight: 600,
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
+                      fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
+                      fontSize: '0.84rem',
+                      fontWeight: 500,
+                      letterSpacing: '-0.01em',
+                      textTransform: 'none',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
                     }}
@@ -2431,20 +2411,21 @@ export const ProfilePage = () => {
                       <div>
                         <h2 style={{
                           margin: 0,
-                          fontSize: '1.22rem',
+                          fontSize: '1.25rem',
                           fontWeight: 700,
-                          color: '#111315',
-                          fontFamily: 'var(--font-host-grotesk), sans-serif',
-                          lineHeight: 1.2
+                          color: '#111111',
+                          fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
+                          lineHeight: 1.2,
+                          letterSpacing: '-0.02em',
                         }}>
                           Personal Information
                         </h2>
                         <p style={{
                           margin: '3px 0 0 0',
-                          fontSize: '0.72rem',
-                          color: '#7d807a',
-                          fontFamily: 'var(--font-host-grotesk), sans-serif',
-                          lineHeight: 1.35
+                          fontSize: '0.78rem',
+                          color: '#71717a',
+                          fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
+                          lineHeight: 1.4,
                         }}>
                           Update your contact details, billing credentials and profile parameters.
                         </p>
