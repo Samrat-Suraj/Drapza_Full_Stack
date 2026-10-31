@@ -2053,47 +2053,7 @@ export const ProfilePage = () => {
               </div>
             )}
 
-            {/* 2. Quick Stats Row: Orders | Liked | Points */}
-            <div className="profile-hub-stats-row">
-              <div
-                className="profile-hub-stat-pill"
-                onClick={() => {
-                  setActiveTab('orders');
-                  setMobileSubView('orders');
-                }}
-                role="button"
-                tabIndex={0}
-              >
-                <span className="profile-hub-stat-label">Orders:</span>
-                <span className="profile-hub-stat-val">{ordersData?.orders?.length ?? 42}</span>
-              </div>
-              <div
-                className="profile-hub-stat-pill"
-                onClick={() => {
-                  setActiveTab('wishlist');
-                  setMobileSubView('wishlist');
-                }}
-                role="button"
-                tabIndex={0}
-              >
-                <span className="profile-hub-stat-label">Liked:</span>
-                <span className="profile-hub-stat-val">{wishlistItems?.length || 128}</span>
-              </div>
-              <div
-                className="profile-hub-stat-pill"
-                onClick={() => {
-                  setActiveTab('preferences');
-                  setMobileSubView('preferences');
-                }}
-                role="button"
-                tabIndex={0}
-              >
-                <span className="profile-hub-stat-label">Points:</span>
-                <span className="profile-hub-stat-val">{currentUser?.points ? currentUser.points.toLocaleString() : '1,200'}</span>
-              </div>
-            </div>
-
-            {/* 3. Personal Information Accordion Card */}
+            {/* Personal Information Accordion Card */}
             <div className="profile-hub-card">
               <button
                 type="button"
