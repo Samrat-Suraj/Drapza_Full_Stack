@@ -518,7 +518,12 @@ export const ProfilePage = () => {
             }
             @media (max-width: 768px) {
               .drapza-profile-page {
-                padding: 6.5rem 1rem 5rem 1rem !important;
+                padding: 5.5rem 0.85rem 8.5rem 0.85rem !important;
+              }
+            }
+            @media (max-width: 480px) {
+              .drapza-profile-page {
+                padding: 4.8rem 0.65rem 9rem 0.65rem !important;
               }
             }
 
@@ -1056,25 +1061,145 @@ export const ProfilePage = () => {
             user-select: none;
           }
 
+          /* Mobile Horizontal Quick-Scroll Tabs */
+          .profile-ui .profile-mobile-tabs-scroll-wrap {
+            display: none;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0.15rem 0.1rem 0.65rem 0.1rem;
+          }
+          .profile-ui .profile-mobile-tabs-scroll-wrap::-webkit-scrollbar {
+            display: none;
+          }
+          .profile-ui .profile-mobile-tabs-container {
+            display: inline-flex;
+            gap: 0.45rem;
+            align-items: center;
+            white-space: nowrap;
+          }
+          .profile-ui .profile-mobile-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.42rem;
+            padding: 0.52rem 0.95rem;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            border: 1px solid var(--base-200, #d7dbd2);
+            color: var(--base-600, #4a4d46);
+            font-family: var(--font-dm-mono), monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            user-select: none;
+            box-shadow: 0 1px 3px rgba(15, 15, 15, 0.04);
+          }
+          .profile-ui .profile-mobile-tab-btn:active {
+            transform: scale(0.96);
+          }
+          .profile-ui .profile-mobile-tab-btn.active {
+            background-color: #0f0f0f !important;
+            color: #ffffff !important;
+            border-color: #0f0f0f !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 14px rgba(15, 15, 15, 0.18) !important;
+          }
+          .profile-ui .profile-mobile-tab-btn.active svg,
+          .profile-ui .profile-mobile-tab-btn.active span {
+            color: #ffffff !important;
+            stroke: #ffffff !important;
+          }
+          .profile-ui .profile-mobile-tab-btn .tab-badge {
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 0.08rem 0.42rem;
+            border-radius: 9999px;
+            background-color: #e2e7dc;
+            color: #0f0f0f;
+            line-height: 1.2;
+          }
+          .profile-ui .profile-mobile-tab-btn.active .tab-badge {
+            background-color: #f59e0b !important;
+            color: #000000 !important;
+          }
+
+          /* Responsive Wishlist, Cart & Order grids */
+          .profile-ui .profile-wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.25rem;
+            align-items: stretch;
+          }
+          .profile-ui .profile-cart-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(260px, 1.1fr);
+            gap: 1.5rem;
+            align-items: start;
+          }
+          .profile-ui .profile-addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+          }
+          .profile-ui .profile-order-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+          }
+
           /* Mobile Breakpoint (<= 768px) - Hides PC Sidebar, Activates Mobile Bar & Drawer */
           @media (max-width: 768px) {
             .profile-ui .profile-container {
-              padding: 1rem 0.85rem 3.5rem 0.85rem;
-              flex-direction: column;
-              gap: 1rem;
+              display: flex !important;
+              flex-direction: column !important;
+              width: 100% !important;
+              max-width: 100% !important;
+              padding: 0 !important;
+              gap: 0.85rem !important;
+              margin-bottom: 2rem !important;
             }
             .profile-ui .profile-sidebar {
               display: none !important;
             }
             .profile-ui .profile-mobile-nav-bar {
               display: flex !important;
+              padding: 0.75rem 1rem !important;
+            }
+            .profile-ui .profile-mobile-tabs-scroll-wrap {
+              display: block !important;
+            }
+            .profile-ui .profile-header-section {
+              margin-bottom: 1.25rem !important;
+              padding-bottom: 1rem !important;
+            }
+            .profile-ui h1 {
+              font-size: 1.65rem !important;
+              line-height: 1.05 !important;
+              letter-spacing: 0.02em !important;
+            }
+            .profile-ui h2 {
+              font-size: 1.35rem !important;
+              line-height: 1.1 !important;
+            }
+            .profile-ui h3 {
+              font-size: 1.12rem !important;
+              line-height: 1.15 !important;
             }
             .profile-ui .profile-terminal-title {
               display: none;
             }
             .profile-ui .profile-card {
-              padding: 1.25rem 1rem;
+              padding: 1.15rem 0.85rem !important;
               border-radius: 12px !important;
+              min-height: auto !important;
+              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
             }
             .profile-ui .profile-grid-names {
               grid-template-columns: 1fr !important;
@@ -1086,7 +1211,7 @@ export const ProfilePage = () => {
             }
             .profile-ui .profile-gender-tile {
               max-width: none;
-              height: 76px;
+              height: 72px;
             }
             .profile-ui .profile-wallet-grid {
               grid-template-columns: 1fr;
@@ -1101,19 +1226,31 @@ export const ProfilePage = () => {
               width: 100%;
               text-align: center;
               justify-content: center;
+              padding: 0.75rem 1rem !important;
             }
             .profile-ui .profile-order-card {
+              padding: 1rem 0.85rem !important;
               flex-direction: column;
               align-items: flex-start !important;
-              gap: 0.85rem;
+              gap: 0.85rem !important;
             }
-            .profile-ui .profile-order-card button {
-              width: 100%;
+            .profile-ui .profile-order-btn-group {
+              width: 100% !important;
+              flex-direction: column !important;
+              gap: 0.45rem !important;
+            }
+            .profile-ui .profile-order-btn-group button {
+              width: 100% !important;
+              justify-content: center !important;
+              text-align: center !important;
+              padding: 0.6rem 1rem !important;
             }
             .profile-ui .profile-tab-header {
               flex-direction: column;
               align-items: flex-start;
               gap: 0.85rem;
+              margin-bottom: 1.15rem !important;
+              padding-bottom: 0.95rem !important;
             }
             .profile-ui .profile-tab-header button {
               width: 100%;
@@ -1128,14 +1265,54 @@ export const ProfilePage = () => {
             }
             .profile-ui .profile-address-modal {
               max-width: 100% !important;
-              padding: 1.5rem 1.15rem !important;
-              margin: 1rem;
+              max-height: 90vh !important;
+              overflow-y: auto !important;
+              -webkit-overflow-scrolling: touch;
+              padding: 1.35rem 1rem !important;
+              margin: 0.65rem !important;
+            }
+            .profile-ui .profile-wishlist-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 0.75rem !important;
+            }
+            .profile-ui .profile-cart-grid {
+              grid-template-columns: 1fr !important;
+              gap: 1.25rem !important;
+            }
+            .profile-ui .profile-order-details-grid {
+              grid-template-columns: 1fr !important;
+              gap: 0.75rem !important;
+            }
+            .profile-ui .profile-security-card {
+              padding: 1.25rem 1rem !important;
+              max-width: 100% !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .profile-ui h1 {
+              font-size: 1.45rem !important;
+            }
+            .profile-ui .profile-order-card {
+              padding: 0.85rem 0.65rem !important;
+            }
+            .profile-ui .profile-card {
+              padding: 1rem 0.65rem !important;
+            }
+          }
+
+          @media (max-width: 380px) {
+            .profile-ui .profile-wishlist-grid {
+              grid-template-columns: 1fr !important;
             }
           }
 
           /* Desktop (> 768px) - Hides mobile trigger, keeps pure authentic PC sidebar */
           @media (min-width: 769px) {
             .profile-ui .profile-mobile-nav-bar {
+              display: none !important;
+            }
+            .profile-ui .profile-mobile-tabs-scroll-wrap {
               display: none !important;
             }
             .profile-ui .profile-sidebar {
@@ -1366,14 +1543,17 @@ export const ProfilePage = () => {
               boxShadow: '0 4px 15px -4px rgba(15,15,15,0.06)',
               width: '100%',
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div
+                style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', flex: 1, minWidth: 0, marginRight: '0.5rem' }}
+                onClick={() => setMobileDrawerOpen(true)}
+              >
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #0f0f0f', flexShrink: 0 }}>
                   <img src="/avatar-sculpture.jpg" alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.src = '/profile-avatar.jpg'; }} />
                 </div>
                 <div style={{ overflow: 'hidden' }}>
                   <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0f0f0f', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{currentUser.name || 'Denis Holland'}</div>
                   <div style={{ fontSize: '0.72rem', color: '#7d807a', fontWeight: 600 }}>
-                    Active Tab: <span style={{ color: '#0f0f0f' }}>{tabLabels[activeTab]}</span>
+                    Active: <span style={{ color: '#0f0f0f', fontWeight: 700 }}>{tabLabels[activeTab]}</span>
                   </div>
                 </div>
               </div>
@@ -1381,7 +1561,7 @@ export const ProfilePage = () => {
               <button
                 type="button"
                 onClick={() => setMobileDrawerOpen(true)}
-                aria-label="Open navigation sections"
+                aria-label="Open navigation menu"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -1397,6 +1577,7 @@ export const ProfilePage = () => {
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   cursor: 'pointer',
+                  flexShrink: 0,
                 }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px', flexShrink: 0 }}>
@@ -1404,8 +1585,33 @@ export const ProfilePage = () => {
                   <line x1="3" y1="6" x2="21" y2="6"></line>
                   <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-                <span>TABS</span>
+                <span>MENU</span>
               </button>
+            </div>
+
+            {/* Mobile Horizontal Quick-Scroll Tabs */}
+            <div className="profile-mobile-tabs-scroll-wrap">
+              <div className="profile-mobile-tabs-container">
+                {navItems.map((item) => {
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setActiveTab(item.id)}
+                      className={`profile-mobile-tab-btn ${isActive ? 'active' : ''}`}
+                    >
+                      <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                        {item.icon}
+                      </span>
+                      <span>{item.label}</span>
+                      {item.badge != null && (
+                        <span className="tab-badge">{item.badge}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             <main className="profile-main">
               <div className="profile-card">
@@ -2482,7 +2688,7 @@ export const ProfilePage = () => {
                                     </div>
                                   )}
 
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexWrap: 'wrap' }}>
+                                  <div className="profile-order-btn-group" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexWrap: 'wrap' }}>
                                     <button
                                       type="button"
                                       onClick={() => setExpandedOrderId(isExpanded ? null : (order._id || order.orderId))}
@@ -2702,17 +2908,20 @@ export const ProfilePage = () => {
 
                                 {/* 5. Expanded Drawer Details */}
                                 {isExpanded && (
-                                  <div style={{
-                                    marginTop: '0.65rem',
-                                    padding: '1rem',
-                                    backgroundColor: '#f7f9f5',
-                                    borderRadius: '8px',
-                                    border: '1px solid #e2e7dc',
-                                    fontSize: '0.76rem',
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                                    gap: '1rem'
-                                  }}>
+                                  <div
+                                    className="profile-order-details-grid"
+                                    style={{
+                                      marginTop: '0.65rem',
+                                      padding: '1rem',
+                                      backgroundColor: '#f7f9f5',
+                                      borderRadius: '8px',
+                                      border: '1px solid #e2e7dc',
+                                      fontSize: '0.76rem',
+                                      display: 'grid',
+                                      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                                      gap: '1rem'
+                                    }}
+                                  >
                                     <div>
                                       <div style={{ fontWeight: 700, color: '#0f0f0f', marginBottom: '0.25rem', fontFamily: 'var(--font-dm-mono), monospace' }}>
                                         DELIVERY DESTINATION
@@ -2861,7 +3070,7 @@ export const ProfilePage = () => {
                     {isAddressesLoading ? (
                       <AddressesSkeleton count={3} />
                     ) : addressesData && addressesData.addresses && addressesData.addresses.length > 0 ? (
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
+                      <div className="profile-addresses-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
                         {addressesData.addresses.map((addr) => (
                           <div
                             key={addr._id}
@@ -2950,6 +3159,7 @@ export const ProfilePage = () => {
 
                     {wishlistItems.length > 0 ? (
                       <div
+                        className="profile-wishlist-grid"
                         style={{
                           display: 'grid',
                           gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
@@ -3068,12 +3278,13 @@ export const ProfilePage = () => {
                     </div>
 
                     {cartItems.length > 0 ? (
-                      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.8fr) minmax(260px, 1.1fr)', gap: '1.5rem', alignItems: 'start' }}>
+                      <div className="profile-cart-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.8fr) minmax(260px, 1.1fr)', gap: '1.5rem', alignItems: 'start' }}>
                         {/* Left: Cart Items List */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                           {cartItems.map((item, idx) => (
                             <div
                               key={item.id || item._id || `${item.name}-${idx}`}
+                              className="profile-cart-item"
                               style={{
                                 display: 'flex',
                                 gap: '1.15rem',
@@ -3326,14 +3537,17 @@ export const ProfilePage = () => {
                       </div>
                     )}
 
-                    <div style={{
-                      backgroundColor: '#ffffff',
-                      border: '1px solid #d7dbd2',
-                      borderRadius: '8px',
-                      padding: '1.85rem 2rem',
-                      maxWidth: '520px',
-                      boxShadow: '0 4px 16px -4px rgba(15, 15, 15, 0.04)'
-                    }}>
+                    <div
+                      className="profile-security-card"
+                      style={{
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #d7dbd2',
+                        borderRadius: '8px',
+                        padding: '1.85rem 2rem',
+                        maxWidth: '520px',
+                        boxShadow: '0 4px 16px -4px rgba(15, 15, 15, 0.04)'
+                      }}
+                    >
                       <form onSubmit={handlePasswordSubmit} noValidate>
                         {/* Current Password Field */}
                         <div style={{ marginBottom: '1.25rem' }}>
