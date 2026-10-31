@@ -37,7 +37,7 @@ export function MobileBottomNav() {
         if (data?.phoneNumber) setWaPhone(data.phoneNumber);
         if (data?.prefilledMessage) setWaMessage(data.prefilledMessage);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const tabs: NavTabItem[] = [
@@ -263,7 +263,7 @@ export function MobileBottomNav() {
   const handleTabClick = (index: number) => {
     try {
       audioSystem.playClick(650);
-    } catch (_) {}
+    } catch (_) { }
 
     setActiveIndex(index);
     const tab = tabs[index];
@@ -389,11 +389,10 @@ export function MobileBottomNav() {
             >
               {/* Inactive Icon & Label with generous vertical gap */}
               <div
-                className={`flex flex-col items-center justify-center transition-all duration-200 ${
-                  isActive
+                className={`flex flex-col items-center justify-center transition-all duration-200 ${isActive
                     ? "opacity-0 scale-75 pointer-events-none"
                     : "opacity-100 scale-100 text-[#666666] hover:text-[#111111]"
-                }`}
+                  }`}
                 style={{ paddingTop: "2px" }}
               >
                 {/* Icon Wrapper with 8px margin bottom */}
